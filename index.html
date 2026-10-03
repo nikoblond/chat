@@ -1,14 +1,565 @@
-<!doctype html><html lang='da'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Nikolaj — Websites for local businesses</title><link rel='preconnect' href='https://fonts.googleapis.com'><link rel='preconnect' href='https://fonts.gstatic.com' crossorigin><link href='https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap' rel='stylesheet'><link rel='stylesheet' href='styles.css'></head><body class='portfolio'>
-<header class='topbar'><a class='brand' href='index.html'>NIKOLAJ</a><a class='contact-link' href='mailto:hello@example.com'>Kontakt</a></header>
-<main>
-<section class='hero'><p class='eyebrow'>Webdesign for lokale virksomheder</p><h1>Enkle hjemmesider, der føles som jeres virksomhed.</h1><p class='hero-copy'>Jeg designer små, skarpe hjemmesider til lokale virksomheder. Ingen skabelonfølelse. Ingen unødvendige effekter. Bare et klart udtryk, der gør det nemt at forstå, besøge og kontakte jer.</p></section>
-<section class='work-intro'><div><span>Udvalgte koncepter</span></div><p>Tre eksempler på, hvordan en ny hjemmeside kan se ud for forskellige typer lokale virksomheder.</p></section>
-<section class='projects'>
-<a class='project project-hair' href='hair.html'><div class='project-meta'><span>01</span><span>Frisør</span></div><div class='mock hair-mock'><div class='mock-nav'>STUDIO 18 <span>BOOK TID</span></div><div class='mock-copy'>Klip.<br>Farve.<br>Ro.</div><div class='mock-footer'>Frederiksberg · København</div></div><div class='project-caption'><h2>Studio 18</h2><p>Et roligt, editorialt univers med fokus på behandlinger og booking.</p></div></a>
-<a class='project project-cafe' href='cafe.html'><div class='project-meta'><span>02</span><span>Café</span></div><div class='mock cafe-mock'><div class='mock-nav'>MORGEN <span>MENU</span></div><div class='mock-copy'>Kaffe, morgenmad<br>og god tid.</div><div class='bean bean1'></div><div class='bean bean2'></div><div class='mock-footer'>Valby · 07–17</div></div><div class='project-caption'><h2>Morgen</h2><p>En varm lokal café-side med menu, åbningstider og stemning.</p></div></a>
-<a class='project project-rest' href='restaurant.html'><div class='project-meta'><span>03</span><span>Restaurant</span></div><div class='mock rest-mock'><div class='mock-nav'>AFTEN <span>RESERVÉR</span></div><div class='mock-copy'>Middag uden<br>unødvendige ord.</div><div class='mock-footer'>Vesterbro · København</div></div><div class='project-caption'><h2>Aften</h2><p>Et mørkere restaurantunivers med menu og reservation i centrum.</p></div></a>
-</section>
-<section class='process'><p class='eyebrow'>Sådan arbejder jeg</p><div class='process-grid'><div><span>01</span><h3>Forstå stedet</h3><p>Jeg starter med virksomheden, målgruppen og det indtryk siden skal give.</p></div><div><span>02</span><h3>Skær ned</h3><p>Kun det besøgende faktisk har brug for: priser, menu, booking, adresse og kontakt.</p></div><div><span>03</span><h3>Gør den levende</h3><p>Design, typografi og struktur tilpasses virksomheden i stedet for at bruge samme template hver gang.</p></div></div></section>
-<section class='cta'><p>Har din virksomhed brug for en enklere og bedre hjemmeside?</p><a href='mailto:hello@example.com'>Skriv til mig ↗</a></section>
-</main><footer><span>© 2026 Nikolaj</span><span>København</span></footer>
-</body></html>
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Makkerne</title>
+<meta name="description" content="Makkerne: en ny, moderne hjemmeside til din café, frisørsalon eller restaurant – til en fast pris på 600 kr.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@500&family=Fraunces:ital,opsz,wght@1,9..144,500&family=Oswald:wght@500;600&display=swap">
+<style>
+/* Layout: bright full-bleed hero with price, then alternating white / soft sections in one 1120px column; portfolio as large case cards with live HTML mockups. Light-only by design. */
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f4f7fb;
+  --surface: #ffffff;
+  --ink: #0f1a2b;
+  --ink-2: #4b5768;
+  --ink-3: #7c8798;
+  --line: #e4e9f1;
+  --accent: #1f6bff;
+  --accent-hover: #155ae6;
+  --accent-ink: #ffffff;
+  --accent-soft: #e8f0ff;
+  --card-top: #e6effc;
+  --sun: #ffd84a;
+
+  /* Hero and contact band */
+  --hero-bg: #fbfcff;
+  --hero-ink: #0f1a2b;
+  --hero-ink-2: #4b5768;
+  --hero-line: rgba(15,26,43,.09);
+  --hero-glow: rgba(31,107,255,.16);
+  --hero-sun: rgba(255,216,74,.38);
+  --price-a: #1f6bff;
+  --price-b: #00b4ff;
+
+  --font: "Geist", ui-sans-serif, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --wrap: 1120px;
+  --radius: 18px;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+h1, h2, h3 { margin: 0; letter-spacing: -0.035em; line-height: 1.08; text-wrap: balance; font-weight: 700; }
+p { margin: 0; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: 20px; }
+:focus-visible { outline: 2px solid var(--price-a); outline-offset: 3px; border-radius: 8px; }
+
+.eyebrow { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.btn { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding-inline: 22px; border-radius: 12px; font: 600 15px/1 var(--font); text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: transform .15s ease, background .15s ease, box-shadow .15s ease; }
+.btn svg { width: 16px; height: 16px; transition: transform .15s ease; }
+.btn:hover svg { transform: translateX(3px); }
+.btn-primary { background: var(--accent); color: var(--accent-ink); box-shadow: 0 8px 22px -8px rgba(31,107,255,.55); }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-ghost { background: var(--surface); color: var(--hero-ink); border-color: var(--line); }
+.btn-ghost:hover { border-color: var(--ink-3); }
+
+/* Nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(255,255,255,.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--hero-line); color: var(--hero-ink); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+.logo { display: flex; flex-direction: column; text-decoration: none; line-height: 1; }
+.logo b { font-size: 21px; font-weight: 700; letter-spacing: -.045em; }
+.logo b::after { content: "."; color: var(--accent); }
+.logo span { font-family: var(--mono); font-size: 9px; letter-spacing: .32em; color: var(--hero-ink-2); margin-top: 3px; }
+.nav-links { display: flex; gap: 28px; font-size: 14px; color: var(--hero-ink-2); }
+.nav-links a { text-decoration: none; transition: color .15s; }
+.nav-links a:hover { color: var(--hero-ink); }
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.lang { display: inline-flex; padding: 3px; border: 1px solid var(--hero-line); border-radius: 10px; }
+.lang button { appearance: none; border: 0; background: transparent; color: var(--hero-ink-2); font: 500 12px/1 var(--mono); letter-spacing: .08em; padding: 7px 9px; border-radius: 7px; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); }
+.nav .btn { height: 38px; padding-inline: 16px; font-size: 14px; border-radius: 10px; }
+@media (max-width: 860px) { .nav-links { display: none; } }
+@media (max-width: 420px) { .nav .btn { display: none; } }
+
+/* Hero */
+.hero { position: relative; background: var(--hero-bg); color: var(--hero-ink); overflow: hidden; isolation: isolate; }
+.hero::before { content: ""; position: absolute; inset: -40% -10% auto; height: 120%; background: radial-gradient(ellipse 38% 40% at 30% 30%, var(--hero-glow), transparent 70%), radial-gradient(ellipse 34% 36% at 72% 26%, var(--hero-sun), transparent 70%); z-index: -1; }
+.hero::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--hero-line) 1px, transparent 1px), linear-gradient(90deg, var(--hero-line) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse 60% 55% at 50% 35%, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 35%, #000 20%, transparent 75%); opacity: .8; z-index: -1; }
+.hero .wrap { padding-block: 96px 72px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.hero .eyebrow { color: var(--accent); display: inline-flex; align-items: center; gap: 10px; }
+.hero .eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,.16); }
+.hero h1 { margin-top: 26px; font-size: clamp(40px, 6.4vw, 76px); font-weight: 800; letter-spacing: -.05em; max-width: 18ch; }
+.price-line { margin-top: 14px; font-size: clamp(40px, 6.4vw, 76px); font-weight: 800; letter-spacing: -.05em; line-height: 1.05; background: linear-gradient(90deg, var(--price-a), var(--price-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero .lead { margin-top: 26px; max-width: 56ch; font-size: clamp(17px, 1.6vw, 19px); color: var(--hero-ink-2); }
+.hero .ctas { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.stats { margin-top: 64px; width: 100%; max-width: 760px; border-top: 1px solid var(--hero-line); padding-top: 32px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.stats strong { display: block; font-size: clamp(26px, 3vw, 34px); font-weight: 700; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.stats span { font-size: 13px; color: var(--hero-ink-2); }
+@media (max-width: 520px) { .stats { grid-template-columns: 1fr; gap: 20px; } }
+
+.rise { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+.rise:nth-child(2) { animation-delay: .06s; } .rise:nth-child(3) { animation-delay: .12s; } .rise:nth-child(4) { animation-delay: .18s; } .rise:nth-child(5) { animation-delay: .24s; } .rise:nth-child(6) { animation-delay: .3s; }
+@keyframes rise { from { transform: translateY(14px); opacity: .001; } to { transform: none; opacity: 1; } }
+
+/* Sections */
+section.block { padding-block: 104px; }
+section.soft { background: var(--bg-soft); }
+.head { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px; margin-bottom: 56px; }
+.head h2 { font-size: clamp(32px, 4.2vw, 48px); }
+.head p { max-width: 60ch; color: var(--ink-2); font-size: 17px; }
+
+/* Portfolio cases */
+.cases { display: grid; gap: 28px; }
+.case { display: grid; grid-template-columns: 1.25fr 1fr; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; }
+.case:nth-child(even) { grid-template-columns: 1fr 1.25fr; }
+.case:nth-child(even) .case-visual { order: 2; }
+.case-visual { background: var(--card-top); padding: 44px 36px; display: grid; place-items: center; min-width: 0; }
+.case-body { padding: 44px 40px; display: flex; flex-direction: column; justify-content: center; gap: 14px; min-width: 0; }
+.case-body h3 { font-size: 28px; }
+.case-body p { color: var(--ink-2); }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.tags span { font-size: 12.5px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink-2); }
+.concept-note { margin-top: 28px; text-align: center; font-size: 13.5px; color: var(--ink-3); }
+@media (max-width: 860px) {
+  .case, .case:nth-child(even) { grid-template-columns: 1fr; }
+  .case:nth-child(even) .case-visual { order: 0; }
+  .case-visual { padding: 28px 18px; }
+  .case-body { padding: 28px 24px 32px; }
+}
+
+/* Live case: real MacBook photo with a scaled live iframe in the screen.
+   Screen rectangle measured in macbook-pro.png (1208×700): x 143–1065, y 47–623 → 923×577 px (16:10). */
+.case-live { position: relative; transition: border-color .2s ease, box-shadow .2s ease; }
+.case-live:hover { border-color: #c9d6ea; box-shadow: 0 24px 50px -30px rgba(15,26,43,.35); }
+.case-cta { align-self: flex-start; margin-top: 8px; }
+.case-cta::after { content: ""; position: absolute; inset: 0; z-index: 2; border-radius: 24px; }
+.case-live:hover .case-cta svg { transform: translateX(3px); }
+.device { position: relative; width: 100%; max-width: 600px; aspect-ratio: 1208 / 700; }
+.device-shell { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; filter: drop-shadow(0 26px 30px rgba(15,26,43,.22)); }
+.device-screen { position: absolute; z-index: 1; left: 11.8377%; top: 6.7143%; width: 76.4073%; height: 82.4286%; overflow: hidden; background: #f7f7f7; container-type: inline-size; }
+.device-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.device-frame { position: absolute; top: 0; left: 0; width: 1280px; height: 800px; border: 0; transform-origin: 0 0; transform: scale(var(--s, .36)); pointer-events: none; opacity: 0; transition: opacity .4s ease; background: #f7f7f7; }
+.device-frame.ready { opacity: 1; }
+
+/* Laptop mockup */
+.laptop { width: 100%; max-width: 560px; }
+.laptop .lid { background: #1b1d22; border-radius: 14px 14px 4px 4px; padding: 2.4% 2.4% 2.8%; box-shadow: 0 30px 60px -30px rgba(15,26,43,.4); }
+.laptop .base { height: 12px; margin-inline: -6%; background: linear-gradient(#c9ccd3, #9a9ea8); border-radius: 0 0 14px 14px; position: relative; }
+.laptop .base::after { content: ""; position: absolute; top: 0; left: 50%; translate: -50% 0; width: 16%; height: 5px; background: #8a8e98; border-radius: 0 0 6px 6px; }
+.screen { aspect-ratio: 16 / 10; max-width: 100%; border-radius: 3px; overflow: hidden; container-type: inline-size; position: relative; }
+
+/* Mock site: shared */
+.ms { position: absolute; inset: 0; display: flex; flex-direction: column; font-family: var(--font); }
+.ms-nav { display: flex; align-items: center; justify-content: space-between; padding: 2.6cqw 4.5cqw; font-size: 1.7cqw; }
+.ms-nav .links { display: flex; gap: 3cqw; opacity: .8; }
+.ms-pill { padding: 1cqw 2.2cqw; border-radius: 999px; font-size: 1.6cqw; font-weight: 600; }
+
+/* Café mock */
+.ms-cafe { background: #f6efe6; color: #3b2a1e; }
+.ms-cafe .brand { font-family: "Fraunces", Georgia, serif; font-style: italic; font-size: 2.6cqw; }
+.ms-cafe .ms-pill { background: #3b2a1e; color: #f6efe6; }
+.ms-cafe .body { flex: 1; display: grid; grid-template-columns: 1.05fr 1fr; gap: 4cqw; padding: 1cqw 4.5cqw 4.5cqw; align-items: center; }
+.ms-cafe .kicker { font-size: 1.4cqw; letter-spacing: .2em; text-transform: uppercase; color: #a0663b; }
+.ms-cafe h4 { margin: 1.4cqw 0 0; font-family: "Fraunces", Georgia, serif; font-style: italic; font-weight: 500; font-size: 6.4cqw; line-height: 1; letter-spacing: -.02em; }
+.ms-cafe .sub { margin-top: 2cqw; font-size: 1.7cqw; opacity: .75; max-width: 34ch; }
+.ms-cafe .hours { margin-top: 3cqw; display: grid; grid-template-columns: auto auto; gap: .6cqw 3cqw; font-size: 1.5cqw; width: max-content; border-top: .2cqw solid #d9c7b2; padding-top: 1.8cqw; }
+.ms-cafe .hours b { font-weight: 600; }
+.ms-cafe .art { height: 100%; border-radius: 1.6cqw; background: radial-gradient(circle at 50% 46%, #f6efe6 0 17%, #6b3f22 17.5% 22%, #e9d6bf 22.5% 34%, transparent 34.5%), radial-gradient(circle at 70% 80%, #c78c58 0 10%, transparent 10.5%), linear-gradient(160deg, #d9a273, #a0663b); position: relative; }
+.ms-cafe .art::after { content: "Dagens kage · 45,-"; position: absolute; left: 2cqw; bottom: 2cqw; background: #f6efe6; color: #3b2a1e; font-size: 1.4cqw; padding: 1cqw 1.8cqw; border-radius: 1cqw; font-weight: 600; }
+
+/* Barber mock */
+.ms-barber { background: #0d0d0d; color: #f1ece2; }
+.ms-barber .brand { font-family: "Oswald", Impact, sans-serif; font-size: 2.4cqw; letter-spacing: .12em; text-transform: uppercase; }
+.ms-barber .ms-pill { background: #c9a227; color: #0d0d0d; border-radius: .6cqw; }
+.ms-barber .body { flex: 1; position: relative; display: flex; flex-direction: column; justify-content: center; padding: 0 4.5cqw 4cqw; background: repeating-linear-gradient(135deg, rgba(201,162,39,.06) 0 1.2cqw, transparent 1.2cqw 2.4cqw); }
+.ms-barber .pole { position: absolute; right: 7cqw; top: 6%; bottom: 14%; width: 5cqw; border-radius: 3cqw; background: repeating-linear-gradient(-45deg, #b91c1c 0 1.6cqw, #f1ece2 1.6cqw 3.2cqw, #1e3a8a 3.2cqw 4.8cqw, #f1ece2 4.8cqw 6.4cqw); box-shadow: 0 0 0 .5cqw #2a2a2a, 0 0 0 .8cqw #c9a227; }
+.ms-barber .kicker { font-size: 1.4cqw; letter-spacing: .3em; color: #c9a227; text-transform: uppercase; }
+.ms-barber h4 { margin: 1.2cqw 0 0; font-family: "Oswald", Impact, sans-serif; font-weight: 600; text-transform: uppercase; font-size: 8cqw; line-height: .92; letter-spacing: .01em; }
+.ms-barber h4 em { font-style: normal; color: #c9a227; }
+.ms-barber .menu { margin-top: 3cqw; display: grid; grid-template-columns: repeat(3, max-content); gap: 2.4cqw; font-size: 1.5cqw; }
+.ms-barber .menu div { border-left: .3cqw solid #c9a227; padding-left: 1.2cqw; }
+.ms-barber .menu b { display: block; font-size: 2cqw; font-family: "Oswald", Impact, sans-serif; font-weight: 500; }
+
+/* Restaurant mock */
+.ms-resto { background: #12261e; color: #ece7da; }
+.ms-resto .brand { font-size: 2.2cqw; font-weight: 700; letter-spacing: .32em; text-transform: uppercase; }
+.ms-resto .ms-pill { border: .2cqw solid #ece7da; }
+.ms-resto .body { flex: 1; display: grid; grid-template-columns: 1fr 1fr; }
+.ms-resto .copy { padding: 3cqw 4.5cqw; display: flex; flex-direction: column; justify-content: center; }
+.ms-resto .kicker { font-size: 1.4cqw; letter-spacing: .24em; text-transform: uppercase; color: #d6b98c; }
+.ms-resto h4 { margin: 1.4cqw 0 0; font-family: "Fraunces", Georgia, serif; font-style: italic; font-weight: 500; font-size: 5.4cqw; line-height: 1.02; }
+.ms-resto .book { margin-top: 3cqw; display: flex; gap: 1cqw; font-size: 1.5cqw; }
+.ms-resto .book span { padding: 1.1cqw 1.8cqw; border: .2cqw solid rgba(236,231,218,.3); border-radius: .8cqw; }
+.ms-resto .book span:last-child { background: #d6b98c; color: #12261e; border-color: #d6b98c; font-weight: 600; }
+.ms-resto .plate { background: radial-gradient(circle at 50% 50%, #ece7da 0 26%, #d6d0c1 26.5% 30%, transparent 30.5%), radial-gradient(circle at 46% 46%, #7a9a5b 0 6%, transparent 6.5%), radial-gradient(circle at 56% 54%, #b4532a 0 5%, transparent 5.5%), linear-gradient(135deg, #2b4a3c, #0c1a14); position: relative; }
+.ms-resto .plate::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 52% 50%, #e4a85c 0 3.5%, transparent 4%); }
+
+/* Price */
+.price-card { display: grid; grid-template-columns: 1fr 1.2fr; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; }
+.price-left { padding: 48px 44px; background: var(--accent); color: #fff; display: flex; flex-direction: column; gap: 18px; position: relative; overflow: hidden; }
+.price-left::after { content: ""; position: absolute; right: -80px; bottom: -80px; width: 260px; height: 260px; border-radius: 50%; border: 1px solid rgba(255,255,255,.25); box-shadow: 0 0 0 40px rgba(255,255,255,.05), 0 0 0 80px rgba(255,255,255,.04); }
+.price-left .tag { align-self: flex-start; color: var(--ink); background: var(--sun) !important; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; background: rgba(255,255,255,.16); padding: 6px 10px; border-radius: 999px; }
+.price-big { font-size: clamp(64px, 8vw, 96px); font-weight: 800; letter-spacing: -.06em; line-height: .9; font-variant-numeric: tabular-nums; }
+.price-big small { font-size: .32em; letter-spacing: -.02em; font-weight: 600; margin-left: 6px; }
+.price-left p { color: rgba(255,255,255,.85); max-width: 32ch; }
+.price-left .btn { align-self: flex-start; background: #fff; color: #0b1220; margin-top: 8px; position: relative; z-index: 1; }
+.price-left .btn:hover { background: var(--accent-soft); }
+.price-right { padding: 48px 44px; }
+.price-right h3 { font-size: 20px; letter-spacing: -.02em; margin-bottom: 22px; }
+.incl { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 28px; }
+.incl li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; }
+.incl i { width: 28px; height: 28px; border-radius: 8px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; }
+.incl i svg { width: 15px; height: 15px; }
+.incl b { display: block; font-weight: 600; font-size: 15px; }
+.incl span { font-size: 14px; color: var(--ink-2); }
+.compare { margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-2); }
+.compare b { color: var(--ink); }
+@media (max-width: 860px) { .price-card { grid-template-columns: 1fr; } .price-left, .price-right { padding: 36px 26px; } }
+@media (max-width: 520px) { .incl { grid-template-columns: 1fr; } }
+
+/* Steps */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: s; }
+.step { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 28px; }
+.step .n { font-family: var(--mono); font-size: 13px; color: var(--accent); }
+.step h3 { margin-top: 18px; font-size: 21px; letter-spacing: -.025em; }
+.step p { margin-top: 10px; color: var(--ink-2); font-size: 15px; }
+@media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
+
+/* FAQ */
+.faq { max-width: 760px; margin-inline: auto; border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 2px; font-weight: 600; font-size: 16.5px; letter-spacing: -.01em; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .pm { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--ink); color: var(--bg); display: grid; place-items: center; transition: transform .2s ease; }
+.faq summary .pm svg { width: 12px; height: 12px; }
+.faq details[open] .pm { transform: rotate(45deg); }
+.faq details p { padding: 0 2px 24px; color: var(--ink-2); max-width: 64ch; }
+
+/* CTA */
+.cta { background: var(--hero-bg); border-top: 1px solid var(--line); color: var(--hero-ink); position: relative; overflow: hidden; isolation: isolate; }
+.cta::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 40% 80% at 35% 120%, var(--hero-glow), transparent 70%), radial-gradient(ellipse 34% 70% at 68% 115%, var(--hero-sun), transparent 70%); z-index: -1; }
+.cta .wrap { padding-block: 96px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.cta h2 { font-size: clamp(32px, 4.6vw, 54px); max-width: 22ch; }
+.cta p { color: var(--hero-ink-2); max-width: 52ch; }
+.mail { margin-top: 14px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; }
+.mail code { font-family: var(--mono); font-size: 15px; padding: 13px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); user-select: all; word-break: break-all; }
+.copy { height: 48px; }
+.copy-status { min-height: 1.4em; font-size: 13px; color: var(--accent); }
+
+/* Footer */
+footer { background: var(--bg-soft); border-top: 1px solid var(--line); }
+footer .wrap { padding-block: 40px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; font-size: 13.5px; color: var(--ink-3); }
+footer .logo b { color: var(--ink); font-size: 18px; }
+footer .logo span { color: var(--ink-3); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Makkerne">
+      <b>Makkerne</b><span>WEBDESIGN</span>
+    </a>
+    <nav class="nav-links" aria-label="Hovedmenu">
+      <a href="#eksempler" data-i18n="nav.work">Eksempler</a>
+      <a href="#pris" data-i18n="nav.price">Pris</a>
+      <a href="#proces" data-i18n="nav.process">Sådan foregår det</a>
+      <a href="#faq" data-i18n="nav.faq">Spørgsmål</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Sprog / Language">
+        <button type="button" id="lang-da" data-lang="da" aria-pressed="true">DA</button>
+        <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="btn btn-primary" href="#kontakt" data-i18n="nav.cta">Få din side</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow rise" data-i18n="hero.eyebrow">Til caféer, frisører og restauranter</div>
+      <h1 class="rise" data-i18n="hero.title">En helt ny hjemmeside til din forretning</h1>
+      <div class="price-line rise" data-i18n="hero.price">Kun 600 kr.</div>
+      <p class="lead rise" data-i18n="hero.lead">Vi er to unge iværksættere, der designer og bygger moderne, hurtige hjemmesider til små virksomheder. Én fast pris, ingen abonnement og ingen overraskelser.</p>
+      <div class="ctas rise">
+        <a class="btn btn-primary" href="#eksempler"><span data-i18n="hero.cta1">Se eksempler</span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <a class="btn btn-ghost" href="#kontakt" data-i18n="hero.cta2">Skriv til os</a>
+      </div>
+      <div class="stats rise">
+        <div><strong>600 kr.</strong><span data-i18n="stat.1">Fast pris, alt inkluderet</span></div>
+        <div><strong>0 kr.</strong><span data-i18n="stat.2">Månedligt abonnement</span></div>
+        <div><strong data-i18n="stat.3v">Mobil først</strong><span data-i18n="stat.3">Ser godt ud på alle skærme</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="eksempler">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow" data-i18n="work.eyebrow">Eksempler</div>
+        <h2 data-i18n="work.title">Sådan kunne din side se ud</h2>
+        <p data-i18n="work.lead">Tre bud på hjemmesider til forskellige brancher. Hver side bliver designet fra bunden, så den passer til netop din forretning.</p>
+      </div>
+
+      <div class="cases">
+        <!-- Café -->
+        <article class="case case-live">
+          <div class="case-visual">
+            <div class="device" aria-hidden="true">
+              <div class="device-screen">
+                <img class="device-poster" src="assets/cafe-hero.webp" alt="" width="1280" height="800" loading="lazy">
+                <iframe class="device-frame" src="examples/cafe/" title="Café Kanel, eksempel" tabindex="-1" loading="lazy" scrolling="no"></iframe>
+              </div>
+              <img class="device-shell" src="assets/macbook-pro.png" alt="" width="1208" height="700" loading="lazy">
+            </div>
+          </div>
+          <div class="case-body">
+            <div class="eyebrow" data-i18n="c1.eyebrow">Eksempel · Café</div>
+            <h3>Café Kanel</h3>
+            <p data-i18n="c1.text">Varm og indbydende side, hvor menu, åbningstider og adresse er det første, gæsten ser. Lavet til at blive tjekket på telefonen på vej forbi.</p>
+            <div class="tags"><span data-i18n="tag.menu">Menu</span><span data-i18n="tag.hours">Åbningstider</span><span data-i18n="tag.map">Kort &amp; adresse</span><span data-i18n="tag.mobile">Mobil først</span></div>
+            <a class="btn btn-primary case-cta" href="examples/cafe/"><span data-i18n="c1.cta">Se eksemplet</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <!-- Barber -->
+        <article class="case">
+          <div class="case-visual">
+            <div class="laptop" aria-hidden="true">
+              <div class="lid"><div class="screen">
+                <div class="ms ms-barber">
+                  <div class="ms-nav"><span class="brand">Klip &amp; Co.</span><span class="links"><span>Priser</span><span>Galleri</span><span>Kontakt</span></span><span class="ms-pill">Book tid</span></div>
+                  <div class="body">
+                    <div class="pole"></div>
+                    <div class="kicker">Barbershop · Valby</div>
+                    <h4>Skarpe<br><em>klip.</em> Ingen<br>ventetid.</h4>
+                    <div class="menu">
+                      <div><b>Herreklip</b>250,-</div>
+                      <div><b>Skæg</b>150,-</div>
+                      <div><b>Klip + skæg</b>350,-</div>
+                    </div>
+                  </div>
+                </div>
+              </div></div>
+              <div class="base"></div>
+            </div>
+          </div>
+          <div class="case-body">
+            <div class="eyebrow" data-i18n="c2.eyebrow">Eksempel · Frisør &amp; barber</div>
+            <h3>Klip &amp; Co.</h3>
+            <p data-i18n="c2.text">Kant og karakter. Priserne står tydeligt, og knappen til online booking følger med hele vejen ned ad siden, så en ny kunde kan booke på få sekunder.</p>
+            <div class="tags"><span data-i18n="tag.booking">Online booking</span><span data-i18n="tag.prices">Prisliste</span><span data-i18n="tag.gallery">Galleri</span><span data-i18n="tag.mobile">Mobil først</span></div>
+          </div>
+        </article>
+
+        <!-- Restaurant -->
+        <article class="case">
+          <div class="case-visual">
+            <div class="laptop" aria-hidden="true">
+              <div class="lid"><div class="screen">
+                <div class="ms ms-resto">
+                  <div class="ms-nav"><span class="brand">Lyng</span><span class="links"><span>Menu</span><span>Vin</span><span>Selskaber</span></span><span class="ms-pill">Book bord</span></div>
+                  <div class="body">
+                    <div class="copy">
+                      <div class="kicker">Nordisk køkken · Frederiksberg</div>
+                      <h4>Sæsonens råvarer, serveret enkelt</h4>
+                      <div class="book"><span>Fre 18. okt</span><span>2 pers.</span><span>Find bord</span></div>
+                    </div>
+                    <div class="plate"></div>
+                  </div>
+                </div>
+              </div></div>
+              <div class="base"></div>
+            </div>
+          </div>
+          <div class="case-body">
+            <div class="eyebrow" data-i18n="c3.eyebrow">Eksempel · Restaurant</div>
+            <h3>Restaurant Lyng</h3>
+            <p data-i18n="c3.text">Rolig og elegant side, der lader maden tale. Bordbestilling direkte fra forsiden, en menu der er nem at læse og en side til selskaber og events.</p>
+            <div class="tags"><span data-i18n="tag.table">Bordbestilling</span><span data-i18n="tag.menu">Menu</span><span data-i18n="tag.events">Selskaber</span><span data-i18n="tag.mobile">Mobil først</span></div>
+          </div>
+        </article>
+      </div>
+      <p class="concept-note" data-i18n="work.note">Navnene ovenfor er opdigtede. Siderne er eksempler på stilen, ikke rigtige kundeprojekter.</p>
+    </div>
+  </section>
+
+  <section class="block soft" id="pris">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow" data-i18n="price.eyebrow">Pris</div>
+        <h2 data-i18n="price.title">Én pris. Hele hjemmesiden.</h2>
+        <p data-i18n="price.lead">Ingen pakker at vælge imellem og ingen timepris, der løber løbsk. Du ved, hvad det koster, før vi starter.</p>
+      </div>
+      <div class="price-card">
+        <div class="price-left">
+          <span class="tag" data-i18n="price.tag">Fast pris</span>
+          <div class="price-big">600<small>kr.</small></div>
+          <p data-i18n="price.sub">Betales én gang. Ingen binding og intet månedligt abonnement til os.</p>
+          <a class="btn" href="#kontakt"><span data-i18n="price.cta">Kom i gang</span>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
+        <div class="price-right">
+          <h3 data-i18n="price.incl">Det får du</h3>
+          <ul class="incl">
+            <li><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></i><div><b data-i18n="i1.t">Design fra bunden</b><span data-i18n="i1.d">Lavet til din forretning, ikke en skabelon.</span></div></li>
+            <li><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></i><div><b data-i18n="i2.t">Mobilvenlig</b><span data-i18n="i2.d">Ser skarp ud på telefon, tablet og computer.</span></div></li>
+            <li><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></i><div><b data-i18n="i3.t">Menu, priser og åbningstider</b><span data-i18n="i3.d">Det dine kunder leder efter, lige til at finde.</span></div></li>
+            <li><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></i><div><b data-i18n="i4.t">Booking og kontakt</b><span data-i18n="i4.d">Link til dit bookingsystem, telefon, mail og kort.</span></div></li>
+            <li><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></i><div><b data-i18n="i5.t">Hurtig at loade</b><span data-i18n="i5.d">Ingen tunge temaer, der får folk til at give op.</span></div></li>
+            <li><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></i><div><b data-i18n="i6.t">Klar til Google</b><span data-i18n="i6.d">Titler og beskrivelser sat op, så du kan blive fundet.</span></div></li>
+          </ul>
+          <p class="compare" data-i18n-html="price.compare">Til sammenligning koster en ny hjemmeside fra et bureau ofte <b>flere tusinde kroner</b>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="proces">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow" data-i18n="proc.eyebrow">Sådan foregår det</div>
+        <h2 data-i18n="proc.title">Fra første mail til færdig side</h2>
+        <p data-i18n="proc.lead">Ingen lange møder eller tunge briefs. Tre enkle trin.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="n">01</div><h3 data-i18n="s1.t">Du skriver til os</h3><p data-i18n="s1.d">Fortæl kort om din forretning, og send gerne et par billeder og dit logo, hvis du har et.</p></div>
+        <div class="step"><div class="n">02</div><h3 data-i18n="s2.t">Vi designer siden</h3><p data-i18n="s2.d">Du får et udkast at se, og vi retter til, indtil du er tilfreds.</p></div>
+        <div class="step"><div class="n">03</div><h3 data-i18n="s3.t">Siden går live</h3><p data-i18n="s3.d">Vi sætter siden online og viser dig, hvordan du opdaterer åbningstider og menu.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block soft" id="faq">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow" data-i18n="faq.eyebrow">Spørgsmål</div>
+        <h2 data-i18n="faq.title">Det bliver vi tit spurgt om</h2>
+      </div>
+      <div class="faq">
+        <details><summary><span data-i18n="q1">Hvorfor er det så billigt?</span><span class="pm"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 1v10M1 6h10"/></svg></span></summary><p data-i18n="a1">Vi er to mand uden kontor, sælgere eller mellemled. Siderne er enkle og fokuserede, så vi kan lave dem hurtigt og holde prisen nede.</p></details>
+        <details><summary><span data-i18n="q2">Skal jeg selv levere tekst og billeder?</span><span class="pm"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 1v10M1 6h10"/></svg></span></summary><p data-i18n="a2">Det er en god hjælp, hvis du sender billeder og din menu eller prisliste. Teksterne kan vi skrive for dig ud fra det, du fortæller.</p></details>
+        <details><summary><span data-i18n="q3">Hvad med domæne og hosting?</span><span class="pm"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 1v10M1 6h10"/></svg></span></summary><p data-i18n="a3">Har du allerede et domæne, bruger vi det. Har du ikke, hjælper vi dig med at finde den billigste løsning, så du selv ejer det hele.</p></details>
+        <details><summary><span data-i18n="q4">Kan jeg ændre noget bagefter?</span><span class="pm"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 1v10M1 6h10"/></svg></span></summary><p data-i18n="a4">Ja. Vi retter til undervejs, og når siden er live, kan du altid skrive til os, hvis noget skal opdateres.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="kontakt">
+    <div class="wrap">
+      <div class="eyebrow" data-i18n="cta.eyebrow">Kontakt</div>
+      <h2 data-i18n="cta.title">Klar til en ny hjemmeside til 600 kr.?</h2>
+      <p data-i18n="cta.lead">Skriv en mail med navnet på din forretning og hvad du laver. Vi svarer typisk samme dag.</p>
+      <div class="mail">
+        <code id="mail-address">blond.nikolaj@gmail.com</code>
+        <button type="button" class="btn btn-primary copy" id="copy-mail" data-i18n="cta.copy">Kopiér mail</button>
+      </div>
+      <div class="copy-status" id="copy-status" aria-live="polite"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Makkerne"><b>Makkerne</b><span>WEBDESIGN</span></a>
+    <span>© 2026 Makkerne</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var en = {
+    "nav.work": "Examples", "nav.price": "Price", "nav.process": "How it works", "nav.faq": "Questions", "nav.cta": "Get your site",
+    "hero.eyebrow": "For cafés, hair salons and restaurants",
+    "hero.title": "A brand-new website for your business",
+    "hero.price": "Only 600 DKK",
+    "hero.lead": "We are two young entrepreneurs who design and build modern, fast websites for small businesses. One fixed price, no subscription and no surprises.",
+    "hero.cta1": "See examples", "hero.cta2": "Email us",
+    "stat.1": "Fixed price, everything included", "stat.2": "Monthly subscription", "stat.3v": "Mobile first", "stat.3": "Looks great on every screen",
+    "work.eyebrow": "Examples", "work.title": "What your site could look like",
+    "work.lead": "Three takes on websites for different industries. Every site is designed from scratch to fit your business.",
+    "work.note": "The names above are made up. These are examples of the style, not real client projects.",
+    "c1.eyebrow": "Example · Café", "c1.cta": "See the example", "c1.text": "A warm, inviting site where the menu, opening hours and address are the first thing guests see. Built to be checked on a phone while walking by.",
+    "c2.eyebrow": "Example · Hair & barber", "c2.text": "Sharp and full of character. Prices are clear, and the online booking button follows you down the page so a new customer can book in seconds.",
+    "c3.eyebrow": "Example · Restaurant", "c3.text": "A calm, elegant site that lets the food speak. Table booking from the front page, an easy-to-read menu and a page for private events.",
+    "tag.menu": "Menu", "tag.hours": "Opening hours", "tag.map": "Map & address", "tag.mobile": "Mobile first", "tag.booking": "Online booking", "tag.prices": "Price list", "tag.gallery": "Gallery", "tag.table": "Table booking", "tag.events": "Private events",
+    "price.eyebrow": "Price", "price.title": "One price. The whole website.",
+    "price.lead": "No packages to choose between and no hourly rate that runs away. You know what it costs before we start.",
+    "price.tag": "Fixed price", "price.sub": "Paid once. No lock-in and no monthly fee to us.", "price.cta": "Get started", "price.incl": "What you get",
+    "i1.t": "Designed from scratch", "i1.d": "Made for your business, not a template.",
+    "i2.t": "Mobile friendly", "i2.d": "Looks sharp on phone, tablet and desktop.",
+    "i3.t": "Menu, prices and hours", "i3.d": "What your customers look for, easy to find.",
+    "i4.t": "Booking and contact", "i4.d": "Link to your booking system, phone, email and map.",
+    "i5.t": "Fast to load", "i5.d": "No heavy themes that make people give up.",
+    "i6.t": "Ready for Google", "i6.d": "Titles and descriptions set up so you can be found.",
+    "price.compare": "For comparison, a new website from an agency often costs <b>several thousand kroner</b>.",
+    "proc.eyebrow": "How it works", "proc.title": "From first email to finished site", "proc.lead": "No long meetings or heavy briefs. Three simple steps.",
+    "s1.t": "You email us", "s1.d": "Tell us briefly about your business, and send a few photos and your logo if you have one.",
+    "s2.t": "We design the site", "s2.d": "You get a draft to look at, and we adjust it until you're happy.",
+    "s3.t": "The site goes live", "s3.d": "We put the site online and show you how to update your opening hours and menu.",
+    "faq.eyebrow": "Questions", "faq.title": "What people often ask us",
+    "q1": "Why is it so cheap?", "a1": "We're a two-person team with no office, salespeople or middlemen. The sites are simple and focused, so we can build them quickly and keep the price low.",
+    "q2": "Do I need to provide text and photos?", "a2": "It helps if you send photos and your menu or price list. We can write the text for you based on what you tell us.",
+    "q3": "What about domain and hosting?", "a3": "If you already have a domain, we use it. If not, we'll help you find the cheapest option so you own everything yourself.",
+    "q4": "Can I change things afterwards?", "a4": "Yes. We adjust along the way, and once the site is live you can always email us if something needs updating.",
+    "cta.eyebrow": "Contact", "cta.title": "Ready for a new website for 600 DKK?",
+    "cta.lead": "Send an email with the name of your business and what you do. We usually reply the same day.",
+    "cta.copy": "Copy email", "copied": "Copied to clipboard", "copyfail": "Select the address above and copy it"
+  };
+  // Live example in the MacBook: scale the 1280px-wide iframe to the measured screen.
+  document.querySelectorAll(".device-screen").forEach(function (screen) {
+    var frame = screen.querySelector(".device-frame");
+    function fit() { frame.style.setProperty("--s", String(screen.clientWidth / 1280)); }
+    fit();
+    if ("ResizeObserver" in window) new ResizeObserver(fit).observe(screen); else window.addEventListener("resize", fit);
+    frame.addEventListener("load", function () { frame.classList.add("ready"); });
+  });
+
+  var da = {};
+  var nodes = document.querySelectorAll("[data-i18n],[data-i18n-html]");
+  nodes.forEach(function (el) {
+    var k = el.getAttribute("data-i18n") || el.getAttribute("data-i18n-html");
+    da[k] = el.hasAttribute("data-i18n-html") ? el.innerHTML : el.textContent;
+  });
+  da.copied = "Kopieret"; da.copyfail = "Markér adressen ovenfor og kopiér den";
+  var current = "da";
+
+  function setLang(lang) {
+    current = lang;
+    var dict = lang === "en" ? en : da;
+    nodes.forEach(function (el) {
+      var html = el.hasAttribute("data-i18n-html");
+      var k = el.getAttribute(html ? "data-i18n-html" : "data-i18n");
+      if (dict[k] == null) return;
+      if (html) el.innerHTML = dict[k]; else el.textContent = dict[k];
+    });
+    document.documentElement.lang = lang;
+    document.querySelectorAll(".lang button").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === lang));
+    });
+    document.getElementById("copy-status").textContent = "";
+    try { localStorage.setItem("bw-lang", lang); } catch (e) {}
+  }
+  document.querySelectorAll(".lang button").forEach(function (b) {
+    b.addEventListener("click", function () { setLang(b.getAttribute("data-lang")); });
+  });
+  try { var saved = localStorage.getItem("bw-lang"); if (saved === "en") setLang("en"); } catch (e) {}
+
+  var status = document.getElementById("copy-status");
+  document.getElementById("copy-mail").addEventListener("click", function () {
+    var addr = document.getElementById("mail-address");
+    var dict = current === "en" ? en : da;
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(addr);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      status.textContent = dict.copyfail;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(addr.textContent.trim()).then(function () { status.textContent = dict.copied; }, fallback);
+    } else { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>

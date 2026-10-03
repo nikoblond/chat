@@ -1,0 +1,4 @@
+# Local only: handoff notes (lead list) and reference captures, local preview server
+handoff/
+.serve.mjs
+.DS_Store

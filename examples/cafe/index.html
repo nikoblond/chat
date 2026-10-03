@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Café Kanel – brunch, kaffe og gode stunder (eksempel)</title>
+<meta name="description" content="Café Kanel er en opdigtet café og et eksempel på en hjemmeside lavet af Makkerne.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,700;0,6..12,800;1,6..12,400&display=swap">
+<link rel="preload" as="image" href="/examples/cafe/img/hero-aeg-toast.webp">
+<style>
+:root {
+  --blue: #27428f;
+  --blue-2: #1f3677;
+  --peach: #f4c195;
+  --bg: #f7f7f7;
+  --white: #ffffff;
+  --line: rgba(39, 66, 143, .16);
+  --mint: #cdeedd;
+  --butter: #f4ecb4;
+  --aqua: #cdebef;
+  --sea: #a8dcc8;
+  --head: Helvetica, "Helvetica Neue", Arial, sans-serif;
+  --body: "Nunito Sans", ui-sans-serif, system-ui, sans-serif;
+  --track: .18em;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
+body { margin: 0; background: var(--bg); color: var(--blue); font: 400 15px/1.6 var(--body); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3, h4, p { margin: 0; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Type */
+.title { font: 400 clamp(22px, 2.6vw, 32px)/1.25 var(--head); letter-spacing: var(--track); text-transform: uppercase; }
+.kicker { font: 700 13px/1.5 var(--head); letter-spacing: var(--track); text-transform: uppercase; }
+.lead-caps { font: 400 clamp(15px, 1.5vw, 18px)/1.75 var(--head); letter-spacing: var(--track); text-transform: uppercase; }
+.small { font-size: 14px; line-height: 1.65; }
+.link { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+
+/* Buttons: square, wide-tracked */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 45px; padding: 10px 28px; border: 1px solid var(--blue); background: var(--blue); color: var(--peach); font: 400 14px/1.2 var(--head); letter-spacing: var(--track); text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease; white-space: nowrap; }
+.btn:hover { background: var(--blue-2); border-color: var(--blue-2); }
+.btn.peach { background: var(--peach); border-color: var(--peach); color: var(--blue); }
+.btn.peach:hover { background: #efb27c; border-color: #efb27c; }
+.btn.white { background: var(--white); border-color: var(--white); color: #1c1c1c; }
+.btn.white:hover { border-color: var(--blue); }
+.btn svg { width: 14px; height: 14px; }
+
+/* Header */
+.header { position: sticky; top: 0; z-index: 30; background: var(--bg); }
+.header-in { height: 108px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding-inline: clamp(16px, 4vw, 48px); gap: 16px; }
+.logo { justify-self: start; display: block; width: 46px; height: 58px; color: var(--blue); }
+.logo svg { width: 100%; height: 100%; }
+.header-ctas { display: flex; gap: 12px; }
+.header-icons { justify-self: end; display: flex; align-items: center; gap: 22px; }
+.icon-btn { display: grid; place-items: center; width: 28px; height: 28px; padding: 0; border: 0; background: none; color: var(--blue); cursor: pointer; }
+.icon-btn svg { width: 22px; height: 22px; }
+.icon-btn.burger svg { width: 30px; }
+@media (max-width: 820px) {
+  .header-in { height: 84px; grid-template-columns: auto 1fr auto; }
+  .header-ctas { justify-content: center; gap: 8px; }
+  .header-ctas .btn { padding-inline: 14px; min-height: 38px; font-size: 12px; }
+  .header-ctas .hide-sm { display: none; }
+  .logo { width: 36px; height: 46px; }
+  .header-icons { gap: 12px; }
+  .header-icons .hide-sm { display: none; }
+}
+
+/* Drawer menu */
+.drawer { position: fixed; inset: 0; z-index: 50; overflow: hidden; display: grid; grid-template-columns: 1fr min(420px, 100%); visibility: hidden; }
+.drawer.open { visibility: visible; }
+.drawer-scrim { background: rgba(20, 30, 60, .35); opacity: 0; transition: opacity .25s ease; border: 0; padding: 0; }
+.drawer.open .drawer-scrim { opacity: 1; }
+.drawer-panel { background: var(--blue); color: var(--peach); padding: 28px clamp(24px, 5vw, 44px); transform: translateX(100%); transition: transform .3s cubic-bezier(.2,.7,.2,1); display: flex; flex-direction: column; gap: 28px; overflow-y: auto; }
+.drawer.open .drawer-panel { transform: none; }
+.drawer-panel .close { align-self: flex-end; color: var(--peach); }
+.drawer-panel nav { display: flex; flex-direction: column; }
+.drawer-panel nav a { font: 400 20px/1 var(--head); letter-spacing: var(--track); text-transform: uppercase; text-decoration: none; padding: 18px 0; border-bottom: 1px solid rgba(244, 193, 149, .25); }
+.drawer-panel nav a:hover { color: var(--white); }
+.drawer-panel .small { color: rgba(244, 193, 149, .8); }
+
+/* Hero mosaic */
+.hero { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; height: clamp(560px, 78vw, 900px); background: var(--bg); }
+.hero .col { display: flex; flex-direction: column; gap: 2px; min-height: 0; }
+.hero figure { margin: 0; min-height: 0; overflow: hidden; background: #e9e6e0; }
+.hero img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 700px) {
+  .hero { grid-template-columns: repeat(2, 1fr); height: 150vw; }
+  .hero .col-3 { display: none; }
+}
+
+/* Floating corporate delivery button */
+.float-cta { position: fixed; z-index: 25; right: clamp(16px, 3vw, 40px); bottom: clamp(16px, 3vw, 36px); box-shadow: 0 10px 30px -12px rgba(20, 30, 70, .45); transition: transform .25s ease, opacity .25s ease; }
+@media (max-width: 700px) { .float-cta { right: 50%; transform: translateX(50%); } }
+.float-cta.is-hidden { opacity: 0; pointer-events: none; }
+
+/* Sections */
+.wrap { max-width: 1180px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+.intro { padding: clamp(56px, 7vw, 88px) 0; text-align: center; }
+.intro .lead-caps { max-width: 920px; margin-inline: auto; }
+
+.split { display: grid; grid-template-columns: 1fr 1fr; align-items: center; min-height: 600px; }
+.split-media { position: relative; align-self: stretch; min-height: 420px; overflow: hidden; }
+.split-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.split-copy { padding: 56px clamp(24px, 6vw, 88px); display: flex; flex-direction: column; align-items: flex-start; gap: 18px; max-width: 600px; }
+.split-copy .title { margin-top: -6px; }
+.split-copy p.small { max-width: 44ch; }
+.btn-stack { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 10px; }
+.split.mirror .split-media { order: 2; }
+.split.mirror .split-copy { justify-self: end; }
+@media (max-width: 860px) {
+  .split, .split.mirror { grid-template-columns: 1fr; min-height: 0; }
+  .split.mirror .split-media { order: 0; }
+  .split-media { min-height: 0; aspect-ratio: 4 / 3; }
+  .split-copy { padding: 40px 20px 56px; }
+  .split.mirror .split-copy { justify-self: start; }
+}
+#gavekort .split-media { background: var(--butter); }
+
+/* Locations */
+.locations { padding: clamp(64px, 8vw, 104px) 0; text-align: center; }
+.locations .title { font-size: clamp(22px, 3vw, 34px); }
+.locations .sub { margin-top: 14px; font: 400 13px/1.5 var(--head); letter-spacing: var(--track); text-transform: uppercase; }
+.loc-grid { margin: 48px auto 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 5vw, 72px); max-width: 920px; }
+.loc { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.loc img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 12px; margin-bottom: 18px; }
+.loc h3 { font: 700 19px/1.3 var(--body); }
+.loc address { font-style: italic; font-size: 14px; line-height: 1.6; margin-top: 4px; }
+.loc .hours { font-size: 14px; line-height: 1.6; margin-top: 14px; }
+.loc .btns { margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.loc .btns .full { flex-basis: 100%; display: flex; justify-content: center; }
+@media (max-width: 640px) {
+  .loc-grid { grid-template-columns: 1fr; gap: 56px; }
+  .loc .btns { flex-direction: column; align-items: center; }
+  .loc .btns .full { flex-basis: auto; }
+  .loc .btns .btn { min-width: 230px; }
+}
+
+/* Pastel strip */
+.strip { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); }
+.strip figure { margin: 0; height: 200px; overflow: hidden; }
+.strip img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
+.strip .c1 { background: var(--mint); } .strip .c2 { background: var(--butter); } .strip .c3 { background: var(--aqua); } .strip .c4 { background: var(--sea); }
+.strip .btn { position: absolute; }
+.strip .b-top { top: 0; left: 30%; }
+.strip .b-bottom { bottom: 0; left: 50%; transform: translateX(-50%); }
+@media (max-width: 700px) {
+  .strip { grid-template-columns: repeat(2, 1fr); }
+  .strip figure { height: 160px; }
+  .strip .b-top { left: 50%; top: 50%; transform: translate(-50%, -50%); bottom: auto; }
+  .strip .b-bottom { bottom: -1px; }
+}
+
+/* Club */
+.club { padding-top: clamp(40px, 6vw, 72px); }
+.club-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; }
+.club-panel { background: var(--blue); display: grid; place-items: center; padding: 48px 24px 32px; gap: 22px; min-height: 420px; }
+.phone { width: 150px; aspect-ratio: 9 / 19; border-radius: 26px; background: #111; padding: 6px; box-shadow: 0 30px 50px -24px rgba(0, 0, 0, .55); position: relative; }
+.phone::before { content: ""; position: absolute; top: 12px; left: 50%; translate: -50% 0; width: 44px; height: 12px; border-radius: 10px; background: #111; z-index: 1; }
+.phone-screen { height: 100%; border-radius: 21px; background: var(--peach); display: grid; place-items: center; color: var(--blue); }
+.phone-screen svg { width: 34px; height: 44px; }
+.stores { display: flex; gap: 10px; }
+.store { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border-radius: 7px; background: #000; color: #fff; border: 1px solid rgba(255,255,255,.35); font: 600 11px/1.15 var(--body); text-decoration: none; }
+.store small { display: block; font-size: 8px; font-weight: 400; opacity: .85; }
+.store svg { width: 14px; height: 14px; }
+.club-copy { padding: 40px clamp(24px, 6vw, 72px); display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.club-copy p.small { max-width: 40ch; }
+.club-copy .btn { margin-top: 8px; }
+.band { background: var(--blue); color: var(--peach); margin-top: clamp(40px, 5vw, 56px); }
+.band .wrap { min-height: 100px; padding-block: 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.band p { font: 400 14px/1.5 var(--head); letter-spacing: var(--track); text-transform: uppercase; }
+.news { display: flex; flex-wrap: wrap; flex: 1 1 340px; max-width: 460px; }
+.news input { flex: 1 1 160px; min-width: 0; height: 45px; padding: 0 14px; border: 1px solid var(--peach); border-right: 0; background: transparent; color: var(--peach); font: 400 15px var(--body); border-radius: 0; }
+.news input::placeholder { color: rgba(244, 193, 149, .65); }
+.news .btn { border-color: var(--peach); }
+.news-status { flex-basis: 100%; font-size: 13px; }
+.news-status:not(:empty) { margin-top: 10px; }
+@media (max-width: 860px) {
+  .club-grid { grid-template-columns: 1fr; }
+  .club-copy { padding: 36px 20px 8px; }
+}
+
+/* Partners */
+.partners { padding: clamp(64px, 8vw, 96px) 0 24px; text-align: center; }
+.partners .title { font-size: clamp(22px, 3vw, 34px); font-weight: 700; }
+.partners .small { max-width: 60ch; margin: 14px auto 0; }
+.logo-grid { margin: 44px auto 0; max-width: 760px; display: grid; grid-template-columns: repeat(3, 1fr); border: 3px solid #3b2a20; background: #f1eadb; }
+.logo-grid > div { aspect-ratio: 3 / 2; display: grid; place-items: center; padding: 14px; border: 1.5px solid #3b2a20; color: #3b2a20; text-align: center; }
+.wm-1 { font: 700 15px/1.1 var(--head); letter-spacing: .28em; text-transform: uppercase; }
+.wm-1 small { display: block; margin-top: 6px; font-size: 9px; letter-spacing: .3em; font-weight: 400; }
+.wm-2 { font: italic 400 26px/1 Georgia, "Times New Roman", serif; }
+.wm-2 small { display: block; margin-top: 6px; font: 400 9px/1 var(--head); letter-spacing: .26em; text-transform: uppercase; font-style: normal; }
+.wm-3 { font: 800 24px/1 var(--body); letter-spacing: -.03em; color: #2f5a3a !important; }
+.wm-3 span { display: block; font-weight: 400; font-size: 14px; letter-spacing: .02em; }
+.wm-4 { font: 400 22px/1 Georgia, serif; letter-spacing: .06em; text-transform: uppercase; }
+.wm-4::before, .wm-4::after { content: ""; display: block; width: 28px; height: 1px; background: currentColor; margin: 8px auto; }
+.wm-5 { font: 700 18px/1.05 var(--head); letter-spacing: .02em; }
+.wm-5 b { display: block; font-size: 28px; letter-spacing: -.02em; }
+.wm-6 { font: 400 13px/1.2 var(--head); letter-spacing: .34em; text-transform: uppercase; }
+.wm-6 i { display: block; font: italic 400 24px/1 Georgia, serif; letter-spacing: 0; text-transform: none; margin-bottom: 6px; }
+@media (max-width: 560px) {
+  .logo-grid { grid-template-columns: repeat(2, 1fr); }
+  .wm-2 { font-size: 21px; } .wm-3 { font-size: 20px; } .wm-5 b { font-size: 22px; }
+}
+
+/* FAQ */
+.faq { padding: clamp(56px, 7vw, 88px) 0; }
+.faq .wrap { max-width: 860px; }
+.faq h2 { text-align: center; font-size: clamp(22px, 3vw, 34px); margin-bottom: 40px; }
+.faq-group + .faq-group { margin-top: 48px; }
+.faq-group h3 { font: 400 17px/1.4 var(--head); letter-spacing: var(--track); text-transform: uppercase; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 20px 0; font: 700 15px/1.4 var(--body); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font: 400 20px/1 var(--head); transition: transform .2s ease; flex: none; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { padding: 0 40px 22px 0; font-size: 14.5px; }
+
+/* Instagram */
+.insta { padding: 24px 0 clamp(56px, 7vw, 88px); text-align: center; }
+.insta h2 { font-size: clamp(22px, 3vw, 34px); }
+.insta .handle { display: inline-block; margin-top: 12px; font: 400 13px/1 var(--head); letter-spacing: var(--track); text-transform: uppercase; text-decoration: none; }
+.insta .handle:hover { text-decoration: underline; text-underline-offset: 4px; }
+.ig-grid { margin-top: 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.ig-grid a { display: block; aspect-ratio: 1; overflow: hidden; }
+.ig-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.ig-grid a:hover img { transform: scale(1.04); }
+@media (max-width: 640px) { .ig-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* Smiley cards */
+.smileys { padding-bottom: 48px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.smiley { display: flex; align-items: center; gap: 16px; padding: 16px 18px; background: var(--white); border-radius: 10px; text-decoration: none; }
+.smiley .dot { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--blue); }
+.smiley b { display: block; font-weight: 400; font-size: 13.5px; }
+.smiley span { font-size: 12px; color: #6b6f7d; }
+@media (max-width: 640px) { .smileys { grid-template-columns: 1fr; } }
+
+/* Footer */
+.footer { background: var(--blue); color: var(--peach); padding: 64px 0 28px; text-align: center; }
+.foot-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px 24px; }
+.footer h2 { font: 400 17px/1.3 var(--head); letter-spacing: var(--track); text-transform: uppercase; margin-bottom: 14px; }
+.footer p { font-size: 14px; line-height: 1.75; }
+.footer a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.footer a:hover { color: var(--white); }
+.made-by { margin-top: 56px; padding-top: 22px; border-top: 1px solid rgba(244, 193, 149, .22); font-size: 12px; opacity: .8; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; text-align: left; }
+@media (max-width: 860px) { .foot-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .foot-grid { grid-template-columns: 1fr; } .made-by { justify-content: center; text-align: center; } }
+
+/* Menu dialog */
+dialog.menu { width: min(720px, calc(100% - 32px)); max-height: calc(100% - 48px); padding: 0; border: 0; background: var(--bg); color: var(--blue); }
+dialog.menu::backdrop { background: rgba(20, 30, 60, .45); }
+.menu-head { position: sticky; top: 0; background: var(--blue); color: var(--peach); padding: 22px 28px; display: flex; justify-content: space-between; align-items: center; }
+.menu-head h2 { font: 400 20px/1 var(--head); letter-spacing: var(--track); text-transform: uppercase; }
+.menu-head .icon-btn { color: var(--peach); }
+.menu-body { padding: 8px 28px 32px; }
+.menu-body h3 { margin-top: 28px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.dish { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.dish b { font-weight: 700; }
+.dish span { font-size: 14px; color: #4c5d93; grid-column: 1; }
+.dish em { font-style: normal; font-weight: 700; grid-row: 1; grid-column: 2; white-space: nowrap; }
+.menu-note { margin-top: 22px; font-size: 13px; font-style: italic; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 46 58"><path fill="currentColor" d="M0 0h15v22.5L28.8 0H46L30.4 24.6c8.6 2.1 14.1 9.4 14.1 19.2V58H30V44.6c0-5.6-3.6-9.3-9.2-9.3H15V58H0z"/></symbol>
+</svg>
+
+<header class="header">
+  <div class="header-in">
+    <a class="logo" href="#top" aria-label="Café Kanel – til forsiden"><svg><use href="#mark"/></svg></a>
+    <div class="header-ctas">
+      <button class="btn white" type="button" data-open-menu>Menu</button>
+      <a class="btn" href="#lokationer">Book</a>
+      <a class="btn hide-sm" href="#kontakt">Firmabestilling</a>
+    </div>
+    <div class="header-icons">
+      <a class="icon-btn hide-sm" href="#klubben" aria-label="Min konto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.2-4.2 4.3-6 8-6s6.8 1.8 8 6"/></svg></a>
+      <a class="icon-btn hide-sm" href="#gavekort" aria-label="Kurv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h14l-1.2 13H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></a>
+      <button class="icon-btn burger" type="button" aria-label="Åbn navigation" aria-expanded="false" aria-controls="drawer" data-open-drawer><svg viewBox="0 0 30 22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M0 2h30M0 11h30M0 20h30"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <button class="drawer-scrim" type="button" tabindex="-1" aria-label="Luk navigation" data-close-drawer></button>
+  <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Navigation">
+    <button class="icon-btn close" type="button" aria-label="Luk navigation" data-close-drawer><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+    <nav>
+      <a href="#" data-open-menu>Menukort</a>
+      <a href="#lokationer">Book bord</a>
+      <a href="#gavekort">Gavekort</a>
+      <a href="#klubben">Kanel-klubben</a>
+      <a href="#faq">Spørgsmål</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <p class="small">Kanelgade 12, Nørrebro<br>Gl. Kongevej 140, Frederiksberg</p>
+  </div>
+</div>
+
+<main id="top">
+  <section class="hero" aria-label="Billeder fra caféen">
+    <div class="col col-1">
+      <figure style="flex:58"><img src="/examples/cafe/img/hero-aeg-toast.webp" alt="Ristet surdejsbrød med avocado og spejlæg set fra oven" width="1000" height="1500" fetchpriority="high"></figure>
+      <figure style="flex:24"><img src="/examples/cafe/img/hero-latte.webp" alt="Latte med latte art i en hvid kop" width="1000" height="1000"></figure>
+      <figure style="flex:18"><img src="/examples/cafe/img/hero-granola.webp" alt="Hjemmelavet granola i en skål" width="1000" height="667"></figure>
+    </div>
+    <div class="col col-2">
+      <figure style="flex:30"><img src="/examples/cafe/img/hero-smoothiebowls.webp" alt="To smoothiebowls med banan, bær og granola" width="1000" height="1333" fetchpriority="high"></figure>
+      <figure style="flex:30"><img src="/examples/cafe/img/hero-iste.webp" alt="Tre farverige iste og lemonader med sugerør" width="1000" height="1500"></figure>
+      <figure style="flex:40"><img src="/examples/cafe/img/hero-vafler.webp" alt="Vafler med friske hindbær og flormelis" width="1000" height="1333"></figure>
+    </div>
+    <div class="col col-3">
+      <figure style="flex:36"><img src="/examples/cafe/img/hero-acai.webp" alt="Açaibowl med bær, banan og granola" width="1000" height="667" loading="lazy"></figure>
+      <figure style="flex:40"><img src="/examples/cafe/img/hero-avocado-feta.webp" alt="Avocadotoast med feta og tomat" width="1000" height="1500" loading="lazy"></figure>
+      <figure style="flex:24"><img src="/examples/cafe/img/hero-matcha.webp" alt="Iced matcha latte i et glas" width="1000" height="1501" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="wrap">
+      <p class="lead-caps">Hos Café Kanel serverer vi morgenmad, brunch og kaffe i et roligt hjørne af byen. Vi bager selv vores boller, brænder ingen genveje af og laver det meste fra bunden, så der er tid til både en hurtig kop og en lang formiddag.</p>
+    </div>
+  </section>
+
+  <section class="split" aria-labelledby="brunch-title">
+    <div class="split-media"><img style="object-position:50% 78%" src="/examples/cafe/img/brunch-avocado.webp" alt="Brunchret med avocado, pocheret æg og chiliflager" width="1400" height="1750" loading="lazy"></div>
+    <div class="split-copy">
+      <p class="kicker">Gode råvarer &amp; god tid</p>
+      <h2 class="title" id="brunch-title">Brunch, kaffe og lange formiddage</h2>
+      <p class="small">Vores brunch bliver lavet, når du bestiller den. Brødet er bagt samme morgen, æggene kommer fra en gård på Sjælland, og kaffen er brændt lyst, så den smager af frugt og ikke af bitterhed. Kom forbi til en stille morgen alene, en weekend med vennerne eller en pause midt på dagen.</p>
+      <div class="btn-stack">
+        <a class="btn" href="#lokationer">Book bord</a>
+        <a class="btn" href="#kontakt">Firmabestilling</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="split mirror" id="gavekort" aria-labelledby="gave-title">
+    <div class="split-media"><img src="/examples/cafe/img/gavekort.webp" alt="Gave pakket ind i blåt papir med sølvsløjfe" width="1400" height="933" loading="lazy"></div>
+    <div class="split-copy">
+      <p class="kicker">Den nemmeste gave</p>
+      <h2 class="title" id="gave-title">Gavekort</h2>
+      <p class="small">Giv en brunch, en kaffeaftale eller bare et par gode timer. Gavekortet kan bruges i begge caféer, gælder i tre år og bliver sendt direkte på mail, så det også kan nå frem i sidste øjeblik.</p>
+      <div class="btn-stack"><a class="btn" href="#kontakt">Køb gavekort</a></div>
+    </div>
+  </section>
+
+  <section class="locations" id="lokationer" aria-labelledby="loc-title">
+    <div class="wrap">
+      <h2 class="title" id="loc-title">Besøg din nærmeste Kanel</h2>
+      <p class="sub">Find os på Nørrebro &amp; Frederiksberg</p>
+      <div class="loc-grid">
+        <article class="loc">
+          <img src="/examples/cafe/img/facade-noerrebro.webp" alt="Hjørnecafé med udeservering på fortovet" width="1000" height="667" loading="lazy">
+          <h3>Kanel Nørrebro</h3>
+          <address>Kanelgade 12<br>2200 København N</address>
+          <p class="hours">Man–fre: 08.00–16.00<br>Lør–søn: 09.00–17.00</p>
+          <div class="btns">
+            <a class="btn" href="#" data-book>Book bord</a>
+            <button class="btn peach" type="button" data-open-menu>Se menu</button>
+            <span class="full"><a class="btn" href="#kontakt">Firmabestilling</a></span>
+          </div>
+        </article>
+        <article class="loc">
+          <img src="/examples/cafe/img/facade-frederiksberg.webp" alt="Lyserød café med hvide parasoller og borde udenfor" width="1000" height="664" loading="lazy">
+          <h3>Kanel Frederiksberg</h3>
+          <address>Gl. Kongevej 140<br>1850 Frederiksberg C</address>
+          <p class="hours">Man–fre: 08.00–16.00<br>Lør–søn: 09.00–17.00</p>
+          <div class="btns">
+            <a class="btn" href="#" data-book>Book bord</a>
+            <button class="btn peach" type="button" data-open-menu>Se menu</button>
+            <span class="full"><a class="btn" href="#kontakt">Firmabestilling</a></span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="strip" aria-label="Udvalgte retter">
+    <figure class="c1"><img src="/examples/cafe/img/strip-avocado.webp" alt="To skiver toast med moset avocado" width="800" height="533" loading="lazy"></figure>
+    <figure class="c2"><img src="/examples/cafe/img/strip-smoothie.webp" alt="Smoothiebowl med friske bær" width="800" height="1200" loading="lazy"></figure>
+    <figure class="c3"><img src="/examples/cafe/img/strip-parfait.webp" alt="Yoghurt med granola og blåbær i et glas" width="800" height="1000" loading="lazy"></figure>
+    <figure class="c4"><img src="/examples/cafe/img/strip-aeg.webp" alt="Blødkogt æg med avocado og rugbrød" width="800" height="532" loading="lazy"></figure>
+    <a class="btn b-top" href="#kontakt">Firmabestilling</a>
+    <a class="btn b-bottom" href="#lokationer">Bestil takeaway</a>
+  </section>
+
+  <section class="club" id="klubben" aria-labelledby="club-title">
+    <div class="club-grid">
+      <div class="club-panel">
+        <div class="phone" aria-hidden="true"><div class="phone-screen"><svg><use href="#mark"/></svg></div></div>
+        <div class="stores">
+          <a class="store" href="#klubben"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.8-1-2.8-4zM13.9 5c.7-.9 1.2-2 1-3.2-1 0-2.2.7-3 1.5-.6.7-1.2 1.9-1 3.1 1.1.1 2.3-.6 3-1.4z"/></svg><span><small>Hent i</small>App Store</span></a>
+          <a class="store" href="#klubben"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34a853" d="M3.6 2.3 13.5 12l-9.9 9.7c-.4-.2-.6-.7-.6-1.2V3.5c0-.5.2-1 .6-1.2z"/><path fill="#fbbc04" d="m17 8.6-3.5 3.4L17 15.4l4-2.3c1.1-.6 1.1-1.6 0-2.2z"/><path fill="#4285f4" d="M3.6 21.7 13.5 12l3.5 3.4L5 22.2c-.5.3-1 .1-1.4-.5z"/><path fill="#ea4335" d="M3.6 2.3c.4-.6.9-.8 1.4-.5l12 6.8L13.5 12z"/></svg><span><small>Hent i</small>Google Play</span></a>
+        </div>
+      </div>
+      <div class="club-copy">
+        <p class="kicker">Fordele for stamgæster</p>
+        <h2 class="title" id="club-title">Bliv en del af klubben</h2>
+        <p class="small">Med Kanel-appen samler du point på hver kop, får din tiende kaffe gratis og kan bestille takeaway, så den står klar, når du kommer. Medlemmer hører også først om nye retter og sæsonmenuer.</p>
+        <a class="btn white" href="#klubben">Hent appen</a>
+      </div>
+    </div>
+    <div class="band">
+      <div class="wrap">
+        <p>Nyt fra køkkenet, cirka én gang om måneden</p>
+        <form class="news" id="news" novalidate>
+          <label class="sr-only" for="news-mail">Din e-mail</label>
+          <input id="news-mail" type="email" name="email" placeholder="Din e-mail" autocomplete="email">
+          <button class="btn" type="submit">Tilmeld</button>
+          <p class="news-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="partners" aria-labelledby="partner-title">
+    <div class="wrap">
+      <h2 class="title" id="partner-title">Samarbejdspartnere</h2>
+      <p class="small">Vi køber ind hos små producenter, vi kender, og som laver tingene ordentligt. Det kan man smage.</p>
+      <div class="logo-grid" aria-label="Leverandører (opdigtede navne)">
+        <div><span class="wm-1">Brænderiet Nord<small>Kaffe siden 2011</small></span></div>
+        <div><span class="wm-2">Kløvereng<small>Økologisk mejeri</small></span></div>
+        <div><span class="wm-3">Havre<span>kompagniet</span></span></div>
+        <div><span class="wm-4">Lindely Te</span></div>
+        <div><span class="wm-5"><b>Solbær</b>&amp; Søn · frugt</span></div>
+        <div><span class="wm-6"><i>Markgården</i>Æg &amp; grønt</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <h2 class="title" id="faq-title">Svar på spørgsmål</h2>
+
+      <div class="faq-group">
+        <h3>Brunch &amp; menu</h3>
+        <details><summary>Hvornår serverer I brunch?</summary><p>Hver dag fra vi åbner til kl. 14. I weekenden kan du også få vores store brunchtallerken, som vi kun laver lørdag og søndag.</p></details>
+        <details><summary>Har I vegetariske og veganske retter?</summary><p>Ja. Over halvdelen af menuen er vegetarisk, og de fleste retter kan laves veganske. Spørg bare ved bestilling.</p></details>
+        <details><summary>Kan jeg få glutenfrie alternativer?</summary><p>Vi har glutenfrit brød og granola. Vi bager med hvedemel i samme køkken, så vi kan ikke garantere, at der ikke er spor af gluten.</p></details>
+      </div>
+
+      <div class="faq-group">
+        <h3>Kaffe &amp; drikke</h3>
+        <details><summary>Hvilken kaffe bruger I?</summary><p>Vi bruger en lysristet blanding fra et lille kafferisteri i Nordsjælland. Bønnerne kan også købes med hjem.</p></details>
+        <details><summary>Har I plantebaseret mælk?</summary><p>Ja, havre og soja uden ekstra betaling.</p></details>
+        <details><summary>Har I matcha, chai og iskaffe?</summary><p>Ja, hele året. Om sommeren har vi også hjemmelavet lemonade og iste.</p></details>
+      </div>
+
+      <div class="faq-group">
+        <h3>Takeaway &amp; booking</h3>
+        <details><summary>Tilbyder I takeaway?</summary><p>Alt på menuen kan tages med. Bestil i appen eller ved disken, så står det klar på 10–15 minutter.</p></details>
+        <details><summary>Skal man booke bord?</summary><p>På hverdage kan du som regel bare komme. I weekenden anbefaler vi at booke, især mellem kl. 10 og 13.</p></details>
+        <details><summary>Kan vi holde arrangementer hos jer?</summary><p>Ja. Vi tager imod selskaber på op til 30 personer uden for åbningstid. Skriv til os, så finder vi en løsning.</p></details>
+      </div>
+
+      <div class="faq-group">
+        <h3>Café &amp; praktisk info</h3>
+        <details><summary>Er I børnevenlige?</summary><p>Meget. Vi har høje stole, en lille børnemenu og plads til barnevogne begge steder.</p></details>
+        <details><summary>Må hunde komme med?</summary><p>Ja, velopdragne hunde er velkomne. Vi har altid vand klar.</p></details>
+        <details><summary>Har I wifi og plads til at arbejde?</summary><p>Ja, der er gratis wifi. På travle weekenddage beder vi om, at computere bliver i tasken, så alle kan få en plads.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="insta" aria-labelledby="ig-title">
+    <div class="wrap">
+      <h2 class="title" id="ig-title">Følg med fra køkkenet</h2>
+      <a class="handle" href="#" aria-label="Café Kanel på Instagram (eksempel)">@cafekanel</a>
+      <div class="ig-grid">
+        <a href="#"><img src="/examples/cafe/img/ig-pandekager.webp" alt="Pandekager med jordbær og sirup" width="600" height="750" loading="lazy"></a>
+        <a href="#"><img src="/examples/cafe/img/ig-iskaffe.webp" alt="Iskaffe med mælk i et højt glas" width="600" height="900" loading="lazy"></a>
+        <a href="#"><img src="/examples/cafe/img/ig-yoghurt.webp" alt="Yoghurt med brombær og granola" width="600" height="899" loading="lazy"></a>
+        <a href="#"><img src="/examples/cafe/img/ig-croissant.webp" alt="Smørbagt croissant på en lille tallerken" width="600" height="400" loading="lazy"></a>
+        <a href="#"><img src="/examples/cafe/img/ig-vafler.webp" alt="Vafler med jordbær og flødeskum" width="600" height="418" loading="lazy"></a>
+        <a href="#"><img src="/examples/cafe/img/ig-blaabaer-pandekager.webp" alt="Amerikanske pandekager med blåbær" width="600" height="903" loading="lazy"></a>
+        <a href="#"><img src="/examples/cafe/img/ig-cappuccino.webp" alt="Cappuccino med latte art" width="600" height="400" loading="lazy"></a>
+        <a href="#"><img src="/examples/cafe/img/ig-lilla-latte.webp" alt="Lilla iced latte ved siden af en grøn plante" width="600" height="900" loading="lazy"></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap smileys">
+    <a class="smiley" href="#"><span class="dot" aria-hidden="true"></span><span><b>Fødevarestyrelsen | Smiley-ordningen Nørrebro</b><span>Senest opdateret 12. september 2026</span></span></a>
+    <a class="smiley" href="#"><span class="dot" aria-hidden="true"></span><span><b>Fødevarestyrelsen | Smiley-ordningen Frederiksberg</b><span>Senest opdateret 2. september 2026</span></span></a>
+  </div>
+</main>
+
+<a class="btn float-cta" href="#kontakt">Firmalevering <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+
+<footer class="footer" id="kontakt">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h2>Lokationer</h2>
+        <p><a href="#lokationer">Kanelgade 12</a><br><a href="#lokationer">Gl. Kongevej 140</a></p>
+      </div>
+      <div>
+        <h2>Åbningstider</h2>
+        <p>Man–fre: 08.00–16.00<br>Lør–søn: 09.00–17.00</p>
+      </div>
+      <div>
+        <h2>Kontakt os</h2>
+        <p>Mail: <a href="#kontakt">hej@cafekanel.dk</a><br>Telefon: <a href="#kontakt">+45 12 34 56 78</a></p>
+      </div>
+      <div>
+        <h2>Firmabestilling</h2>
+        <p>Mail: <a href="#kontakt">firma@cafekanel.dk</a><br>Telefon: <a href="#kontakt">+45 12 34 56 79</a></p>
+      </div>
+    </div>
+    <div class="made-by">
+      <span>© 2026 Café Kanel · Opdigtet café</span>
+      <span>Eksempel lavet af <a href="/">Makkerne</a></span>
+    </div>
+  </div>
+</footer>
+
+<dialog class="menu" id="menu" aria-labelledby="menu-title">
+  <div class="menu-head">
+    <h2 id="menu-title">Menukort</h2>
+    <button class="icon-btn" type="button" aria-label="Luk menukort" data-close-menu><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+  </div>
+  <div class="menu-body">
+    <h3 class="kicker">Brunch · til kl. 14</h3>
+    <div class="dish"><b>Avocado på surdej</b><em>115 kr</em><span>Pocheret æg, syltede løg, chili og sprøde frø</span></div>
+    <div class="dish"><b>Kanel-brunch</b><em>175 kr</em><span>Røræg, bacon eller halloumi, yoghurt med granola, ost, frugt og en lille pandekage</span></div>
+    <div class="dish"><b>Vafler med bær</b><em>95 kr</em><span>Friske bær, vaniljeskyr og ahornsirup</span></div>
+    <div class="dish"><b>Açaibowl</b><em>89 kr</em><span>Banan, blåbær, hjemmelavet granola og kokos</span></div>
+    <h3 class="kicker">Fra disken</h3>
+    <div class="dish"><b>Kanelsnegl</b><em>32 kr</em><span>Bagt her til morgen</span></div>
+    <div class="dish"><b>Croissant med smør og marmelade</b><em>38 kr</em></div>
+    <h3 class="kicker">Kaffe &amp; drikke</h3>
+    <div class="dish"><b>Cappuccino / latte</b><em>42 / 45 kr</em></div>
+    <div class="dish"><b>Iced matcha latte</b><em>52 kr</em></div>
+    <div class="dish"><b>Hjemmelavet lemonade</b><em>45 kr</em></div>
+    <p class="menu-note">Café Kanel er et eksempel. Menu og priser er opdigtede.</p>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  var drawer = document.getElementById("drawer");
+  var opener = document.querySelector("[data-open-drawer]");
+  function setDrawer(open) {
+    drawer.classList.toggle("open", open);
+    drawer.setAttribute("aria-hidden", String(!open));
+    opener.setAttribute("aria-expanded", String(open));
+    if (open) drawer.querySelector(".close").focus(); else opener.focus();
+  }
+  opener.addEventListener("click", function () { setDrawer(true); });
+  drawer.querySelectorAll("[data-close-drawer]").forEach(function (b) { b.addEventListener("click", function () { setDrawer(false); }); });
+  drawer.querySelectorAll("nav a").forEach(function (a) { a.addEventListener("click", function () { drawer.classList.remove("open"); drawer.setAttribute("aria-hidden", "true"); opener.setAttribute("aria-expanded", "false"); }); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && drawer.classList.contains("open")) setDrawer(false); });
+
+  var menu = document.getElementById("menu");
+  document.querySelectorAll("[data-open-menu]").forEach(function (b) {
+    b.addEventListener("click", function (e) { e.preventDefault(); if (menu.showModal) menu.showModal(); else menu.setAttribute("open", ""); });
+  });
+  menu.querySelector("[data-close-menu]").addEventListener("click", function () { menu.close(); });
+  menu.addEventListener("click", function (e) { if (e.target === menu) menu.close(); });
+
+  document.querySelectorAll("[data-book]").forEach(function (a) {
+    a.addEventListener("click", function (e) { e.preventDefault(); a.textContent = "Booking kommer her"; });
+  });
+
+  var floatCta = document.querySelector(".float-cta");
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      floatCta.classList.toggle("is-hidden", entries[0].isIntersecting);
+    }).observe(document.querySelector(".footer"));
+  }
+
+  var form = document.getElementById("news");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    form.querySelector(".news-status").textContent = "Tak! Det her er en eksempelside, så der bliver ikke sendt noget.";
+  });
+})();
+</script>
+</body>
+</html>
