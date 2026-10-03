@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@500&family=Fraunces:ital,opsz,wght@1,9..144,500&family=Oswald:wght@500;600&display=swap">
 <style>
-/* Layout: bright full-bleed hero with price, then alternating white / soft sections in one 1120px column; portfolio as large case cards with live HTML mockups. Light-only by design. */
+/* Layout: bright full-bleed hero with price, then alternating white / soft sections in one 1120px column; portfolio as large case cards with a real MacBook and live previews. Light-only by design. */
 :root {
   --bg: #ffffff;
   --bg-soft: #f4f7fb;
@@ -139,59 +139,6 @@ section.soft { background: var(--bg-soft); }
 .device-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .device-frame { position: absolute; top: 0; left: 0; width: 1280px; height: 800px; border: 0; transform-origin: 0 0; transform: scale(var(--s, .36)); pointer-events: none; opacity: 0; transition: opacity .4s ease; background: #f7f7f7; }
 .device-frame.ready { opacity: 1; }
-
-/* Laptop mockup */
-.laptop { width: 100%; max-width: 560px; }
-.laptop .lid { background: #1b1d22; border-radius: 14px 14px 4px 4px; padding: 2.4% 2.4% 2.8%; box-shadow: 0 30px 60px -30px rgba(15,26,43,.4); }
-.laptop .base { height: 12px; margin-inline: -6%; background: linear-gradient(#c9ccd3, #9a9ea8); border-radius: 0 0 14px 14px; position: relative; }
-.laptop .base::after { content: ""; position: absolute; top: 0; left: 50%; translate: -50% 0; width: 16%; height: 5px; background: #8a8e98; border-radius: 0 0 6px 6px; }
-.screen { aspect-ratio: 16 / 10; max-width: 100%; border-radius: 3px; overflow: hidden; container-type: inline-size; position: relative; }
-
-/* Mock site: shared */
-.ms { position: absolute; inset: 0; display: flex; flex-direction: column; font-family: var(--font); }
-.ms-nav { display: flex; align-items: center; justify-content: space-between; padding: 2.6cqw 4.5cqw; font-size: 1.7cqw; }
-.ms-nav .links { display: flex; gap: 3cqw; opacity: .8; }
-.ms-pill { padding: 1cqw 2.2cqw; border-radius: 999px; font-size: 1.6cqw; font-weight: 600; }
-
-/* Café mock */
-.ms-cafe { background: #f6efe6; color: #3b2a1e; }
-.ms-cafe .brand { font-family: "Fraunces", Georgia, serif; font-style: italic; font-size: 2.6cqw; }
-.ms-cafe .ms-pill { background: #3b2a1e; color: #f6efe6; }
-.ms-cafe .body { flex: 1; display: grid; grid-template-columns: 1.05fr 1fr; gap: 4cqw; padding: 1cqw 4.5cqw 4.5cqw; align-items: center; }
-.ms-cafe .kicker { font-size: 1.4cqw; letter-spacing: .2em; text-transform: uppercase; color: #a0663b; }
-.ms-cafe h4 { margin: 1.4cqw 0 0; font-family: "Fraunces", Georgia, serif; font-style: italic; font-weight: 500; font-size: 6.4cqw; line-height: 1; letter-spacing: -.02em; }
-.ms-cafe .sub { margin-top: 2cqw; font-size: 1.7cqw; opacity: .75; max-width: 34ch; }
-.ms-cafe .hours { margin-top: 3cqw; display: grid; grid-template-columns: auto auto; gap: .6cqw 3cqw; font-size: 1.5cqw; width: max-content; border-top: .2cqw solid #d9c7b2; padding-top: 1.8cqw; }
-.ms-cafe .hours b { font-weight: 600; }
-.ms-cafe .art { height: 100%; border-radius: 1.6cqw; background: radial-gradient(circle at 50% 46%, #f6efe6 0 17%, #6b3f22 17.5% 22%, #e9d6bf 22.5% 34%, transparent 34.5%), radial-gradient(circle at 70% 80%, #c78c58 0 10%, transparent 10.5%), linear-gradient(160deg, #d9a273, #a0663b); position: relative; }
-.ms-cafe .art::after { content: "Dagens kage · 45,-"; position: absolute; left: 2cqw; bottom: 2cqw; background: #f6efe6; color: #3b2a1e; font-size: 1.4cqw; padding: 1cqw 1.8cqw; border-radius: 1cqw; font-weight: 600; }
-
-/* Barber mock */
-.ms-barber { background: #0d0d0d; color: #f1ece2; }
-.ms-barber .brand { font-family: "Oswald", Impact, sans-serif; font-size: 2.4cqw; letter-spacing: .12em; text-transform: uppercase; }
-.ms-barber .ms-pill { background: #c9a227; color: #0d0d0d; border-radius: .6cqw; }
-.ms-barber .body { flex: 1; position: relative; display: flex; flex-direction: column; justify-content: center; padding: 0 4.5cqw 4cqw; background: repeating-linear-gradient(135deg, rgba(201,162,39,.06) 0 1.2cqw, transparent 1.2cqw 2.4cqw); }
-.ms-barber .pole { position: absolute; right: 7cqw; top: 6%; bottom: 14%; width: 5cqw; border-radius: 3cqw; background: repeating-linear-gradient(-45deg, #b91c1c 0 1.6cqw, #f1ece2 1.6cqw 3.2cqw, #1e3a8a 3.2cqw 4.8cqw, #f1ece2 4.8cqw 6.4cqw); box-shadow: 0 0 0 .5cqw #2a2a2a, 0 0 0 .8cqw #c9a227; }
-.ms-barber .kicker { font-size: 1.4cqw; letter-spacing: .3em; color: #c9a227; text-transform: uppercase; }
-.ms-barber h4 { margin: 1.2cqw 0 0; font-family: "Oswald", Impact, sans-serif; font-weight: 600; text-transform: uppercase; font-size: 8cqw; line-height: .92; letter-spacing: .01em; }
-.ms-barber h4 em { font-style: normal; color: #c9a227; }
-.ms-barber .menu { margin-top: 3cqw; display: grid; grid-template-columns: repeat(3, max-content); gap: 2.4cqw; font-size: 1.5cqw; }
-.ms-barber .menu div { border-left: .3cqw solid #c9a227; padding-left: 1.2cqw; }
-.ms-barber .menu b { display: block; font-size: 2cqw; font-family: "Oswald", Impact, sans-serif; font-weight: 500; }
-
-/* Restaurant mock */
-.ms-resto { background: #12261e; color: #ece7da; }
-.ms-resto .brand { font-size: 2.2cqw; font-weight: 700; letter-spacing: .32em; text-transform: uppercase; }
-.ms-resto .ms-pill { border: .2cqw solid #ece7da; }
-.ms-resto .body { flex: 1; display: grid; grid-template-columns: 1fr 1fr; }
-.ms-resto .copy { padding: 3cqw 4.5cqw; display: flex; flex-direction: column; justify-content: center; }
-.ms-resto .kicker { font-size: 1.4cqw; letter-spacing: .24em; text-transform: uppercase; color: #d6b98c; }
-.ms-resto h4 { margin: 1.4cqw 0 0; font-family: "Fraunces", Georgia, serif; font-style: italic; font-weight: 500; font-size: 5.4cqw; line-height: 1.02; }
-.ms-resto .book { margin-top: 3cqw; display: flex; gap: 1cqw; font-size: 1.5cqw; }
-.ms-resto .book span { padding: 1.1cqw 1.8cqw; border: .2cqw solid rgba(236,231,218,.3); border-radius: .8cqw; }
-.ms-resto .book span:last-child { background: #d6b98c; color: #12261e; border-color: #d6b98c; font-weight: 600; }
-.ms-resto .plate { background: radial-gradient(circle at 50% 50%, #ece7da 0 26%, #d6d0c1 26.5% 30%, transparent 30.5%), radial-gradient(circle at 46% 46%, #7a9a5b 0 6%, transparent 6.5%), radial-gradient(circle at 56% 54%, #b4532a 0 5%, transparent 5.5%), linear-gradient(135deg, #2b4a3c, #0c1a14); position: relative; }
-.ms-resto .plate::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 52% 50%, #e4a85c 0 3.5%, transparent 4%); }
 
 /* Price */
 .price-card { display: grid; grid-template-columns: 1fr 1.2fr; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; }
@@ -345,30 +292,22 @@ footer .logo span { color: var(--ink-3); }
         </article>
 
         <!-- Restaurant -->
-        <article class="case">
+        <article class="case case-live">
           <div class="case-visual">
-            <div class="laptop" aria-hidden="true">
-              <div class="lid"><div class="screen">
-                <div class="ms ms-resto">
-                  <div class="ms-nav"><span class="brand">Lyng</span><span class="links"><span>Menu</span><span>Vin</span><span>Selskaber</span></span><span class="ms-pill">Book bord</span></div>
-                  <div class="body">
-                    <div class="copy">
-                      <div class="kicker">Nordisk køkken · Frederiksberg</div>
-                      <h4>Sæsonens råvarer, serveret enkelt</h4>
-                      <div class="book"><span>Fre 18. okt</span><span>2 pers.</span><span>Find bord</span></div>
-                    </div>
-                    <div class="plate"></div>
-                  </div>
-                </div>
-              </div></div>
-              <div class="base"></div>
+            <div class="device" aria-hidden="true">
+              <div class="device-screen">
+                <img class="device-poster" src="assets/restaurant-hero.webp" alt="" width="1280" height="800" loading="lazy">
+                <iframe class="device-frame" src="examples/restaurant/" title="Restaurant Lyng, eksempel" tabindex="-1" loading="lazy" scrolling="no"></iframe>
+              </div>
+              <img class="device-shell" src="assets/macbook-pro.png" alt="" width="1208" height="700" decoding="async">
             </div>
           </div>
           <div class="case-body">
             <div class="eyebrow" data-i18n="c3.eyebrow">Eksempel · Restaurant</div>
             <h3>Restaurant Lyng</h3>
-            <p data-i18n="c3.text">Rolig og elegant side, der lader maden tale. Bordbestilling direkte fra forsiden, en menu der er nem at læse og en side til selskaber og events.</p>
-            <div class="tags"><span data-i18n="tag.table">Bordbestilling</span><span data-i18n="tag.menu">Menu</span><span data-i18n="tag.events">Selskaber</span><span data-i18n="tag.mobile">Mobil først</span></div>
+            <p data-i18n="c3.text">Varm og personlig restaurantside med stor typografi, levende billeder og bordbooking direkte fra forsiden. Menu, events, gavekort og åbningstider – på dansk og engelsk.</p>
+            <div class="tags"><span data-i18n="tag.table">Bordbestilling</span><span data-i18n="tag.menu">Menu</span><span data-i18n="tag.events">Selskaber</span><span data-i18n="tag.bilingual">Dansk &amp; engelsk</span></div>
+            <a class="btn btn-primary case-cta" href="examples/restaurant/"><span data-i18n="c3.cta">Se eksemplet</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
           </div>
         </article>
       </div>
@@ -474,8 +413,8 @@ footer .logo span { color: var(--ink-3); }
     "work.note": "The names above are made up. These are examples of the style, not real client projects.",
     "c1.eyebrow": "Example · Café", "c1.cta": "See the example", "c1.text": "A warm, inviting site where the menu, opening hours and address are the first thing guests see. Built to be checked on a phone while walking by.",
     "c2.eyebrow": "Example · Hair & barber", "c2.cta": "See the example", "c2.text": "A calm, upscale site with an easy-to-read price list and online booking in four clicks. The booking button follows you all the way down the page, on phones too.",
-    "c3.eyebrow": "Example · Restaurant", "c3.text": "A calm, elegant site that lets the food speak. Table booking from the front page, an easy-to-read menu and a page for private events.",
-    "tag.menu": "Menu", "tag.hours": "Opening hours", "tag.map": "Map & address", "tag.mobile": "Mobile first", "tag.booking": "Online booking", "tag.prices": "Price list", "tag.gallery": "Gallery", "tag.team": "Meet the team", "tag.table": "Table booking", "tag.events": "Private events",
+    "c3.eyebrow": "Example · Restaurant", "c3.cta": "See the example", "c3.text": "A warm, personal restaurant site with big typography, rich photos and table booking straight from the front page. Menu, events, gift cards and opening hours – in Danish and English.",
+    "tag.menu": "Menu", "tag.hours": "Opening hours", "tag.map": "Map & address", "tag.mobile": "Mobile first", "tag.booking": "Online booking", "tag.prices": "Price list", "tag.gallery": "Gallery", "tag.team": "Meet the team", "tag.bilingual": "Danish & English", "tag.table": "Table booking", "tag.events": "Private events",
     "price.eyebrow": "Price", "price.title": "One price. The whole website.",
     "price.lead": "No packages to choose between and no hourly rate that runs away. You know what it costs before we start.",
     "price.tag": "Fixed price", "price.sub": "Paid once. No lock-in and no monthly fee to us.", "price.cta": "Get started", "price.incl": "What you get",

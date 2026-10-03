@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Restaurant Lyng – nordisk køkken på Frederiksberg (eksempel)</title>
+<meta name="description" content="Restaurant Lyng er en opdigtet restaurant og et eksempel på en hjemmeside lavet af Makkerne.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,800&family=PT+Sans+Narrow:wght@700&family=Familjen+Grotesk:wght@400;500;600;700&display=swap">
+<link rel="preload" as="image" href="/examples/restaurant/img/bord-lys.webp">
+<style>
+:root {
+  --cream: #f6f4ee;
+  --cream-2: #ece8de;
+  --terra: #c8512f;
+  --terra-ink: #a8401f;
+  --terra-soft: #f3ddd2;
+  --night: #15110e;
+  --night-2: #201a16;
+  --ember: #ee8a52;
+  --line: rgba(168, 64, 31, .2);
+  --line-dark: rgba(238, 138, 82, .22);
+  --display: "Bricolage Grotesque", "Arial Black", sans-serif;
+  --head: "PT Sans Narrow", "Arial Narrow", Impact, sans-serif;
+  --sans: "Familjen Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --wrap: 1240px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 80px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body { margin: 0; background: var(--cream); color: var(--terra-ink); font: 400 16.5px/1.65 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3, h4, p, ul, dl, dd { margin: 0; }
+ul { padding: 0; list-style: none; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--terra); outline-offset: 3px; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: clamp(18px, 4vw, 44px); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Type */
+.h-xxl { font: 700 clamp(46px, 7.2vw, 104px)/.92 var(--head); text-transform: uppercase; color: var(--terra); letter-spacing: -.005em; }
+.h-xl { font: 700 clamp(40px, 5.4vw, 78px)/.94 var(--head); text-transform: uppercase; color: var(--terra); }
+.h-md { font: 700 clamp(26px, 2.4vw, 34px)/1 var(--head); text-transform: uppercase; color: var(--terra); }
+.kicker { font: 600 12.5px/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--terra); }
+.lead { font-size: clamp(18px, 1.6vw, 21px); line-height: 1.5; }
+
+/* Buttons: Ambra squares + Madklubben pills */
+.sq { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 12px 26px; background: var(--terra); color: var(--cream); border: 1px solid var(--terra); font: 600 13px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background .2s ease, color .2s ease; }
+.sq:hover { background: var(--terra-ink); border-color: var(--terra-ink); }
+.sq.line { background: transparent; color: var(--terra); }
+.sq.line:hover { background: var(--terra); color: var(--cream); }
+.pill { display: inline-flex; align-items: center; gap: 8px; min-height: 38px; padding: 8px 18px; border-radius: 999px; border: 1px solid currentColor; background: transparent; color: var(--terra); font: 600 12.5px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease; white-space: nowrap; }
+.pill:hover { background: var(--terra); border-color: var(--terra); color: var(--cream); }
+.pill.fill { background: var(--terra); border-color: var(--terra); color: var(--cream); }
+.pill.fill:hover { background: var(--terra-ink); border-color: var(--terra-ink); }
+.dark .pill { color: var(--ember); }
+.dark .pill:hover { background: var(--ember); border-color: var(--ember); color: var(--night); }
+.dark .pill.fill { background: var(--ember); border-color: var(--ember); color: var(--night); }
+.pill svg, .sq svg { width: 14px; height: 14px; }
+
+/* Header */
+.header { position: sticky; top: 0; z-index: 40; background: rgba(246, 244, 238, .92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid transparent; transition: border-color .25s ease; }
+.header.scrolled { border-color: var(--line); }
+.header .wrap { height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--terra); text-decoration: none; }
+.brand b { font: 800 28px/1 var(--display); font-stretch: 75%; letter-spacing: .04em; font-variation-settings: "wdth" 75; }
+.brand svg { width: 30px; height: 30px; }
+.head-right { display: flex; align-items: center; gap: 12px; }
+.langs { display: inline-flex; align-items: center; gap: 4px; margin-right: 6px; font: 600 12.5px/1 var(--sans); color: var(--terra); }
+.langs button { border: 0; background: none; padding: 6px 3px; cursor: pointer; color: inherit; opacity: .45; font: inherit; letter-spacing: .06em; }
+.langs button[aria-pressed="true"] { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+.burger { width: 44px; height: 44px; display: grid; place-items: center; border: 0; background: none; cursor: pointer; color: var(--terra); }
+.burger svg { width: 34px; height: 20px; }
+@media (max-width: 760px) { .head-right .pill { display: none; } .header .wrap { height: 64px; } }
+
+/* Fullscreen menu (Ambra) */
+.overlay { position: fixed; inset: 0; z-index: 60; background: var(--cream); display: flex; flex-direction: column; visibility: hidden; opacity: 0; transition: opacity .3s ease, visibility .3s; overflow-y: auto; }
+.overlay.open { visibility: visible; opacity: 1; }
+.overlay .top { height: 74px; display: flex; align-items: center; justify-content: space-between; }
+.overlay nav { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: clamp(2px, 1vh, 10px); padding-block: 30px; }
+.overlay nav a { font: 700 clamp(44px, 9vw, 92px)/1 var(--head); text-transform: uppercase; color: var(--terra); text-decoration: none; transition: color .2s ease, transform .3s cubic-bezier(.2,.7,.2,1); }
+.overlay nav a:hover { color: var(--terra-ink); transform: skewX(-6deg); }
+.overlay .info { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; padding: 0 20px 34px; font-size: 14.5px; text-align: center; }
+
+/* Hero (Ambra) */
+.hero { min-height: calc(100svh - 74px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 22px; padding: 40px 18px 80px; position: relative; overflow: hidden; }
+.hero .wordmark { font: 800 clamp(120px, 24vw, 330px)/.8 var(--display); font-variation-settings: "wdth" 75; letter-spacing: .02em; color: var(--terra); text-transform: uppercase; display: flex; }
+.hero .wordmark span { display: inline-block; animation: rise .9s cubic-bezier(.2,.7,.2,1) both; }
+.hero .wordmark span:nth-child(2) { animation-delay: .07s; } .hero .wordmark span:nth-child(3) { animation-delay: .14s; } .hero .wordmark span:nth-child(4) { animation-delay: .21s; }
+@keyframes rise { from { transform: translateY(30px); opacity: 0; } to { transform: none; opacity: 1; } }
+.hero .sub { font: 600 13px/1.4 var(--sans); letter-spacing: .22em; text-transform: uppercase; }
+.hero .ctas { display: flex; gap: 12px; margin-top: 8px; }
+.sprig { position: absolute; width: clamp(70px, 9vw, 120px); color: var(--terra); opacity: .9; }
+.sprig.a { top: 12%; left: 9%; transform: rotate(-18deg); }
+.sprig.b { bottom: 16%; right: 9%; transform: rotate(160deg); }
+.scroll-hint { position: absolute; bottom: 26px; left: 50%; translate: -50% 0; font: 600 11px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: .8; }
+.scroll-hint::after { content: ""; width: 1px; height: 34px; background: currentColor; animation: drip 2s ease-in-out infinite; transform-origin: top; }
+@keyframes drip { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+@media (max-width: 760px) { .sprig.a { top: 6%; left: 4%; } .sprig.b { bottom: 12%; right: 4%; } .hero { min-height: calc(100svh - 64px); } }
+
+/* Full-bleed image */
+.bleed { height: clamp(380px, 88vh, 900px); overflow: hidden; }
+.bleed img { width: 100%; height: 118%; object-fit: cover; will-change: transform; }
+
+/* Statement (Ambra + Madklubben pills) */
+.statement { padding: clamp(80px, 11vw, 150px) 0 clamp(56px, 7vw, 90px); text-align: center; }
+.statement .h-xxl { max-width: 14ch; margin-inline: auto; }
+.quick { margin: 34px auto 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.cols2 { margin: clamp(40px, 5vw, 64px) auto 0; max-width: 980px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 56px; text-align: left; }
+.cols2 p + p { margin-top: 14px; }
+@media (max-width: 760px) { .cols2 { grid-template-columns: 1fr; } }
+
+/* Carousel (Madklubben) */
+.gallery { padding-bottom: clamp(80px, 10vw, 130px); }
+.gal-head { display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 18px; }
+.round { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--terra); background: transparent; color: var(--terra); display: grid; place-items: center; cursor: pointer; transition: all .2s ease; }
+.round:hover:not(:disabled) { background: var(--terra); color: var(--cream); }
+.round:disabled { opacity: .3; cursor: default; }
+.round svg { width: 16px; height: 16px; }
+.gal-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-inline: max(18px, calc((100vw - var(--wrap)) / 2 + 44px)); scroll-padding-inline: max(18px, calc((100vw - var(--wrap)) / 2 + 44px)); }
+.gal-track::-webkit-scrollbar { display: none; }
+.gal-track figure { margin: 0; flex: none; height: clamp(300px, 38vw, 480px); border-radius: 18px; overflow: hidden; scroll-snap-align: start; background: var(--cream-2); }
+.gal-track figure.w { width: clamp(300px, 44vw, 640px); }
+.gal-track figure.n { width: clamp(220px, 26vw, 360px); }
+.gal-track img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+.gal-track figure:hover img { transform: scale(1.04); }
+.progress { margin-top: 26px; height: 2px; background: var(--line); position: relative; overflow: hidden; }
+.progress i { position: absolute; left: 0; top: 0; bottom: 0; width: 25%; background: var(--terra); transition: transform .15s linear; }
+
+/* Alternating blocks (Ambra) */
+.alt { padding-block: clamp(40px, 6vw, 80px); }
+.alt .grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+.alt .copy { display: flex; flex-direction: column; gap: 22px; padding-top: clamp(0px, 4vw, 60px); }
+.alt .copy p { max-width: 46ch; }
+.alt figure { margin: 0; overflow: hidden; }
+.alt figure img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.alt.flip figure { order: -1; margin-top: clamp(0px, 8vw, 120px); }
+.alt .copy .sq { align-self: flex-start; margin-top: 8px; }
+@media (max-width: 860px) { .alt .grid { grid-template-columns: 1fr; } .alt.flip figure { order: 0; margin-top: 0; } .alt .copy { padding-top: 0; } }
+
+/* Dark section (Madklubben) */
+.dark { background: var(--night); color: #e9d9cc; }
+.dark .h-xl, .dark .h-xxl, .dark .h-md, .dark .kicker { color: var(--ember); }
+.menu-sec { padding-block: clamp(80px, 10vw, 130px) clamp(56px, 7vw, 90px); }
+.menu-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 36px; }
+.menu-head p { max-width: 42ch; margin-top: 14px; }
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.tabs .pill[aria-selected="true"] { background: var(--ember); border-color: var(--ember); color: var(--night); }
+.dishes { display: grid; grid-template-columns: 1fr 1fr; gap: 0 64px; }
+.dishes[hidden] { display: none; }
+.dish { display: grid; grid-template-columns: 1fr auto; gap: 4px 20px; padding: 20px 0; border-bottom: 1px solid var(--line-dark); }
+.dish b { font: 700 22px/1.1 var(--head); text-transform: uppercase; color: #f5e6da; letter-spacing: .01em; }
+.dish > span { font-size: 14.5px; color: #b9a596; grid-column: 1; }
+.dish em { grid-row: 1; grid-column: 2; font-style: normal; font-weight: 600; color: var(--ember); white-space: nowrap; }
+.dish .tag { display: inline-block; margin-left: 8px; padding: 2px 8px; border: 1px solid var(--line-dark); border-radius: 999px; font: 600 10.5px/1.4 var(--sans); letter-spacing: .08em; color: var(--ember); vertical-align: 3px; }
+.menu-foot { margin-top: 30px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 14px; color: #b9a596; }
+@media (max-width: 860px) { .dishes { grid-template-columns: 1fr; } }
+
+/* Events (Madklubben rows) */
+.events { padding-bottom: clamp(80px, 10vw, 130px); }
+.events .h-md { margin-bottom: 26px; font-size: clamp(30px, 3vw, 40px); text-transform: none; }
+.event { display: grid; grid-template-columns: 90px 220px 1fr auto; gap: 28px; align-items: center; padding: 26px 0; border-top: 1px solid var(--line-dark); }
+.event:last-child { border-bottom: 1px solid var(--line-dark); }
+.event .date { font: 700 34px/.95 var(--head); color: var(--ember); text-transform: uppercase; }
+.event .date small { display: block; font: 600 12px/1.3 var(--sans); letter-spacing: .12em; margin-top: 6px; color: #b9a596; }
+.event figure { margin: 0; border-radius: 12px; overflow: hidden; }
+.event img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.event .meta { font: 600 11.5px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: #b9a596; margin-bottom: 10px; display: flex; gap: 14px; }
+.event h3 { font: 700 26px/1.05 var(--head); text-transform: uppercase; color: #f5e6da; margin-bottom: 10px; }
+.event p { font-size: 15px; color: #cdb9aa; max-width: 56ch; }
+.event .more-txt { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
+.event .more-txt > div { overflow: hidden; }
+.event.open .more-txt { grid-template-rows: 1fr; }
+.event .more-txt p { padding-top: 10px; }
+.event .acts { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+.event .acts .pill { justify-content: center; }
+.textlink { border: 0; background: none; padding: 6px 0; font: 600 12.5px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: #cdb9aa; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 960px) {
+  .event { grid-template-columns: 70px 1fr; gap: 16px 18px; }
+  .event figure { grid-column: 1 / -1; grid-row: 1; }
+  .event .date { font-size: 28px; }
+  .event .acts { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; }
+}
+
+/* Group (Madklubben) */
+.group { padding-block: clamp(80px, 11vw, 140px); text-align: center; }
+.group .h-xxl { max-width: 12ch; margin-inline: auto; }
+.group p { max-width: 58ch; margin: 26px auto 0; }
+.group .contact { margin-top: 20px; font-weight: 600; }
+.group .contact a { text-underline-offset: 4px; }
+.group .quick { margin-top: 30px; }
+
+/* Gift card (Madklubben) */
+.gift { position: relative; min-height: clamp(520px, 80vh, 760px); display: flex; align-items: flex-end; color: var(--cream); isolation: isolate; overflow: hidden; }
+.gift > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.gift::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(21,17,14,.82) 0%, rgba(21,17,14,.55) 55%, rgba(21,17,14,.25) 100%), linear-gradient(0deg, rgba(21,17,14,.6), transparent 60%); }
+.gift .wrap { width: 100%; padding-block: clamp(56px, 8vw, 100px); display: grid; grid-template-columns: auto 1fr; gap: 24px clamp(48px, 7vw, 110px); align-items: end; }
+.amount { display: flex; flex-direction: column; gap: 18px; }
+.amount output { font: 700 clamp(96px, 15vw, 210px)/.8 var(--head); letter-spacing: -.02em; color: var(--cream); font-variant-numeric: tabular-nums; min-width: 4.2ch; }
+.amount .ctrl { display: flex; gap: 8px; }
+.amount .round { border-color: rgba(246,244,238,.7); color: var(--cream); }
+.amount .round:hover:not(:disabled) { background: var(--cream); color: var(--night); }
+.gift .txt { max-width: 440px; display: flex; flex-direction: column; gap: 18px; padding-bottom: 8px; }
+.gift .txt .kicker { color: var(--ember); }
+.gift .txt .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.gift .pill { color: var(--cream); }
+.gift .pill:hover { background: var(--cream); border-color: var(--cream); color: var(--night); }
+.gift .pill.fill { background: var(--cream); border-color: var(--cream); color: var(--night); }
+.gift .small { font-size: 13px; opacity: .8; }
+.toast { min-height: 1.4em; font-size: 14px; color: var(--ember); }
+@media (max-width: 760px) { .gift .wrap { grid-template-columns: 1fr; } }
+
+/* Find us (Madklubben) */
+.find { padding-block: clamp(80px, 10vw, 130px); }
+.find .grid { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: clamp(32px, 5vw, 72px); }
+.find h2 { font: 700 clamp(32px, 3vw, 44px)/1 var(--head); text-transform: uppercase; color: var(--terra); margin-bottom: 22px; }
+.find .addr p { line-height: 1.75; }
+.find .addr a { text-underline-offset: 3px; }
+.find .addr figure { margin: 26px 0 0; border-radius: 16px; overflow: hidden; }
+.find .addr img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
+.times + h2 { margin-top: 40px; }
+.times .row { display: flex; align-items: baseline; gap: 10px; padding: 8px 0; font-size: 15.5px; }
+.times .row dt { flex: 1; display: flex; align-items: baseline; gap: 10px; }
+.times .row dt::after { content: ""; flex: 1; border-bottom: 1px dashed var(--line); transform: translateY(-4px); }
+.times .row dd { font-variant-numeric: tabular-nums; }
+.times .row.today { font-weight: 700; color: var(--terra); }
+.status { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 18px; padding: 8px 14px; border-radius: 999px; background: var(--terra-soft); color: var(--terra-ink); font-size: 14px; font-weight: 600; }
+.status i { width: 8px; height: 8px; border-radius: 50%; background: #5f8a4a; box-shadow: 0 0 0 4px rgba(95,138,74,.18); }
+.status.closed i { background: var(--terra); box-shadow: 0 0 0 4px rgba(200,81,47,.18); }
+.clock { width: 150px; height: 150px; margin-top: 34px; color: var(--terra); }
+@media (max-width: 960px) { .find .grid { grid-template-columns: 1fr 1fr; } .find .addr { grid-column: 1 / -1; } .find .addr figure { max-width: 520px; } }
+@media (max-width: 600px) { .find .grid { grid-template-columns: 1fr; } }
+
+/* Footer (Madklubben columns + Ambra wordmark) */
+.footer { background: var(--terra); color: var(--cream); padding-top: clamp(64px, 8vw, 100px); overflow: hidden; }
+.footer a { text-decoration: none; }
+.footer a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+.footer h3 { font: 700 22px/1 var(--head); text-transform: uppercase; margin-bottom: 16px; }
+.footer li { padding: 3px 0; font-size: 15px; }
+.news { display: flex; flex-direction: column; gap: 14px; }
+.news p { font-size: 15px; max-width: 34ch; }
+.news form { display: flex; border-bottom: 1px solid rgba(246,244,238,.6); }
+.news input { flex: 1; min-width: 0; height: 48px; border: 0; background: transparent; color: var(--cream); font: 400 16px var(--sans); }
+.news input::placeholder { color: rgba(246,244,238,.7); }
+.news input:focus { outline: none; }
+.news button { border: 0; background: none; color: var(--cream); cursor: pointer; display: grid; place-items: center; width: 48px; }
+.news button svg { width: 20px; height: 20px; }
+.news .msg { font-size: 13.5px; min-height: 1.3em; }
+.big-word { font: 800 clamp(120px, 31vw, 470px)/.78 var(--display); font-variation-settings: "wdth" 75; letter-spacing: .02em; text-align: center; margin-top: clamp(40px, 6vw, 80px); color: rgba(246,244,238,.95); user-select: none; transform: translateY(12%); }
+.legal { border-top: 1px solid rgba(246,244,238,.3); padding-block: 18px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 13px; position: relative; background: var(--terra); }
+.legal a { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 860px) { .foot-grid { grid-template-columns: 1fr 1fr; } .news { grid-column: 1 / -1; } }
+
+/* Sticky pill (Ambra) */
+.sticky { position: fixed; z-index: 35; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom)); transform: translate(-50%, 140%); transition: transform .4s cubic-bezier(.2,.7,.2,1); box-shadow: 0 16px 34px -14px rgba(21,17,14,.5); }
+.sticky.show { transform: translate(-50%, 0); }
+.sticky.sq { min-height: 50px; padding-inline: 34px; }
+
+/* Booking drawer (Madklubben) */
+.drawer { position: fixed; inset: 0; z-index: 70; visibility: hidden; overflow: hidden; }
+.drawer.open { visibility: visible; }
+.scrim { position: absolute; inset: 0; border: 0; padding: 0; background: rgba(21,17,14,.5); opacity: 0; transition: opacity .3s ease; cursor: pointer; }
+.drawer.open .scrim { opacity: 1; }
+.panel { position: absolute; top: 0; right: 0; bottom: 0; width: min(480px, 100%); background: var(--cream); display: flex; flex-direction: column; transform: translateX(100%); transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+.drawer.open .panel { transform: none; }
+.panel-head { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--line); }
+.panel-head h2 { font: 700 34px/1 var(--head); text-transform: uppercase; color: var(--terra); }
+.panel-body { flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 26px; }
+.field-label { font: 600 12px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 12px; display: flex; justify-content: space-between; }
+.stepper { display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--line); border-radius: 999px; padding: 6px; background: #fff; }
+.stepper output { font: 700 28px/1 var(--head); color: var(--terra); }
+.stepper .round { width: 40px; height: 40px; }
+.hint { font-size: 13.5px; margin-top: 8px; }
+.chips { display: grid; grid-auto-flow: column; grid-auto-columns: 66px; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
+.chip-d { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 10px 0; border: 1px solid var(--line); border-radius: 14px; background: #fff; cursor: pointer; color: var(--terra-ink); }
+.chip-d small { font: 600 10.5px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; opacity: .8; }
+.chip-d b { font: 700 26px/1 var(--head); }
+.chip-d:disabled { opacity: .35; cursor: not-allowed; background: transparent; }
+.chip-d[aria-pressed="true"] { background: var(--terra); border-color: var(--terra); color: var(--cream); }
+.times-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: 8px; }
+.slot { padding: 11px 0; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--terra-ink); font: 600 14px/1 var(--sans); cursor: pointer; }
+.slot:disabled { text-decoration: line-through; opacity: .45; background: transparent; cursor: not-allowed; }
+.slot[aria-pressed="true"] { background: var(--terra); border-color: var(--terra); color: var(--cream); }
+.seg { display: flex; border: 1px solid var(--line); border-radius: 999px; padding: 4px; background: #fff; }
+.seg button { flex: 1; border: 0; border-radius: 999px; padding: 10px; background: none; cursor: pointer; font: 600 13px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--terra-ink); }
+.seg button[aria-pressed="true"] { background: var(--terra); color: var(--cream); }
+.panel-foot { padding: 16px 24px calc(16px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); display: flex; align-items: center; gap: 14px; }
+.panel-foot .sum { flex: 1; font-size: 14px; line-height: 1.35; }
+.panel-foot .sq:disabled { opacity: .35; cursor: not-allowed; }
+.done { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; padding-top: 30px; }
+.done .tick { width: 72px; height: 72px; border-radius: 50%; background: var(--terra); color: var(--cream); display: grid; place-items: center; }
+.done .tick svg { width: 30px; height: 30px; }
+.done h3 { font: 700 44px/1 var(--head); text-transform: uppercase; color: var(--terra); }
+.done .note { font-size: 13.5px; font-style: italic; opacity: .8; max-width: 34ch; }
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-left" viewBox="0 0 16 16"><path d="M15 8H2M6.5 3.5 2 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 16 16"><path d="M8 2v12M2 8h12" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 16 16"><path d="M2 8h12" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <!-- Hand-drawn heather sprig -->
+  <symbol id="sprig" viewBox="0 0 80 120"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M40 118C40 80 38 50 44 6"/><path d="M41 92c-8-4-14-10-17-18M42 70c8-3 14-9 17-17M42 50c-7-3-12-9-14-16M43 32c6-2 10-7 12-13"/></g><g fill="currentColor"><ellipse cx="22" cy="72" rx="4.5" ry="6" transform="rotate(-30 22 72)"/><ellipse cx="17" cy="64" rx="3.5" ry="5" transform="rotate(-40 17 64)"/><ellipse cx="61" cy="51" rx="4.5" ry="6" transform="rotate(30 61 51)"/><ellipse cx="66" cy="43" rx="3.5" ry="5" transform="rotate(40 66 43)"/><ellipse cx="26" cy="32" rx="4" ry="5.5" transform="rotate(-30 26 32)"/><ellipse cx="57" cy="17" rx="3.8" ry="5.2" transform="rotate(30 57 17)"/><ellipse cx="45" cy="5" rx="3.5" ry="4.8"/></g></symbol>
+</svg>
+
+<header class="header" id="header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Restaurant Lyng" data-en-aria="Restaurant Lyng"><svg aria-hidden="true"><use href="#sprig"/></svg><b>LYNG</b></a>
+    <div class="head-right">
+      <div class="langs" role="group" aria-label="Sprog / Language">
+        <button type="button" data-lang="da" aria-pressed="true">DA</button><span aria-hidden="true">/</span><button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="pill" href="#menu" data-en="Menu">Menu</a>
+      <button class="pill fill" type="button" data-book data-en="Book a table">Book bord</button>
+      <button class="burger" type="button" aria-label="Åbn menu" data-en-aria="Open menu" aria-expanded="false" aria-controls="overlay" data-open-overlay><svg viewBox="0 0 34 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M0 1h34M0 10h34M0 19h34"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="overlay" id="overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="wrap top">
+    <span class="brand"><svg aria-hidden="true"><use href="#sprig"/></svg><b>LYNG</b></span>
+    <button class="burger" type="button" aria-label="Luk menu" data-en-aria="Close menu" data-close-overlay><svg viewBox="0 0 24 24" style="width:28px;height:28px"><use href="#i-close"/></svg></button>
+  </div>
+  <nav aria-label="Hovedmenu">
+    <a href="#menu" data-en="Menu">Menu</a>
+    <a href="#" data-book data-en="Book">Book</a>
+    <a href="#events" data-en="Events">Events</a>
+    <a href="#selskaber" data-en="Groups">Selskaber</a>
+    <a href="#gavekort" data-en="Gift cards">Gavekort</a>
+    <a href="#find-os" data-en="Find us">Find os</a>
+  </nav>
+  <div class="info"><span>Gl. Kongevej 88, 1850 Frederiksberg C</span><span>+45 12 34 56 78</span><span>hej@restaurantlyng.dk</span></div>
+</div>
+
+<main id="top">
+  <section class="hero" aria-label="Restaurant Lyng">
+    <svg class="sprig a" viewBox="0 0 80 120" aria-hidden="true"><use href="#sprig"/></svg>
+    <svg class="sprig b" viewBox="0 0 80 120" aria-hidden="true"><use href="#sprig"/></svg>
+    <h1 class="wordmark" aria-label="Lyng"><span>L</span><span>Y</span><span>N</span><span>G</span></h1>
+    <p class="sub" data-en="Nordic kitchen · Frederiksberg">Nordisk køkken · Frederiksberg</p>
+    <div class="ctas">
+      <button class="sq" type="button" data-book data-en="Book">Book</button>
+      <a class="sq" href="#menu" data-en="Menu">Menu</a>
+    </div>
+    <span class="scroll-hint" aria-hidden="true" data-en="Scroll">Scroll</span>
+  </section>
+
+  <div class="bleed" aria-hidden="true"><img src="/examples/restaurant/img/bord-lys.webp" alt="" width="2200" height="1467" data-parallax></div>
+
+  <section class="statement" aria-labelledby="st-title">
+    <div class="wrap">
+      <h2 class="h-xxl reveal" id="st-title" data-en="Seasonal produce, served simply">Sæsonens råvarer, serveret enkelt</h2>
+      <div class="quick reveal">
+        <button class="pill" type="button" data-book data-en="Book a table">Book bord</button>
+        <a class="pill" href="#gavekort" data-en="Gift card">Gavekort</a>
+        <a class="pill" href="#selskaber" data-en="Groups &amp; private dining">Selskaber og grupper</a>
+        <a class="pill" href="#menu" data-tab-link="frokost" data-en="Weekend lunch">Weekendfrokost</a>
+      </div>
+      <div class="cols2 reveal">
+        <div>
+          <p data-en="Lyng is a small Nordic restaurant on Gammel Kongevej with room for 46 guests. We cook from what Danish farmers, fishermen and foragers bring us that week – so the menu changes as often as the weather.">Lyng er en lille nordisk restaurant på Gammel Kongevej med plads til 46 gæster. Vi laver mad af det, danske landmænd, fiskere og sankere bringer os den uge – derfor skifter menuen lige så tit som vejret.</p>
+        </div>
+        <div>
+          <p data-en="You can come for four courses and a wine pairing, or just a glass at the bar and a plate of oysters. Either way, there’s good bread on the table and plenty of time.">Du kan komme til fire retter og vinmenu eller bare et glas i baren og en tallerken østers. Uanset hvad står der godt brød på bordet, og der er god tid.</p>
+          <p data-en="Sharing is caring – most dishes are made to be passed around.">De fleste retter er lavet til at blive delt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" aria-label="Billeder fra Lyng" data-en-aria="Photos from Lyng">
+    <div class="wrap gal-head">
+      <button class="round" type="button" data-gal="-1" aria-label="Forrige billede" data-en-aria="Previous photo"><svg><use href="#i-left"/></svg></button>
+      <button class="round" type="button" data-gal="1" aria-label="Næste billede" data-en-aria="Next photo"><svg><use href="#i-arrow"/></svg></button>
+    </div>
+    <div class="gal-track" id="gal-track" tabindex="0">
+      <figure class="n"><img src="/examples/restaurant/img/ret-blomster.webp" alt="Ret pyntet med spiselige blomster i en stentøjsskål" data-en-alt="Dish with edible flowers in a stoneware bowl" width="1000" height="1500" loading="lazy"></figure>
+      <figure class="w"><img src="/examples/restaurant/img/ret-fisk.webp" alt="Hvid fisk i smørsauce med grøntsager" data-en-alt="White fish in butter sauce with vegetables" width="1000" height="667" loading="lazy"></figure>
+      <figure class="n"><img src="/examples/restaurant/img/oesters.webp" alt="Østers på is med citron" data-en-alt="Oysters on ice with lemon" width="1000" height="1000" loading="lazy"></figure>
+      <figure class="w"><img src="/examples/restaurant/img/ret-sauce.webp" alt="Kokken hælder sauce over en anrettet ret" data-en-alt="Chef pouring sauce over a plated dish" width="1000" height="1000" loading="lazy"></figure>
+      <figure class="n"><img src="/examples/restaurant/img/vin-glas.webp" alt="Glas hvidvin på et mørkt bord" data-en-alt="Glass of white wine on a dark table" width="1000" height="1499" loading="lazy"></figure>
+      <figure class="w"><img src="/examples/restaurant/img/broed.webp" alt="Hjemmebagt surdejsbrød med smør" data-en-alt="House-baked sourdough with butter" width="1000" height="750" loading="lazy"></figure>
+    </div>
+    <div class="wrap"><div class="progress" aria-hidden="true"><i id="gal-bar"></i></div></div>
+  </section>
+
+  <section class="alt" aria-labelledby="room-title">
+    <div class="wrap grid">
+      <div class="copy reveal">
+        <h2 class="h-xl" id="room-title" data-en="A room shaped by wood, light and conversation">Et rum formet af træ, lys og samtale</h2>
+        <p data-en="We have kept the old butcher’s shop’s tiles and filled the rest with oak tables, linen and candlelight. It’s cosy enough for a date and loud enough for a birthday.">Vi har beholdt den gamle slagterbutiks fliser og fyldt resten med egetræsborde, hør og levende lys. Hyggeligt nok til en date og larmende nok til en fødselsdag.</p>
+        <p data-en="In summer we open the doors to the courtyard, where there’s room for twenty more under the lime tree.">Om sommeren åbner vi dørene til gården, hvor der er plads til tyve mere under lindetræet.</p>
+      </div>
+      <figure class="reveal"><img src="/examples/restaurant/img/rummet.webp" alt="Varm restaurant med træborde og dæmpet lys" data-en-alt="Warm dining room with wooden tables and soft light" width="1400" height="2100" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="alt flip" aria-labelledby="kitchen-title">
+    <div class="wrap grid">
+      <div class="copy reveal">
+        <h2 class="h-xl" id="kitchen-title" data-en="A kitchen that follows the seasons">Et køkken der følger årstiden</h2>
+        <p data-en="Head chef Mads Holm cooks with fire, butter and patience. Fish arrives from Gilleleje in the morning, vegetables from Bornholm twice a week, and everything else we make ourselves – from bread to ice cream.">Køkkenchef Mads Holm laver mad med ild, smør og tålmodighed. Fisken kommer fra Gilleleje om morgenen, grøntsagerne fra Bornholm to gange om ugen, og resten laver vi selv – fra brød til is.</p>
+        <p data-en="The menu has four courses and always one vegetarian alternative. Tell us about allergies when you book, and we’ll take care of it.">Menuen har fire retter og altid et vegetarisk alternativ. Skriv om allergier, når du booker, så sørger vi for resten.</p>
+        <a class="sq" href="#menu" data-en="See the menu">Se menuen</a>
+      </div>
+      <figure class="reveal"><img src="/examples/restaurant/img/koekken.webp" alt="Kok anretter tallerkener under varmelamper i køkkenet" data-en-alt="Chef plating under heat lamps in the kitchen" width="1400" height="2155" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <div class="dark">
+    <section class="menu-sec" id="menu" aria-labelledby="menu-title">
+      <div class="wrap">
+        <div class="menu-head">
+          <div>
+            <p class="kicker" data-en="This week">Denne uge</p>
+            <h2 class="h-xl" id="menu-title" style="margin-top:14px" data-en="The menu right now">Menuen lige nu</h2>
+            <p data-en="We change the menu every week. Here’s what’s on the pass right now.">Vi skifter menuen hver uge. Her er, hvad der bliver sendt ud af køkkenet lige nu.</p>
+          </div>
+          <div class="tabs" role="tablist" aria-label="Menu">
+            <button class="pill" type="button" role="tab" aria-selected="true" aria-controls="m-aften" id="t-aften" data-tab="aften" data-en="Dinner">Aften</button>
+            <button class="pill" type="button" role="tab" aria-selected="false" aria-controls="m-frokost" id="t-frokost" data-tab="frokost" data-en="Weekend lunch">Weekendfrokost</button>
+            <button class="pill" type="button" role="tab" aria-selected="false" aria-controls="m-vin" id="t-vin" data-tab="vin" data-en="Wine &amp; drinks">Vin &amp; drikke</button>
+          </div>
+        </div>
+
+        <div class="dishes" id="m-aften" role="tabpanel" aria-labelledby="t-aften">
+          <div class="dish"><b data-en="Limfjord oysters">Østers fra Limfjorden</b><em data-en="45 DKK each">45 kr/stk</em><span data-en="Rhubarb, dill oil and smoked cream">Rabarber, dildolie og røget fløde</span></div>
+          <div class="dish"><b data-en="Sourdough &amp; browned butter">Surdej &amp; brunet smør</b><em>45 kr</em><span data-en="Baked here every morning">Bagt her hver morgen</span></div>
+          <div class="dish"><b data-en="Beef tartare">Tatar af okse</b><em>145 kr</em><span data-en="Smoked egg yolk, ramson capers, rye crisp">Røget æggeblomme, ramsløgskapers, rugchips</span></div>
+          <div class="dish"><b data-en="Grilled celeriac">Grillet knoldselleri</b><em>195 kr</em><span data-en="Mushrooms, hazelnut and brown butter">Svampe, hasselnød og brunet smør</span></div>
+          <div class="dish"><b><span data-en="Baked cod">Bagt torsk</span> <span class="tag" data-en="Catch of the day">Dagens fangst</span></b><em>245 kr</em><span data-en="Mussel sauce, leek and roe">Muslingesauce, porre og rogn</span></div>
+          <div class="dish"><b data-en="Veal sirloin">Kalvefilet</b><em>295 kr</em><span data-en="Jerusalem artichoke, thyme jus">Jordskok, timiansky</span></div>
+          <div class="dish"><b data-en="Apple trifle, our way">Æblekage på vores måde</b><em>95 kr</em><span data-en="Brown butter crumble, vanilla cream">Brunet smørcrumble, vaniljecreme</span></div>
+          <div class="dish"><b data-en="Lyng’s four courses">Lyngs fire retter</b><em>495 kr</em><span data-en="The chef’s choice – also vegetarian">Køkkenets valg – også vegetarisk</span></div>
+        </div>
+        <div class="dishes" id="m-frokost" role="tabpanel" aria-labelledby="t-frokost" hidden>
+          <div class="dish"><b data-en="Potato on rye">Kartoffelmad</b><em>95 kr</em><span data-en="New potatoes, chives, crispy onions">Nye kartofler, purløg, sprøde løg</span></div>
+          <div class="dish"><b data-en="Fried plaice">Stegt rødspætte</b><em>125 kr</em><span data-en="Remoulade, lemon and shrimp">Remoulade, citron og rejer</span></div>
+          <div class="dish"><b data-en="Chicken salad">Hønsesalat</b><em>105 kr</em><span data-en="Asparagus, bacon, cress">Asparges, bacon, karse</span></div>
+          <div class="dish"><b data-en="Soup of the day">Dagens suppe</b><em>110 kr</em><span data-en="With sourdough and butter">Med surdej og smør</span></div>
+          <div class="dish"><b data-en="Lunch platter for two">Frokostplatte til to</b><em>395 kr</em><span data-en="Five small dishes and dessert">Fem små retter og dessert</span></div>
+          <div class="dish"><b data-en="Cheese &amp; jam">Ost &amp; marmelade</b><em>85 kr</em><span data-en="Three Danish cheeses">Tre danske oste</span></div>
+        </div>
+        <div class="dishes" id="m-vin" role="tabpanel" aria-labelledby="t-vin" hidden>
+          <div class="dish"><b data-en="Wine pairing, 4 glasses">Vinmenu, 4 glas</b><em>395 kr</em><span data-en="Mostly natural wine from small producers">Mest naturvin fra små producenter</span></div>
+          <div class="dish"><b data-en="Juice pairing">Saftmenu</b><em>245 kr</em><span data-en="Pressed and fermented in-house">Presset og fermenteret i huset</span></div>
+          <div class="dish"><b data-en="House white, glass">Husets hvidvin, glas</b><em>85 kr</em><span>Grüner Veltliner, Østrig</span></div>
+          <div class="dish"><b data-en="House red, glass">Husets rødvin, glas</b><em>90 kr</em><span>Gamay, Loire</span></div>
+          <div class="dish"><b data-en="Draught beer">Fadøl</b><em>65 kr</em><span data-en="Pilsner from a Zealand microbrewery">Pilsner fra et mikrobryggeri på Sjælland</span></div>
+          <div class="dish"><b data-en="Natural wine from the Jura, bottle">Naturvin fra Jura, flaske</b><em>545 kr</em><span data-en="Ask the waiter about this week’s bottle">Spørg tjeneren om ugens flaske</span></div>
+        </div>
+        <div class="menu-foot">
+          <span data-en="Prices in DKK incl. VAT. Allergies? Just tell us.">Priser i kr. inkl. moms. Allergier? Sig det bare.</span>
+          <button class="pill fill" type="button" data-book data-en="Book a table">Book bord</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="events" id="events" aria-labelledby="ev-title">
+      <div class="wrap">
+        <h2 class="h-md" id="ev-title" data-en="Events at Lyng">Events på Lyng</h2>
+        <article class="event">
+          <div class="date">16<br><span data-en="Oct">okt</span><small data-en="Thursday">Torsdag</small></div>
+          <figure><img src="/examples/restaurant/img/event-vin.webp" alt="Hvidvin bliver skænket i glas" data-en-alt="White wine being poured" width="800" height="450" loading="lazy"></figure>
+          <div>
+            <p class="meta"><span>18.30</span><span data-en="795 DKK">795 kr</span></p>
+            <h3 data-en="Wine night: Jura &amp; Loire">Vinaften: Jura &amp; Loire</h3>
+            <p data-en="Five courses and five glasses with our sommelier, who tells the story behind every bottle.">Fem retter og fem glas med vores sommelier, der fortæller historien bag hver flaske.</p>
+            <div class="more-txt"><div><p data-en="We seat everyone at long tables, so it’s a good night to meet new people. Vegetarian menu on request.">Vi sidder ved lange borde, så det er en god aften at møde nye mennesker. Vegetarisk menu på forespørgsel.</p></div></div>
+          </div>
+          <div class="acts"><button class="pill" type="button" data-book data-en="Book a seat">Book plads</button><button class="textlink" type="button" data-expand data-en="Read more">Læs mere</button></div>
+        </article>
+        <article class="event">
+          <div class="date">06<br><span data-en="Nov">nov</span><small data-en="Thursday">Torsdag</small></div>
+          <figure><img src="/examples/restaurant/img/event-ild.webp" alt="Flammer fra en grill med åben ild" data-en-alt="Flames from an open-fire grill" width="800" height="600" loading="lazy"></figure>
+          <div>
+            <p class="meta"><span>18.00</span><span data-en="595 DKK">595 kr</span></p>
+            <h3 data-en="Fire &amp; smoke">Ild &amp; røg</h3>
+            <p data-en="One evening, everything is cooked over open fire in the courtyard – from bread to dessert.">En aften, hvor alt bliver lavet over åben ild i gården – fra brød til dessert.</p>
+            <div class="more-txt"><div><p data-en="Dress warmly: we start outside by the fire with a hot drink and move inside for the main course.">Tag varmt tøj på: vi starter ude ved bålet med en varm drik og går ind til hovedretten.</p></div></div>
+          </div>
+          <div class="acts"><button class="pill" type="button" data-book data-en="Book a seat">Book plads</button><button class="textlink" type="button" data-expand data-en="Read more">Læs mere</button></div>
+        </article>
+        <article class="event">
+          <div class="date">20<br><span data-en="Nov">nov</span><small data-en="– 19 Dec">– 19. dec</small></div>
+          <figure><img src="/examples/restaurant/img/event-jul.webp" alt="Pyntet langbord med stearinlys" data-en-alt="Decorated long table with candles" width="800" height="534" loading="lazy"></figure>
+          <div>
+            <p class="meta"><span data-en="Lunch &amp; dinner">Frokost &amp; aften</span><span data-en="From 425 DKK">Fra 425 kr</span></p>
+            <h3 data-en="Christmas lunch at Lyng">Julefrokost på Lyng</h3>
+            <p data-en="Herring, pork roast and rice pudding – the classics, our way. For two or for the whole office.">Sild, flæskesteg og risalamande – klassikerne på vores måde. Til to eller hele kontoret.</p>
+            <div class="more-txt"><div><p data-en="Groups of 10 or more get their own table and a fixed menu. Write to us, and we’ll send a proposal within a day.">Grupper på 10 eller flere får eget bord og en fast menu. Skriv til os, så sender vi et forslag inden for et døgn.</p></div></div>
+          </div>
+          <div class="acts"><button class="pill" type="button" data-book data-en="Book a table">Book bord</button><button class="textlink" type="button" data-expand data-en="Read more">Læs mere</button></div>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <section class="group" id="selskaber" aria-labelledby="group-title">
+    <div class="wrap">
+      <h2 class="h-xxl reveal" id="group-title" data-en="Are you a large group?">Er I en stor gruppe?</h2>
+      <p class="reveal" data-en="Birthdays, team dinners or just many friends at once – we seat up to 24 at long tables, or you can take over the whole restaurant on Sundays and Mondays.">Fødselsdag, firmamiddag eller bare mange venner på én gang – vi har plads til 24 ved langborde, eller I kan låne hele restauranten søndag og mandag.</p>
+      <p class="contact reveal" data-en-html="Want to know more? Write to &lt;a href=&quot;#&quot; data-fake&gt;selskab@restaurantlyng.dk&lt;/a&gt; or call &lt;span style=&quot;white-space:nowrap&quot;&gt;+45 12 34 56 78&lt;/span&gt;.">Vil I vide mere? Skriv til <a href="#" data-fake>selskab@restaurantlyng.dk</a> eller ring på <span style="white-space:nowrap">+45 12 34 56 78</span>.</p>
+      <div class="quick reveal">
+        <a class="pill" href="#" data-fake data-en="Group menus">Selskabsmenuer</a>
+        <button class="pill fill" type="button" data-book data-en="Book for up to 8">Book op til 8</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="gift" id="gavekort" aria-labelledby="gift-title">
+    <img src="/examples/restaurant/img/gavekort-bord.webp" alt="" width="2000" height="1333" loading="lazy">
+    <div class="wrap">
+      <div class="amount">
+        <output id="gift-amount" aria-live="polite">1000,-</output>
+        <div class="ctrl">
+          <button class="round" type="button" data-amt="-1" aria-label="Lavere beløb" data-en-aria="Lower amount"><svg><use href="#i-minus"/></svg></button>
+          <button class="round" type="button" data-amt="1" aria-label="Højere beløb" data-en-aria="Higher amount"><svg><use href="#i-plus"/></svg></button>
+        </div>
+      </div>
+      <div class="txt">
+        <p class="kicker" id="gift-title" data-en="Gift card">Gavekort</p>
+        <p class="lead" data-en="Give a dinner at Lyng. Choose an amount, or give the four-course menu with wine for two.">Giv en middag på Lyng. Vælg et beløb, eller giv fire retter med vinmenu til to.</p>
+        <div class="btns">
+          <button class="pill fill" type="button" id="gift-buy" data-en="Buy gift card">Køb gavekort</button>
+          <button class="pill" type="button" id="gift-exp" data-en="Give an experience">Giv en oplevelse</button>
+        </div>
+        <p class="toast" id="gift-toast" role="status"></p>
+        <p class="small" data-en="Sent by email straight away · valid for 3 years">Sendes på mail med det samme · gælder i 3 år</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="find" id="find-os" aria-label="Find os" data-en-aria="Find us">
+    <div class="wrap grid">
+      <div class="addr reveal">
+        <h2 data-en="Find us">Find os</h2>
+        <p>Gl. Kongevej 88<br>1850 Frederiksberg C<br><span data-en="Phone">Telefon</span>: <a href="#" data-fake>+45 12 34 56 78</a><br><a href="#" data-fake>hej@restaurantlyng.dk</a></p>
+        <figure><img src="/examples/restaurant/img/facade.webp" alt="Restaurantens facade om aftenen med lys i vinduerne" data-en-alt="The restaurant’s facade in the evening with lit windows" width="1200" height="800" loading="lazy"></figure>
+      </div>
+      <div class="reveal">
+        <h2 data-en="Opening hours">Åbningstider</h2>
+        <p class="status" id="status"><i></i><span id="status-text"></span></p>
+        <dl class="times" id="open-times"></dl>
+        <svg class="clock" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="2.5"/><g id="ticks"></g><line id="hh" x1="50" y1="50" x2="50" y2="26" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/><line id="mh" x1="50" y1="50" x2="50" y2="14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="50" cy="50" r="3" fill="currentColor"/></svg>
+      </div>
+      <div class="reveal">
+        <h2 data-en="Kitchen (dinner)">Køkkenet (aften)</h2>
+        <dl class="times" id="kitchen-dinner"></dl>
+        <h2 data-en="Kitchen (lunch)">Køkkenet (frokost)</h2>
+        <dl class="times" id="kitchen-lunch"></dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-grid">
+    <div class="news">
+      <h3 data-en="Newsletter">Nyhedsbrev</h3>
+      <p data-en="New menus, events and the occasional free table – about once a month.">Nye menuer, events og en sjælden ledig bordplads – cirka en gang om måneden.</p>
+      <form id="news" novalidate>
+        <label class="sr-only" for="news-mail" data-en="Your email">Din e-mail</label>
+        <input id="news-mail" type="email" placeholder="Din e-mail" data-en-placeholder="Your email" autocomplete="email">
+        <button type="submit" aria-label="Tilmeld" data-en-aria="Sign up"><svg><use href="#i-arrow"/></svg></button>
+      </form>
+      <p class="msg" id="news-msg" role="status"></p>
+    </div>
+    <div>
+      <h3 data-en="Restaurant">Restaurant</h3>
+      <ul>
+        <li><a href="#menu" data-en="Menu">Menu</a></li>
+        <li><a href="#events" data-en="Events">Events</a></li>
+        <li><a href="#selskaber" data-en="Groups">Selskaber</a></li>
+        <li><a href="#gavekort" data-en="Gift cards">Gavekort</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 data-en="Contact">Kontakt</h3>
+      <ul>
+        <li>Gl. Kongevej 88</li>
+        <li>1850 Frederiksberg C</li>
+        <li><a href="#" data-fake>+45 12 34 56 78</a></li>
+        <li><a href="#" data-fake>hej@restaurantlyng.dk</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 data-en="Follow us">Følg os</h3>
+      <ul>
+        <li><a href="#" data-fake>Instagram</a></li>
+        <li><a href="#" data-fake>Facebook</a></li>
+        <li><a href="#" data-fake data-en="Jobs at Lyng">Job på Lyng</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="big-word" aria-hidden="true">LYNG</div>
+  <div class="legal wrap" style="max-width:none">
+    <span data-en="© 2026 Restaurant Lyng · Fictional restaurant">© 2026 Restaurant Lyng · Opdigtet restaurant</span>
+    <span data-en-html="Example made by &lt;a href=&quot;/&quot;&gt;Makkerne&lt;/a&gt;">Eksempel lavet af <a href="/">Makkerne</a></span>
+  </div>
+</footer>
+
+<button class="sq sticky" type="button" id="sticky" data-book data-en="Book a table">Book bord</button>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <button class="scrim" type="button" tabindex="-1" aria-label="Luk" data-en-aria="Close" data-close-drawer></button>
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="bk-title">
+    <div class="panel-head">
+      <h2 id="bk-title" data-en="Book a table">Book bord</h2>
+      <button class="burger" type="button" aria-label="Luk booking" data-en-aria="Close booking" data-close-drawer><svg viewBox="0 0 24 24" style="width:26px;height:26px"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="panel-body" id="bk-body"></div>
+    <div class="panel-foot" id="bk-foot">
+      <span class="sum" id="bk-sum"></span>
+      <button class="sq" type="button" id="bk-go"></button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  /* ---------- Language (DA default, EN on demand) ---------- */
+  var lang = "da";
+  function t(da, en) { return lang === "en" ? en : da; }
+  var i18n = [];
+  document.querySelectorAll("[data-en],[data-en-html],[data-en-aria],[data-en-alt],[data-en-placeholder]").forEach(function (el) {
+    i18n.push({ el: el, text: el.hasAttribute("data-en") ? el.textContent : null, html: el.hasAttribute("data-en-html") ? el.innerHTML : null,
+      aria: el.getAttribute("aria-label"), alt: el.getAttribute("alt"), ph: el.getAttribute("placeholder") });
+  });
+  var listeners = [];
+  function setLang(l) {
+    lang = l;
+    i18n.forEach(function (o) {
+      var el = o.el, en = l === "en";
+      if (o.text !== null) el.textContent = en ? el.getAttribute("data-en") : o.text;
+      if (o.html !== null) el.innerHTML = en ? el.getAttribute("data-en-html") : o.html;
+      if (el.hasAttribute("data-en-aria")) el.setAttribute("aria-label", en ? el.getAttribute("data-en-aria") : o.aria);
+      if (el.hasAttribute("data-en-alt")) el.setAttribute("alt", en ? el.getAttribute("data-en-alt") : o.alt);
+      if (el.hasAttribute("data-en-placeholder")) el.setAttribute("placeholder", en ? el.getAttribute("data-en-placeholder") : o.ph);
+    });
+    document.documentElement.lang = l;
+    document.title = t("Restaurant Lyng – nordisk køkken på Frederiksberg (eksempel)", "Restaurant Lyng – Nordic kitchen in Frederiksberg (example)");
+    document.querySelectorAll(".langs button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === l)); });
+    bindFake();
+    listeners.forEach(function (fn) { fn(); });
+    try { localStorage.setItem("lyng-lang", l); } catch (e) {}
+  }
+  document.querySelectorAll(".langs button").forEach(function (b) { b.addEventListener("click", function () { setLang(b.dataset.lang); }); });
+
+  function bindFake() { document.querySelectorAll("[data-fake]").forEach(function (a) { a.onclick = function (e) { e.preventDefault(); }; }); }
+  bindFake();
+
+  /* ---------- Header + sticky pill ---------- */
+  var header = document.getElementById("header"), sticky = document.getElementById("sticky"), hero = document.querySelector(".hero"), footer = document.querySelector(".footer");
+  var pastHero = false, atFooter = false;
+  function syncSticky() { sticky.classList.toggle("show", pastHero && !atFooter); }
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) { pastHero = !es[0].isIntersecting; syncSticky(); }).observe(hero);
+    new IntersectionObserver(function (es) { atFooter = es[0].isIntersecting; syncSticky(); }).observe(footer);
+  }
+  addEventListener("scroll", function () { header.classList.toggle("scrolled", scrollY > 30); }, { passive: true });
+
+  /* ---------- Parallax on the full-bleed photo ---------- */
+  var px = document.querySelector("[data-parallax]");
+  if (px && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var bleed = px.parentElement;
+    var tick = function () {
+      var r = bleed.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < innerHeight) px.style.transform = "translateY(" + (-(r.top / (innerHeight + r.height)) * 15 - 8) + "%)";
+    };
+    addEventListener("scroll", function () { requestAnimationFrame(tick); }, { passive: true }); tick();
+  }
+
+  /* ---------- Fullscreen menu ---------- */
+  var overlay = document.getElementById("overlay"), opener = document.querySelector("[data-open-overlay]");
+  function setOverlay(open) {
+    overlay.classList.toggle("open", open); overlay.setAttribute("aria-hidden", String(!open));
+    opener.setAttribute("aria-expanded", String(open)); document.body.style.overflow = open ? "hidden" : "";
+    if (open) overlay.querySelector("[data-close-overlay]").focus();
+  }
+  opener.addEventListener("click", function () { setOverlay(true); });
+  overlay.querySelectorAll("[data-close-overlay], nav a").forEach(function (a) { a.addEventListener("click", function () { setOverlay(false); }); });
+
+  /* ---------- Gallery carousel with progress ---------- */
+  var track = document.getElementById("gal-track"), bar = document.getElementById("gal-bar");
+  var gPrev = document.querySelector('[data-gal="-1"]'), gNext = document.querySelector('[data-gal="1"]');
+  function galSync() {
+    var max = track.scrollWidth - track.clientWidth, p = max > 0 ? track.scrollLeft / max : 0;
+    var w = Math.max(.15, track.clientWidth / track.scrollWidth);
+    bar.style.width = (w * 100) + "%"; bar.style.transform = "translateX(" + (p * (1 / w - 1) * 100) + "%)";
+    gPrev.disabled = track.scrollLeft < 4; gNext.disabled = track.scrollLeft > max - 4;
+  }
+  document.querySelectorAll("[data-gal]").forEach(function (b) {
+    b.addEventListener("click", function () { track.scrollBy({ left: +b.dataset.gal * Math.min(track.clientWidth * .7, 560), behavior: "smooth" }); });
+  });
+  track.addEventListener("scroll", function () { requestAnimationFrame(galSync); }, { passive: true });
+  addEventListener("resize", galSync); galSync();
+
+  /* ---------- Menu tabs ---------- */
+  var tabs = document.querySelectorAll("[data-tab]");
+  function showTab(k) {
+    tabs.forEach(function (b) { b.setAttribute("aria-selected", String(b.dataset.tab === k)); });
+    ["aften", "frokost", "vin"].forEach(function (x) { document.getElementById("m-" + x).hidden = x !== k; });
+  }
+  tabs.forEach(function (b) { b.addEventListener("click", function () { showTab(b.dataset.tab); }); });
+  document.querySelectorAll("[data-tab-link]").forEach(function (a) { a.addEventListener("click", function () { showTab(a.dataset.tabLink); }); });
+
+  /* ---------- Event "read more" ---------- */
+  document.querySelectorAll("[data-expand]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var ev = b.closest(".event"), open = ev.classList.toggle("open");
+      b.textContent = open ? t("Læs mindre", "Read less") : t("Læs mere", "Read more");
+      b.setAttribute("aria-expanded", String(open));
+    });
+  });
+  listeners.push(function () { document.querySelectorAll("[data-expand]").forEach(function (b) { if (b.closest(".event").classList.contains("open")) b.textContent = t("Læs mindre", "Read less"); }); });
+
+  /* ---------- Gift card amount ---------- */
+  var AMTS = [500, 750, 1000, 1500, 2000], ai = 2, out = document.getElementById("gift-amount"), toast = document.getElementById("gift-toast");
+  function fmt(n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ",-"; }
+  function amtSync() {
+    out.textContent = fmt(AMTS[ai]);
+    document.querySelector('[data-amt="-1"]').disabled = ai === 0;
+    document.querySelector('[data-amt="1"]').disabled = ai === AMTS.length - 1;
+  }
+  document.querySelectorAll("[data-amt]").forEach(function (b) { b.addEventListener("click", function () { ai = Math.max(0, Math.min(AMTS.length - 1, ai + +b.dataset.amt)); amtSync(); toast.textContent = ""; }); });
+  document.getElementById("gift-buy").addEventListener("click", function () { toast.textContent = t("Eksempelside – der bliver ikke solgt et gavekort på " + fmt(AMTS[ai]) + " kr.", "Example site – no " + AMTS[ai] + " DKK gift card is actually sold."); });
+  document.getElementById("gift-exp").addEventListener("click", function () { toast.textContent = t("Fire retter med vinmenu til to: 1.780 kr. (eksempel)", "Four courses with wine pairing for two: 1,780 DKK (example)"); });
+  amtSync();
+
+  /* ---------- Opening hours, kitchen hours, live status & clock ---------- */
+  // index = getDay(): 0 søn … 6 lør
+  var OPEN = [null, null, ["17.30", "24.00"], ["17.30", "24.00"], ["17.30", "24.00"], ["12.00", "01.00"], ["12.00", "01.00"]];
+  var DINNER = [null, null, ["17.30", "21.30"], ["17.30", "21.30"], ["17.30", "21.30"], ["17.30", "22.00"], ["17.30", "22.00"]];
+  var LUNCH = [null, null, null, null, null, ["12.00", "15.00"], ["12.00", "15.00"]];
+  var DA_D = ["Søndag", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag"], EN_D = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  var DA_S = ["Søn", "Man", "Tir", "Ons", "Tor", "Fre", "Lør"], EN_S = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  var DA_M = ["jan", "feb", "mar", "apr", "maj", "jun", "jul", "aug", "sep", "okt", "nov", "dec"], EN_M = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  function dayName(d) { return lang === "en" ? EN_D[d] : DA_D[d]; }
+  function toMin(s) { var p = s.split("."); return +p[0] * 60 + +p[1]; }
+  function renderTimes(id, table) {
+    var today = new Date().getDay(), order = [1, 2, 3, 4, 5, 6, 0];
+    document.getElementById(id).innerHTML = order.map(function (d) {
+      var h = table[d];
+      return '<div class="row' + (d === today ? " today" : "") + '"><dt>' + dayName(d) + "</dt><dd>" + (h ? h[0] + " – " + h[1] : t("Lukket", "Closed")) + "</dd></div>";
+    }).join("");
+  }
+  function status() {
+    var now = new Date(), d = now.getDay(), m = now.getHours() * 60 + now.getMinutes(), open = false, txt;
+    var y = (d + 6) % 7, yh = OPEN[y];
+    if (yh && toMin(yh[1]) < toMin(yh[0]) && m < toMin(yh[1])) { open = true; txt = t("Åben nu · lukker kl. ", "Open now · closes at ") + yh[1]; }
+    var h = OPEN[d];
+    if (!open && h && m >= toMin(h[0])) { open = true; txt = t("Åben nu · lukker kl. ", "Open now · closes at ") + h[1]; }
+    if (!open && h && m < toMin(h[0])) txt = t("Lukket nu · åbner i dag kl. ", "Closed now · opens today at ") + h[0];
+    if (!open && !txt) { var n = (d + 1) % 7; while (!OPEN[n]) n = (n + 1) % 7; txt = t("Lukket nu · åbner ", "Closed now · opens ") + (n === (d + 1) % 7 ? t("i morgen", "tomorrow") : dayName(n).toLowerCase()) + t(" kl. ", " at ") + OPEN[n][0]; }
+    document.getElementById("status").classList.toggle("closed", !open);
+    document.getElementById("status-text").textContent = txt;
+  }
+  function renderHours() { renderTimes("open-times", OPEN); renderTimes("kitchen-dinner", DINNER); renderTimes("kitchen-lunch", LUNCH); status(); }
+  renderHours(); listeners.push(renderHours);
+  var ticks = ""; for (var i = 0; i < 12; i++) { var a = i * 30 * Math.PI / 180; ticks += '<line x1="' + (50 + 39 * Math.sin(a)) + '" y1="' + (50 - 39 * Math.cos(a)) + '" x2="' + (50 + 43 * Math.sin(a)) + '" y2="' + (50 - 43 * Math.cos(a)) + '" stroke="currentColor" stroke-width="' + (i % 3 ? 1.5 : 3) + '"/>'; }
+  document.getElementById("ticks").innerHTML = ticks;
+  function clock() {
+    var n = new Date(), mm = n.getMinutes() + n.getSeconds() / 60, hh = (n.getHours() % 12) + mm / 60;
+    document.getElementById("hh").setAttribute("transform", "rotate(" + hh * 30 + " 50 50)");
+    document.getElementById("mh").setAttribute("transform", "rotate(" + mm * 6 + " 50 50)");
+  }
+  clock(); setInterval(function () { clock(); status(); }, 20000);
+
+  /* ---------- Newsletter ---------- */
+  document.getElementById("news").addEventListener("submit", function (e) { e.preventDefault(); document.getElementById("news-msg").textContent = t("Tak! Det her er en eksempelside, så der bliver ikke sendt noget.", "Thanks! This is an example site, so nothing is sent."); });
+
+  /* ---------- Reveal ---------- */
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }); }, { rootMargin: "0px 0px -8% 0px" });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  } else document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+
+  /* ---------- Booking drawer ---------- */
+  var drawer = document.getElementById("drawer"), body = document.getElementById("bk-body"), go = document.getElementById("bk-go"), sum = document.getElementById("bk-sum");
+  var st;
+  function reset() { st = { guests: 2, meal: "aften", date: null, time: null, done: false }; }
+  function dkey(d) { return d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate(); }
+  function hash(s) { var h = 7; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return h; }
+  function days() { var o = [], d = new Date(); d.setHours(0, 0, 0, 0); for (var i = 0; i < 21; i++) { var x = new Date(d); x.setDate(d.getDate() + i); o.push(x); } return o; }
+  function servingFor(d) { return st.meal === "frokost" ? LUNCH[d.getDay()] : DINNER[d.getDay()]; }
+  function slots(d) {
+    var h = servingFor(d); if (!h) return [];
+    var out = [], end = toMin(h[1]) - 60, now = new Date(), today = dkey(d) === dkey(now), nowM = now.getHours() * 60 + now.getMinutes() + 30;
+    for (var m = toMin(h[0]); m <= end; m += 15) {
+      var tm = String(Math.floor(m / 60)).padStart(2, "0") + "." + String(m % 60).padStart(2, "0");
+      out.push([tm, hash(dkey(d) + tm + st.guests) % 3 === 0 || (st.guests > 4 && hash(tm) % 2 === 0) || (today && m < nowM)]);
+    }
+    return out;
+  }
+  function fmtDate(d) { return lang === "en" ? EN_D[d.getDay()] + " " + d.getDate() + " " + EN_M[d.getMonth()] : DA_D[d.getDay()].toLowerCase() + " d. " + d.getDate() + ". " + ["januar","februar","marts","april","maj","juni","juli","august","september","oktober","november","december"][d.getMonth()]; }
+  function render() {
+    if (!drawer.classList.contains("open")) return;
+    if (st.done) {
+      body.innerHTML = '<div class="done"><span class="tick"><svg><use href="#i-check"/></svg></span><h3>' + t("Vi ses!", "See you!") + "</h3><p>" +
+        t("Bord til " + st.guests + " " + fmtDate(st.date) + " kl. " + st.time + ".", "Table for " + st.guests + ", " + fmtDate(st.date) + " at " + st.time + ".") +
+        '</p><p class="note">' + t("Restaurant Lyng er en eksempelside lavet af Makkerne, så der er ikke booket noget bord.", "Restaurant Lyng is an example site made by Makkerne, so no table has actually been booked.") + "</p></div>";
+      go.textContent = t("Luk", "Close"); go.disabled = false; sum.textContent = ""; return;
+    }
+    var html = '<div><p class="field-label">' + t("Antal gæster", "Guests") + '</p><div class="stepper"><button class="round" type="button" data-g="-1" aria-label="' + t("Færre", "Fewer") + '"' + (st.guests <= 1 ? " disabled" : "") + '><svg><use href="#i-minus"/></svg></button><output>' + st.guests + '</output><button class="round" type="button" data-g="1" aria-label="' + t("Flere", "More") + '"' + (st.guests >= 8 ? " disabled" : "") + '><svg><use href="#i-plus"/></svg></button></div>' +
+      (st.guests >= 8 ? '<p class="hint">' + t("Er I flere end 8? Skriv til selskab@restaurantlyng.dk.", "More than 8? Write to selskab@restaurantlyng.dk.") + "</p>" : "") + "</div>";
+    html += '<div><p class="field-label">' + t("Måltid", "Meal") + '</p><div class="seg"><button type="button" data-meal="aften" aria-pressed="' + (st.meal === "aften") + '">' + t("Aften", "Dinner") + '</button><button type="button" data-meal="frokost" aria-pressed="' + (st.meal === "frokost") + '">' + t("Weekendfrokost", "Weekend lunch") + "</button></div></div>";
+    html += '<div><p class="field-label">' + t("Dato", "Date") + '</p><div class="chips">' + days().map(function (d) {
+      var closed = !servingFor(d), on = st.date && dkey(st.date) === dkey(d);
+      return '<button type="button" class="chip-d" data-d="' + d.getTime() + '"' + (closed ? " disabled" : "") + ' aria-pressed="' + !!on + '" aria-label="' + fmtDate(d) + '"><small>' + (lang === "en" ? EN_S : DA_S)[d.getDay()] + "</small><b>" + d.getDate() + "</b><small>" + (lang === "en" ? EN_M : DA_M)[d.getMonth()] + "</small></button>";
+    }).join("") + "</div></div>";
+    if (st.date) {
+      var sl = slots(st.date), free = sl.some(function (s) { return !s[1]; });
+      html += '<div><p class="field-label"><span>' + t("Tidspunkt", "Time") + "</span><span>" + fmtDate(st.date) + "</span></p>" + (free ? '<div class="times-grid">' + sl.map(function (s) {
+        return '<button type="button" class="slot" data-t="' + s[0] + '"' + (s[1] ? " disabled" : "") + ' aria-pressed="' + (st.time === s[0]) + '">' + s[0] + "</button>";
+      }).join("") + "</div>" : '<p class="hint">' + t("Ingen ledige borde denne dag – prøv en anden dag.", "No free tables this day – try another day.") + "</p>") + "</div>";
+    }
+    body.innerHTML = html;
+    go.textContent = t("Book bord", "Book table"); go.disabled = !(st.date && st.time);
+    sum.textContent = st.time ? t(st.guests + " pers. · " + fmtDate(st.date) + " · " + st.time, st.guests + " guests · " + fmtDate(st.date) + " · " + st.time) : t(st.guests + " pers. · vælg dato og tid", st.guests + " guests · pick a date and time");
+  }
+  body.addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b || b.disabled) return;
+    var keep = body.scrollTop;
+    if (b.dataset.g) { st.guests = Math.max(1, Math.min(8, st.guests + +b.dataset.g)); st.time = null; }
+    else if (b.dataset.meal) { st.meal = b.dataset.meal; st.date = null; st.time = null; }
+    else if (b.dataset.d) { st.date = new Date(+b.dataset.d); st.time = null; }
+    else if (b.dataset.t) st.time = b.dataset.t;
+    else return;
+    render(); body.scrollTop = keep;
+    if (b.dataset.d) { var g = body.querySelector(".times-grid, .hint:last-child"); if (g) g.scrollIntoView({ block: "nearest", behavior: "smooth" }); }
+  });
+  go.addEventListener("click", function () { if (st.done) { setDrawer(false); return; } st.done = true; render(); });
+  function setDrawer(open) {
+    if (open) { reset(); setOverlay(false); }
+    drawer.classList.toggle("open", open); drawer.setAttribute("aria-hidden", String(!open));
+    document.body.style.overflow = open ? "hidden" : "";
+    if (open) { render(); drawer.querySelector(".panel-head .burger").focus(); }
+  }
+  drawer.querySelectorAll("[data-close-drawer]").forEach(function (b) { b.addEventListener("click", function () { setDrawer(false); }); });
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-book]"); if (!b) return; e.preventDefault(); setDrawer(true); });
+  addEventListener("keydown", function (e) { if (e.key !== "Escape") return; if (drawer.classList.contains("open")) setDrawer(false); else if (overlay.classList.contains("open")) setOverlay(false); });
+  listeners.push(render);
+
+  try { if (localStorage.getItem("lyng-lang") === "en") setLang("en"); } catch (e) {}
+})();
+</script>
+</body>
+</html>
