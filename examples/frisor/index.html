@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Klip &amp; Co. – frisør og barber i Valby (eksempel)</title>
+<meta name="description" content="Klip &amp; Co. er en opdigtet frisørsalon og et eksempel på en hjemmeside lavet af Makkerne.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;1,400&family=Mulish:wght@400;600;700;800&display=swap">
+<link rel="preload" as="image" href="/examples/frisor/img/hero-foenning.webp">
+<style>
+:root {
+  --cream: #f5f2ed;
+  --sand: #ebe4db;
+  --sand-2: #e3dacd;
+  --olive: #868a6b;
+  --olive-ink: #5f6248;
+  --espresso: #261e18;
+  --ink: #1d1712;
+  --text: #4a423a;
+  --muted: #7d7368;
+  --line: rgba(29, 23, 18, .12);
+  --white: #ffffff;
+  --serif: "Crimson Pro", "Crimson Text", Georgia, serif;
+  --sans: "Mulish", ui-sans-serif, system-ui, sans-serif;
+  --wrap: 1200px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 90px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+body { margin: 0; background: var(--cream); color: var(--text); font: 400 16px/1.7 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3, h4, p { margin: 0; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--olive-ink); outline-offset: 3px; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: clamp(20px, 4vw, 40px); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Type */
+.kicker { display: inline-flex; align-items: center; gap: 18px; font: 700 13px/1.3 var(--sans); letter-spacing: .32em; text-transform: uppercase; color: var(--olive-ink); }
+.kicker::before, .kicker.both::after { content: ""; width: 38px; height: 1px; background: currentColor; opacity: .7; }
+.h-xl { font: 400 clamp(46px, 6.2vw, 80px)/1.02 var(--serif); letter-spacing: -.01em; color: var(--ink); }
+.h-lg { font: 400 clamp(32px, 3.6vw, 46px)/1.1 var(--serif); color: var(--ink); }
+.h-md { font: 400 clamp(24px, 2.2vw, 30px)/1.15 var(--serif); color: var(--ink); }
+.center { text-align: center; }
+.sec-head { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; margin-bottom: clamp(36px, 5vw, 56px); }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 12px 30px; background: var(--ink); color: var(--cream); border: 1px solid var(--ink); font: 400 20px/1 var(--serif); text-decoration: none; cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+.btn:hover { background: var(--olive-ink); border-color: var(--olive-ink); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: var(--cream); }
+.btn.light { background: transparent; color: var(--white); border-color: rgba(255,255,255,.85); }
+.btn.light:hover { background: var(--white); color: var(--ink); }
+.btn svg, .more svg { width: 16px; height: 16px; flex: none; }
+.more { display: inline-flex; align-items: center; gap: 12px; padding-bottom: 5px; border: 0; border-bottom: 1px solid currentColor; background: none; font: 700 12px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--ink); text-decoration: none; cursor: pointer; }
+.more svg { transition: transform .2s ease; }
+.more:hover svg { transform: translateX(4px); }
+
+/* Topbar */
+.topbar { background: var(--white); border-bottom: 1px solid var(--line); font-size: 12.5px; }
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 40px; }
+.topbar .contact { display: flex; gap: 28px; }
+.topbar a { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; color: var(--text); }
+.topbar a:hover { color: var(--ink); }
+.topbar svg { width: 14px; height: 14px; color: var(--olive-ink); }
+.topbar .social { display: flex; gap: 14px; }
+.topbar .social svg { width: 16px; height: 16px; color: var(--ink); }
+.topbar .mail { text-transform: uppercase; letter-spacing: .08em; }
+@media (max-width: 760px) { .topbar .contact { flex-direction: column; gap: 2px; padding-block: 8px; } }
+
+/* Header */
+.header { position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,.96); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: box-shadow .25s ease; }
+.header.scrolled { box-shadow: 0 10px 30px -22px rgba(29,23,18,.45); }
+.header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 76px; }
+.brand { display: inline-flex; align-items: baseline; gap: 6px; text-decoration: none; color: var(--ink); font: 800 21px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+.brand i { font: italic 400 27px/1 var(--serif); letter-spacing: 0; text-transform: none; color: var(--olive-ink); }
+.nav { display: flex; align-items: center; gap: clamp(16px, 2vw, 30px); }
+.nav a { font: 700 12.5px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; text-decoration: none; color: var(--ink); padding-block: 8px; border-bottom: 1px solid transparent; transition: border-color .2s ease; }
+.nav a:hover { border-color: var(--ink); }
+.nav .nav-book { background: var(--ink); color: var(--cream); padding: 13px 18px; border: 0; }
+.nav .nav-book:hover { background: var(--olive-ink); }
+.burger { display: none; width: 40px; height: 40px; place-items: center; border: 0; background: none; cursor: pointer; color: var(--ink); }
+.burger svg { width: 26px; height: 26px; }
+@media (max-width: 1040px) { .nav { display: none; } .burger { display: grid; } .header .wrap { height: 64px; } .brand { font-size: 18px; } .brand i { font-size: 23px; } }
+
+/* Drawer */
+.drawer { position: fixed; inset: 0; z-index: 70; overflow: hidden; visibility: hidden; }
+.drawer.open { visibility: visible; }
+.drawer-scrim { position: absolute; inset: 0; border: 0; padding: 0; background: rgba(29,23,18,.4); opacity: 0; transition: opacity .25s ease; }
+.drawer.open .drawer-scrim { opacity: 1; }
+.drawer-panel { position: absolute; top: 0; right: 0; bottom: 0; width: min(400px, 100%); background: var(--cream); padding: 22px 28px 32px; display: flex; flex-direction: column; gap: 18px; transform: translateX(100%); transition: transform .3s cubic-bezier(.2,.7,.2,1); overflow-y: auto; }
+.drawer.open .drawer-panel { transform: none; }
+.drawer-top { display: flex; justify-content: space-between; align-items: center; }
+.drawer nav { display: flex; flex-direction: column; }
+.drawer nav a { font: 400 28px/1 var(--serif); color: var(--ink); text-decoration: none; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.drawer .btn { margin-top: 10px; }
+.drawer .small { font-size: 14px; color: var(--muted); }
+
+/* Hero */
+.hero { position: relative; min-height: clamp(560px, 82vh, 760px); display: flex; align-items: center; overflow: hidden; background: var(--sand); isolation: isolate; }
+.hero-img { position: absolute; inset: 0; z-index: -2; }
+.hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 35%; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, var(--sand) 0%, rgba(235,228,219,.97) 30%, rgba(235,228,219,.75) 44%, rgba(235,228,219,0) 62%); }
+.hero-copy { max-width: 520px; display: flex; flex-direction: column; align-items: flex-start; gap: 22px; padding-block: 64px; }
+.hero-copy p { font-size: 17px; max-width: 46ch; color: var(--text); }
+.hero-copy .btn { margin-top: 8px; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 13.5px; color: var(--text); }
+.hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+.hero-meta svg { width: 15px; height: 15px; color: var(--olive-ink); }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #9aa07c; box-shadow: 0 0 0 4px rgba(134,138,107,.2); }
+.status-dot.closed { background: #b98a6d; box-shadow: 0 0 0 4px rgba(185,138,109,.2); }
+@media (max-width: 760px) {
+  .hero { min-height: 640px; align-items: flex-end; background: var(--espresso); }
+  .hero-img img { object-position: 62% 30%; }
+  .hero::before { background: linear-gradient(180deg, rgba(29,23,18,.05) 0%, rgba(29,23,18,.35) 45%, rgba(29,23,18,.86) 78%); }
+  .hero-copy { align-items: center; text-align: center; margin-inline: auto; padding-block: 48px 40px; gap: 16px; }
+  .hero-copy .kicker { color: #e8e1d6; }
+  .hero-copy .kicker::after { content: ""; width: 38px; height: 1px; background: currentColor; opacity: .7; }
+  .hero-copy .h-xl { color: var(--white); font-size: 48px; }
+  .hero-copy p { color: #ece6dd; font-size: 15.5px; }
+  .hero-copy .btn { background: var(--cream); color: var(--ink); border-color: var(--cream); }
+  .hero-meta { justify-content: center; color: #e8e1d6; }
+  .hero-meta svg { color: #d8d2c4; }
+}
+
+/* Welcome */
+.welcome { padding-block: clamp(64px, 9vw, 120px); }
+.welcome .grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+.welcome figure { margin: 0; position: relative; }
+.welcome figure img { width: 100%; height: auto; aspect-ratio: 4 / 3.3; object-fit: cover; }
+.welcome figure::after { content: ""; position: absolute; inset: 18px -18px -18px 18px; border: 1px solid var(--olive); z-index: -1; }
+.welcome .copy { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.welcome .copy p { max-width: 54ch; }
+.welcome .copy b { color: var(--ink); font-weight: 700; }
+.welcome .copy .btn { margin-top: 10px; }
+@media (max-width: 860px) { .welcome .grid { grid-template-columns: 1fr; } .welcome figure::after { inset: 12px -10px -12px 10px; } }
+
+/* USP band */
+.usp { background: var(--sand); }
+.usp .wrap { display: grid; grid-template-columns: repeat(4, 1fr); padding-block: 44px; }
+.usp-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 8px 22px; }
+.usp-item + .usp-item { border-left: 1px solid var(--line); }
+.usp-ico { width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(95,98,72,.4); display: grid; place-items: center; color: var(--olive-ink); }
+.usp-ico svg { width: 20px; height: 20px; }
+.usp h3 { font: 500 21px/1.2 var(--serif); color: var(--ink); }
+.usp p { font-size: 13.5px; line-height: 1.55; color: var(--muted); max-width: 26ch; }
+@media (max-width: 900px) {
+  .usp .wrap { grid-template-columns: 1fr; padding-block: 10px; }
+  .usp-item { flex-direction: row; text-align: left; align-items: center; gap: 16px; padding: 18px 0; }
+  .usp-item + .usp-item { border-left: 0; border-top: 1px solid var(--line); }
+  .usp-ico { flex: none; }
+  .usp p { max-width: none; }
+}
+
+/* Services */
+.services { padding-block: clamp(72px, 9vw, 120px); }
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 40px); }
+.svc { display: flex; flex-direction: column; gap: 14px; }
+.svc figure { margin: 0 0 6px; overflow: hidden; }
+.svc img { width: 100%; height: auto; aspect-ratio: 4 / 4.2; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+.svc:hover img { transform: scale(1.035); }
+.svc p { font-size: 15px; color: var(--text); }
+.svc .foot { margin-top: auto; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; }
+.svc .price { font-size: 14.5px; font-weight: 700; color: var(--ink); }
+@media (max-width: 860px) {
+  .svc-grid { grid-template-columns: 1fr; gap: 0; }
+  .svc { display: grid; grid-template-columns: 110px 1fr; gap: 6px 18px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .svc figure { grid-row: span 3; margin: 0; }
+  .svc img { aspect-ratio: 1 / 1.15; }
+  .svc .h-md { font-size: 24px; }
+  .svc p { font-size: 14px; }
+  .svc .foot { padding-top: 4px; }
+}
+
+/* Prices */
+.prices { padding-block: clamp(64px, 8vw, 104px); background: var(--white); }
+.prices .wrap { max-width: 920px; }
+.tabs { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; margin-bottom: 36px; }
+.tab { padding: 11px 20px; border: 1px solid var(--line); background: transparent; font: 700 12px/1 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--text); cursor: pointer; transition: all .2s ease; }
+.tab:hover { border-color: var(--ink); color: var(--ink); }
+.tab[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--cream); }
+.price-panel[hidden] { display: none; }
+.price-row { display: grid; grid-template-columns: 1fr auto auto; align-items: baseline; gap: 4px 18px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.price-row .name { display: flex; align-items: baseline; gap: 12px; min-width: 0; font: 400 21px/1.25 var(--serif); color: var(--ink); }
+.price-row .name::after { content: ""; flex: 1; min-width: 20px; border-bottom: 1px dotted rgba(29,23,18,.35); transform: translateY(-5px); }
+.price-row .desc { grid-column: 1; font-size: 13.5px; color: var(--muted); }
+.price-row .amt { grid-row: 1; grid-column: 2; font: 700 15px/1 var(--sans); color: var(--ink); white-space: nowrap; }
+.price-row .book { grid-row: 1 / span 2; grid-column: 3; align-self: center; padding: 9px 14px; border: 1px solid var(--line); background: none; font: 700 11px/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--ink); cursor: pointer; transition: all .2s ease; }
+.price-row .book:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.prices .note { margin-top: 26px; text-align: center; font-size: 13.5px; color: var(--muted); }
+@media (max-width: 560px) {
+  .price-row { grid-template-columns: 1fr auto; }
+  .price-row .name { font-size: 19px; }
+  .price-row .book { grid-row: 2; grid-column: 2; justify-self: end; padding: 8px 12px; }
+  .price-row .desc { grid-row: 2; grid-column: 1; align-self: center; }
+}
+
+/* Reviews */
+.reviews { background: var(--espresso); color: #d9d1c5; padding-block: clamp(72px, 9vw, 112px); }
+.reviews .kicker { color: #b7b097; }
+.reviews .h-lg { color: var(--cream); }
+.carousel { position: relative; }
+.track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 48px) / 3); gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
+.track::-webkit-scrollbar { display: none; }
+.track > * { scroll-snap-align: start; }
+.review { margin: 0; background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.07); padding: 34px 30px 30px; display: flex; flex-direction: column; gap: 18px; min-height: 300px; }
+.review .q { font: 400 54px/.6 var(--serif); color: var(--olive); height: 22px; }
+.review p { font-size: 15px; line-height: 1.75; color: #d9d1c5; }
+.review .who { margin-top: auto; display: flex; align-items: center; gap: 14px; font: 700 12px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: #b7b097; }
+.review .who::before { content: ""; width: 26px; height: 1px; background: currentColor; }
+.review .stars { color: #c9b98f; letter-spacing: .15em; font-size: 13px; }
+.car-ctrl { display: flex; justify-content: center; align-items: center; gap: 22px; margin-top: 34px; }
+.arrow { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.18); background: none; color: var(--cream); cursor: pointer; transition: all .2s ease; }
+.arrow:hover:not(:disabled) { background: var(--cream); color: var(--ink); }
+.arrow:disabled { opacity: .3; cursor: default; }
+.arrow svg { width: 16px; height: 16px; }
+.dots { display: flex; gap: 10px; }
+.dots button { width: 7px; height: 7px; padding: 0; border-radius: 50%; border: 0; background: rgba(255,255,255,.25); cursor: pointer; transition: background .2s ease, transform .2s ease; }
+.dots button[aria-current="true"] { background: var(--cream); transform: scale(1.25); }
+.light-ctrl .arrow { border-color: var(--line); color: var(--ink); }
+.light-ctrl .arrow:hover:not(:disabled) { background: var(--ink); color: var(--cream); }
+.light-ctrl .dots button { background: rgba(29,23,18,.2); }
+.light-ctrl .dots button[aria-current="true"] { background: var(--ink); }
+@media (max-width: 900px) { .track { grid-auto-columns: 86%; gap: 16px; } }
+
+/* Team */
+.team { padding-block: clamp(72px, 9vw, 112px); }
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 3vw, 36px); max-width: 1040px; margin-inline: auto; }
+.member { text-align: center; }
+.member figure { position: relative; margin: 0 0 22px; overflow: hidden; background: var(--sand); }
+.member img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; filter: saturate(.85) sepia(.06); transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+.member:hover img { transform: scale(1.03); }
+.member .book-me { position: absolute; left: 16px; right: 16px; bottom: 16px; padding: 13px; border: 0; background: rgba(245,242,237,.94); font: 700 11.5px/1 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--ink); cursor: pointer; opacity: 0; transform: translateY(8px); transition: all .25s ease; }
+.member:hover .book-me, .member .book-me:focus-visible { opacity: 1; transform: none; }
+.member h3 { font: 400 26px/1.1 var(--serif); color: var(--ink); }
+.member .role { margin-top: 10px; font: 700 11.5px/1.4 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--olive-ink); }
+.member .spec { margin-top: 10px; font-size: 14px; color: var(--muted); }
+@media (hover: none) { .member .book-me { opacity: 1; transform: none; } }
+@media (max-width: 760px) { .team-grid { grid-template-columns: 1fr 1fr; } .team-grid .member:last-child { grid-column: 1 / -1; max-width: 50%; margin-inline: auto; } .member h3 { font-size: 22px; } .member .spec { display: none; } .member .book-me { font-size: 10px; left: 8px; right: 8px; bottom: 8px; padding: 10px 4px; letter-spacing: .12em; } }
+
+/* Journal */
+.journal { background: var(--sand); padding-block: clamp(72px, 9vw, 112px); }
+.journal .track { grid-auto-columns: calc((100% - 64px) / 3); gap: 32px; }
+.post { display: flex; flex-direction: column; gap: 14px; }
+.post figure { margin: 0 0 8px; overflow: hidden; }
+.post img { width: 100%; height: auto; aspect-ratio: 4 / 3.4; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+.post:hover img { transform: scale(1.035); }
+.post .cat { font: 700 11.5px/1 var(--sans); letter-spacing: .26em; text-transform: uppercase; color: var(--olive-ink); }
+.post .h-md { font-size: 27px; }
+.post p { font-size: 15px; }
+.post .extra { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
+.post .extra > div { overflow: hidden; display: flex; flex-direction: column; gap: 10px; }
+.post.open .extra { grid-template-rows: 1fr; }
+.post .more { align-self: flex-start; margin-top: 6px; }
+.post.open .more svg { transform: rotate(90deg); }
+@media (max-width: 900px) { .journal .track { grid-auto-columns: 86%; gap: 18px; } }
+
+/* Hours */
+.hours { position: relative; padding-block: clamp(56px, 8vw, 100px); isolation: isolate; }
+.hours-bg { position: absolute; inset: 0; z-index: -1; }
+.hours-bg img { width: 100%; height: 100%; object-fit: cover; }
+.hours-card { max-width: 440px; margin-inline: auto; background: var(--olive); color: #f1eee6; padding: clamp(30px, 4vw, 44px); box-shadow: 0 40px 60px -40px rgba(29,23,18,.6); }
+.hours-card h2 { font: 400 32px/1.1 var(--serif); color: var(--white); }
+.hours-card .addr { display: flex; align-items: center; gap: 10px; margin-top: 18px; font-size: 15.5px; }
+.hours-card .addr svg { width: 15px; height: 15px; flex: none; }
+.hours-card .live { display: inline-flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 13.5px; color: #e6e2d4; }
+.hours-card .live .status-dot { background: #dfe4c3; box-shadow: 0 0 0 4px rgba(223,228,195,.22); }
+.hours-card .live .status-dot.closed { background: #f0c6a8; box-shadow: 0 0 0 4px rgba(240,198,168,.2); }
+.hours-card dl { margin: 22px 0 26px; }
+.hours-card .day { display: flex; align-items: baseline; gap: 10px; padding: 7px 0; font-size: 15.5px; }
+.hours-card .day dt { flex: 1; display: flex; align-items: baseline; gap: 10px; }
+.hours-card .day dt::after { content: ""; flex: 1; border-bottom: 1px dotted rgba(255,255,255,.45); transform: translateY(-4px); }
+.hours-card .day dt small { font-weight: 400; font-size: 12.5px; color: #e6e2d4; }
+.hours-card .day dd { margin: 0; flex: none; }
+.hours-card .day.today { font-weight: 700; color: var(--white); }
+.hours-card .btn { width: 100%; font-size: 22px; }
+@media (max-width: 760px) { .hours { padding-block: 0; } .hours-bg { position: relative; height: 260px; } .hours-card { max-width: none; box-shadow: none; } }
+
+/* Footer */
+.footer { background: #f4f4f4; color: #3a3530; font-size: 13.5px; padding-block: 26px; text-align: center; line-height: 1.8; }
+.footer a { text-decoration: none; white-space: nowrap; }
+.footer a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.footer .made { display: block; margin-top: 6px; font-size: 12px; color: var(--muted); }
+.footer .made a { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 760px) { .footer { padding-bottom: 104px; } }
+
+/* Mobile sticky booking bar */
+.sticky-book { position: fixed; z-index: 35; left: 0; right: 0; bottom: 0; display: none; gap: 10px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: var(--olive); transition: transform .3s ease; }
+.sticky-book.hide { transform: translateY(110%); }
+.sticky-book .ring { flex: none; width: 54px; display: grid; place-items: center; gap: 2px; padding: 6px 0; border: 1px solid rgba(255,255,255,.6); color: var(--white); text-decoration: none; font: 700 9.5px/1 var(--sans); letter-spacing: .18em; text-transform: uppercase; }
+.sticky-book .ring svg { width: 16px; height: 16px; }
+.sticky-book .go { flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px; border: 0; background: var(--cream); color: var(--ink); font: 400 19px/1 var(--serif); cursor: pointer; min-height: 52px; }
+.sticky-book .go svg { width: 16px; height: 16px; }
+@media (max-width: 760px) { .sticky-book { display: flex; } }
+
+/* Booking dialog */
+dialog.booking { width: min(640px, calc(100% - 24px)); max-height: calc(100dvh - 32px); padding: 0; border: 0; background: var(--cream); color: var(--text); box-shadow: 0 50px 100px -40px rgba(29,23,18,.55); }
+dialog.booking[open] { display: flex; flex-direction: column; animation: pop .28s cubic-bezier(.2,.7,.2,1); }
+@keyframes pop { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+dialog.booking::backdrop { background: rgba(29,23,18,.5); }
+.bk-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 26px 18px; border-bottom: 1px solid var(--line); background: var(--white); }
+.bk-head h2 { font: 400 28px/1 var(--serif); color: var(--ink); }
+.bk-steps { display: flex; gap: 6px; margin-top: 12px; }
+.bk-steps span { width: 34px; height: 3px; background: var(--sand-2); transition: background .25s ease; }
+.bk-steps span.on { background: var(--olive-ink); }
+.x { width: 40px; height: 40px; display: grid; place-items: center; border: 0; background: none; cursor: pointer; color: var(--ink); }
+.x svg { width: 20px; height: 20px; }
+.bk-body { padding: 22px 26px; overflow-y: auto; flex: 1; }
+.bk-label { font: 700 12px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--olive-ink); margin: 4px 0 14px; }
+.bk-label:not(:first-child) { margin-top: 24px; }
+.opt-list { display: grid; gap: 8px; }
+.opt { display: flex; align-items: center; justify-content: space-between; gap: 14px; width: 100%; padding: 14px 16px; text-align: left; border: 1px solid var(--line); background: var(--white); cursor: pointer; transition: border-color .15s ease, background .15s ease; }
+.opt:hover { border-color: rgba(29,23,18,.4); }
+.opt[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.opt b { display: block; font: 400 19px/1.2 var(--serif); color: var(--ink); }
+.opt small { font-size: 13px; color: var(--muted); }
+.opt .r { font-weight: 700; color: var(--ink); white-space: nowrap; font-size: 14.5px; }
+.opt .av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex: none; }
+.opt .l { display: flex; align-items: center; gap: 14px; }
+.opt .any { width: 44px; height: 44px; border-radius: 50%; background: var(--sand); display: grid; place-items: center; color: var(--olive-ink); flex: none; }
+.opt .any svg { width: 20px; height: 20px; }
+.cat-title { margin: 18px 0 8px; font: 700 11.5px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.cat-title:first-child { margin-top: 0; }
+.days { display: grid; grid-auto-flow: column; grid-auto-columns: 74px; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
+.dayb { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 10px 4px; border: 1px solid var(--line); background: var(--white); cursor: pointer; }
+.dayb small { font: 700 10.5px/1.2 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.dayb b { font: 400 26px/1 var(--serif); color: var(--ink); }
+.dayb:disabled { opacity: .38; cursor: not-allowed; background: transparent; }
+.dayb[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); }
+.dayb[aria-pressed="true"] small, .dayb[aria-pressed="true"] b { color: var(--cream); }
+.slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 8px; }
+.slot { padding: 11px 0; border: 1px solid var(--line); background: var(--white); font: 600 14px/1 var(--sans); color: var(--ink); cursor: pointer; }
+.slot:hover:not(:disabled) { border-color: var(--ink); }
+.slot:disabled { text-decoration: line-through; color: #b3aa9f; background: transparent; cursor: not-allowed; }
+.slot[aria-pressed="true"] { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.empty { font-size: 14px; color: var(--muted); padding: 12px 0; }
+.summary { background: var(--white); border: 1px solid var(--line); padding: 6px 20px; }
+.summary div { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.summary div:last-child { border-bottom: 0; }
+.summary dt { color: var(--muted); }
+.summary dd { margin: 0; text-align: right; color: var(--ink); font-weight: 700; }
+.bk-note { margin-top: 16px; font-size: 13px; color: var(--muted); font-style: italic; }
+.done { text-align: center; padding: 24px 0 8px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.done .tick { width: 64px; height: 64px; border-radius: 50%; background: var(--olive); color: var(--white); display: grid; place-items: center; }
+.done .tick svg { width: 28px; height: 28px; }
+.done h3 { font: 400 32px/1.1 var(--serif); color: var(--ink); }
+.done p { max-width: 40ch; }
+.bk-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 26px calc(16px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: var(--white); }
+.bk-foot .back { border: 0; background: none; font: 700 12px/1 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--ink); cursor: pointer; padding: 12px 0; }
+.bk-foot .back[hidden] { display: block; visibility: hidden; }
+.bk-foot .sel { font-size: 13.5px; color: var(--muted); text-align: right; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bk-foot .btn { min-height: 46px; padding: 10px 24px; font-size: 19px; }
+.bk-foot .btn:disabled { opacity: .35; cursor: not-allowed; background: var(--ink); border-color: var(--ink); }
+@media (max-width: 560px) {
+  dialog.booking { width: 100%; max-width: 100%; max-height: 100dvh; height: 100dvh; margin: 0; }
+  .bk-head, .bk-body, .bk-foot { padding-inline: 18px; }
+  .bk-foot .sel { display: none; }
+}
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M1 8h13M9.5 3.5 14 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+  <symbol id="i-left" viewBox="0 0 16 16"><path d="M15 8H2M6.5 3.5 2 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z" fill="currentColor"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 5h18v14H3z M3 6l9 7 9-7" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="currentColor"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-scissors" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.1 8.1 20 20M8.1 15.9 20 4M14.5 12l-1.2 1.2"/></g></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z M8 10h8M8 13h5" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+  <symbol id="i-bottle" viewBox="0 0 24 24"><path d="M10 2h4v3h-4z M9 5h6l1.5 3v12a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2V8z M7.5 12h9" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/></g></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.2-4.2 4.3-6 8-6s6.8 1.8 8 6"/></g></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+</svg>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="contact">
+      <a href="#" data-fake><svg><use href="#i-phone"/></svg>+45 12 34 56 78</a>
+      <a href="#" data-fake class="mail"><svg><use href="#i-mail"/></svg>hej@klipogco.dk</a>
+    </div>
+    <div class="social">
+      <a href="#" data-fake aria-label="Facebook (eksempel)"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 3h18v18h-6.2v-6.7h2.3l.4-2.7h-2.7V9.9c0-.8.3-1.3 1.4-1.3h1.4V6.2c-.3 0-1.1-.1-2-.1-2 0-3.3 1.2-3.3 3.4v2.1H10v2.7h2.3V21H3z"/></svg></a>
+      <a href="#" data-fake aria-label="Instagram (eksempel)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<header class="header" id="header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Klip &amp; Co. – til forsiden">Klip <i>&amp;</i> Co.</a>
+    <nav class="nav" aria-label="Hovedmenu">
+      <a href="#ydelser">Damefrisør</a>
+      <a href="#ydelser">Herrefrisør</a>
+      <a href="#priser" data-tab-link="barber">Barber</a>
+      <a href="#priser">Prisliste</a>
+      <a href="#teamet">Salonen</a>
+      <a href="#journal">Journal</a>
+      <a href="#" class="nav-book" data-book>Online booking</a>
+    </nav>
+    <button class="burger" type="button" aria-label="Åbn menu" aria-expanded="false" aria-controls="drawer" data-open-drawer><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h20M3 13h20M3 19h20"/></svg></button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <button class="drawer-scrim" type="button" tabindex="-1" aria-label="Luk menu" data-close-drawer></button>
+  <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="drawer-top"><span class="brand">Klip <i>&amp;</i> Co.</span><button class="x" type="button" aria-label="Luk menu" data-close-drawer><svg><use href="#i-close"/></svg></button></div>
+    <nav>
+      <a href="#ydelser">Ydelser</a>
+      <a href="#priser">Prisliste</a>
+      <a href="#anmeldelser">Anmeldelser</a>
+      <a href="#teamet">Mød teamet</a>
+      <a href="#journal">Journal</a>
+      <a href="#aabningstider">Åbningstider</a>
+    </nav>
+    <button class="btn" type="button" data-book>Book tid online</button>
+    <p class="small">Saksegade 7, 2500 Valby<br>+45 12 34 56 78</p>
+  </div>
+</div>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-img"><img src="/examples/frisor/img/hero-foenning.webp" alt="Frisør føntørrer en kundes hår i en lys salon" width="2000" height="1335" fetchpriority="high"></div>
+    <div class="wrap" style="width:100%">
+      <div class="hero-copy">
+        <span class="kicker">Frisør Valby</span>
+        <h1 class="h-xl" id="hero-title">Klip &amp; Co.</h1>
+        <p>Vi er en lille frisør- og barbersalon midt i Valby. Vi tager os tid til at lytte, giver ærlige råd og laver et klip, der også sidder godt, når du selv har vasket det.</p>
+        <button class="btn" type="button" data-book>Book tid nu</button>
+        <div class="hero-meta">
+          <span><i class="status-dot" data-status-dot></i><span data-status-text>Åben i dag</span></span>
+          <span><svg><use href="#i-pin"/></svg>Saksegade 7, Valby</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="welcome" aria-labelledby="welcome-title">
+    <div class="wrap grid">
+      <figure class="reveal"><img src="/examples/frisor/img/salon-spejl.webp" alt="Lys salon med rundt spejl, frisørstol og plejeprodukter" width="1400" height="933" loading="lazy"></figure>
+      <div class="copy reveal">
+        <span class="kicker">Velkommen til Klip &amp; Co.</span>
+        <h2 class="h-lg" id="welcome-title">Din frisør tre minutter fra Valby Station</h2>
+        <p>Hos os bliver du mødt med et smil og en kop kaffe. Salonen drives af <b>Sofie</b>, <b>Jonas</b> og <b>Amira</b>, der hver har deres speciale, så du altid sidder i stolen hos den, der kan netop det, du kommer for.</p>
+        <p>Vi bruger altid lidt ekstra tid på konsultationen. Det er der, vi finder ud af, hvordan dit hår falder, hvad din hverdag kræver, og hvor meget tid du gider bruge foran spejlet om morgenen.</p>
+        <p>Du finder os i en gammel butik på hjørnet af Saksegade, lige bag Valby Langgade.</p>
+        <a class="btn" href="#priser">Se vores priser</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="usp" aria-label="Det kan du forvente">
+    <div class="wrap">
+      <div class="usp-item"><span class="usp-ico"><svg><use href="#i-scissors"/></svg></span><div><h3>Skræddersyede behandlinger</h3><p>Hvert klip tilpasses dit hår og din hverdag.</p></div></div>
+      <div class="usp-item"><span class="usp-ico"><svg><use href="#i-chat"/></svg></span><div><h3>Ærlig rådgivning</h3><p>Vi siger det, hvis en idé ikke passer til dit hår.</p></div></div>
+      <div class="usp-item"><span class="usp-ico"><svg><use href="#i-bottle"/></svg></span><div><h3>Skånsomme produkter</h3><p>Professionelle, parfumefrie produkter uden unødig kemi.</p></div></div>
+      <div class="usp-item"><span class="usp-ico"><svg><use href="#i-award"/></svg></span><div><h3>Tid til dig</h3><p>Vi booker aldrig to kunder i samme stol på samme tid.</p></div></div>
+    </div>
+  </section>
+
+  <section class="services" id="ydelser" aria-labelledby="svc-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker both">Behandlinger</span>
+        <h2 class="h-lg" id="svc-title">Vores ydelser</h2>
+      </div>
+      <div class="svc-grid">
+        <article class="svc reveal">
+          <figure><img src="/examples/frisor/img/ydelse-styling.webp" alt="Frisør krøller langt brunt hår med et krøllejern" width="900" height="600" loading="lazy" style="object-position:62% 50%"></figure>
+          <h3 class="h-md">Klip &amp; styling</h3>
+          <p>Et klip, der passer til din ansigtsform, din hårtype og den tid, du har om morgenen.</p>
+          <div class="foot"><span class="price">Fra 545 kr.</span><button class="more" type="button" data-show-tab="dame">Se mere <svg><use href="#i-arrow"/></svg></button></div>
+        </article>
+        <article class="svc reveal">
+          <figure><img src="/examples/frisor/img/ydelse-farve.webp" alt="Langt hår med lyse balayage-toner" width="900" height="1350" loading="lazy"></figure>
+          <h3 class="h-md">Farvebehandlinger</h3>
+          <p>Fra bundfarve og gloss til striber og balayage. Vi finder den nuance, der klæder dig og dit hår.</p>
+          <div class="foot"><span class="price">Fra 495 kr.</span><button class="more" type="button" data-show-tab="farve">Se mere <svg><use href="#i-arrow"/></svg></button></div>
+        </article>
+        <article class="svc reveal">
+          <figure><img src="/examples/frisor/img/ydelse-herre.webp" alt="Barber klipper en skarp fade med maskine" width="900" height="600" loading="lazy" style="object-position:60% 50%"></figure>
+          <h3 class="h-md">Herreklip &amp; fade</h3>
+          <p>Klassiske herreklip, skarpe fades og skægtrim med varmt håndklæde, præcis som du vil have det.</p>
+          <div class="foot"><span class="price">Fra 425 kr.</span><button class="more" type="button" data-show-tab="herre">Se mere <svg><use href="#i-arrow"/></svg></button></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="prices" id="priser" aria-labelledby="price-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker both">Prisliste</span>
+        <h2 class="h-lg" id="price-title">Priser uden overraskelser</h2>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Kategorier" id="price-tabs"></div>
+      <div id="price-panels"></div>
+      <p class="note">Alle priser er inkl. moms. Ekstra langt eller tykt hår kan koste lidt mere – det aftaler vi altid, før vi går i gang.</p>
+    </div>
+  </section>
+
+  <section class="reviews" id="anmeldelser" aria-labelledby="rev-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker both">Anmeldelser</span>
+        <h2 class="h-lg" id="rev-title">Det siger vores kunder</h2>
+      </div>
+      <div class="carousel" data-carousel>
+        <div class="track" tabindex="0" aria-label="Anmeldelser, rul vandret">
+          <figure class="review"><span class="q">“</span><span class="stars" aria-label="5 ud af 5">★★★★★</span><p>Jeg har aldrig haft en frisør, der spurgte så meget ind til, hvordan jeg selv sætter mit hår. Resultatet holder stadig, seks uger efter. Sofie er guld.</p><figcaption class="who">Line K.</figcaption></figure>
+          <figure class="review"><span class="q">“</span><span class="stars" aria-label="5 ud af 5">★★★★★</span><p>Bedste fade, jeg har fået i København. Jonas tager sig tid, og der er ingen stress, selvom der er fuldt hus. Booker allerede næste tid, før jeg går.</p><figcaption class="who">Mikkel S.</figcaption></figure>
+          <figure class="review"><span class="q">“</span><span class="stars" aria-label="5 ud af 5">★★★★★</span><p>Kom med et billede af en balayage og gik ud med noget, der var endnu pænere, fordi Amira tilpassede den til min hudfarve. Hyggelig salon med god kaffe.</p><figcaption class="who">Fatima A.</figcaption></figure>
+          <figure class="review"><span class="q">“</span><span class="stars" aria-label="5 ud af 5">★★★★★</span><p>Min søn på syv var nervøs for at blive klippet. De gav ham god tid og lod ham selv holde spejlet. Nu vil han kun herhen.</p><figcaption class="who">Peter H.</figcaption></figure>
+          <figure class="review"><span class="q">“</span><span class="stars" aria-label="5 ud af 5">★★★★★</span><p>Ærlige råd i stedet for salg. Jeg fik at vide, at jeg ikke behøvede en ny farve, bare en gloss. Det sparede mig både penge og hår.</p><figcaption class="who">Camilla R.</figcaption></figure>
+          <figure class="review"><span class="q">“</span><span class="stars" aria-label="5 ud af 5">★★★★★</span><p>Online booking virker, og de er altid til tiden. Klip og skægtrim på en time, og man går ud og føler sig som et nyt menneske.</p><figcaption class="who">Ahmad N.</figcaption></figure>
+        </div>
+        <div class="car-ctrl">
+          <button class="arrow" type="button" data-prev aria-label="Forrige"><svg><use href="#i-left"/></svg></button>
+          <div class="dots" data-dots></div>
+          <button class="arrow" type="button" data-next aria-label="Næste"><svg><use href="#i-arrow"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="team" id="teamet" aria-labelledby="team-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker both">Salonen</span>
+        <h2 class="h-lg" id="team-title">Mød teamet</h2>
+      </div>
+      <div class="team-grid">
+        <article class="member reveal">
+          <figure><img src="/examples/frisor/img/team-sofie.webp" alt="Portræt af frisør Sofie" width="900" height="1132" loading="lazy" style="object-position:50% 20%"><button class="book-me" type="button" data-book data-stylist="sofie">Book hos Sofie</button></figure>
+          <h3>Sofie</h3><p class="role">Indehaver og frisør</p><p class="spec">Damefrisør med 14 års erfaring. Elsker bobs og naturlige klip.</p>
+        </article>
+        <article class="member reveal">
+          <figure><img src="/examples/frisor/img/team-jonas.webp" alt="Portræt af barber Jonas" width="900" height="600" loading="lazy" style="object-position:48% 30%"><button class="book-me" type="button" data-book data-stylist="jonas">Book hos Jonas</button></figure>
+          <h3>Jonas</h3><p class="role">Barber</p><p class="spec">Fades, skæg og klassiske herreklip. Har en rolig hånd med kniven.</p>
+        </article>
+        <article class="member reveal">
+          <figure><img src="/examples/frisor/img/team-amira.webp" alt="Portræt af colorist Amira" width="900" height="1125" loading="lazy" style="object-position:50% 25%"><button class="book-me" type="button" data-book data-stylist="amira">Book hos Amira</button></figure>
+          <h3>Amira</h3><p class="role">Colorist og frisør</p><p class="spec">Balayage, babylights og krøllet hår. Uddannet i London.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="journal" id="journal" aria-labelledby="journal-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker both">Inspiration</span>
+        <h2 class="h-lg" id="journal-title">Klip &amp; Co. Journal</h2>
+      </div>
+      <div class="carousel" data-carousel>
+        <div class="track" tabindex="0" aria-label="Artikler, rul vandret">
+          <article class="post">
+            <figure><img src="/examples/frisor/img/journal-folie.webp" alt="Colorist lægger folie i håret under en farvebehandling" width="900" height="1350" loading="lazy"></figure>
+            <span class="cat">Farveteknikker</span>
+            <h3 class="h-md">Babylights eller balayage?</h3>
+            <p>Begge giver lys i håret, men på hver sin måde. Babylights er fine, tætte striber, der ligner det lys, børnehår får om sommeren.</p>
+            <div class="extra"><div><p>Balayage bliver malet på fri hånd, så overgangen fra din egen farve er blød og vokser pænt ud. Vil du gerne kunne gå længe mellem besøgene, er balayage som regel det bedste valg.</p></div></div>
+            <button class="more" type="button" data-expand>Læs mere <svg><use href="#i-arrow"/></svg></button>
+          </article>
+          <article class="post">
+            <figure><img src="/examples/frisor/img/journal-fade.webp" alt="Barber klipper i nakken med saks og kam" width="900" height="1350" loading="lazy"></figure>
+            <span class="cat">Herreklip</span>
+            <h3 class="h-md">Skin fade eller klassisk klip?</h3>
+            <p>En skin fade ser skarp ud i to uger og kræver, at du kommer forbi tit. Et klassisk saksklip vokser roligere ud.</p>
+            <div class="extra"><div><p>Er du i tvivl, så start med en lav fade. Den giver et rent udtryk, men vokser ud uden at se forsømt ud. Vi anbefaler at komme hver 3.–4. uge.</p></div></div>
+            <button class="more" type="button" data-expand>Læs mere <svg><use href="#i-arrow"/></svg></button>
+          </article>
+          <article class="post">
+            <figure><img src="/examples/frisor/img/journal-saks.webp" alt="Langt mørkt hår bliver klippet lige med saks" width="900" height="1350" loading="lazy"></figure>
+            <span class="cat">Klip</span>
+            <h3 class="h-md">Sådan holder dit klip længere</h3>
+            <p>Det handler mindre om shampoo og mere om, hvordan du tørrer håret. Tre små vaner gør en stor forskel.</p>
+            <div class="extra"><div><p>Klem vandet ud i stedet for at gnide, brug varmebeskyttelse, før du føner, og sov på et silkebetræk. Så kan der gå 8–10 uger mellem klipningerne.</p></div></div>
+            <button class="more" type="button" data-expand>Læs mere <svg><use href="#i-arrow"/></svg></button>
+          </article>
+        </div>
+        <div class="car-ctrl light-ctrl">
+          <button class="arrow" type="button" data-prev aria-label="Forrige"><svg><use href="#i-left"/></svg></button>
+          <div class="dots" data-dots></div>
+          <button class="arrow" type="button" data-next aria-label="Næste"><svg><use href="#i-arrow"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hours" id="aabningstider" aria-labelledby="hours-title">
+    <div class="hours-bg"><img src="/examples/frisor/img/salon-bred.webp" alt="Salonen indefra med frisørstole, spejle og produkthylder" width="2000" height="1333" loading="lazy"></div>
+    <div class="wrap">
+      <div class="hours-card">
+        <h2 id="hours-title">Vores åbningstider</h2>
+        <p class="addr"><svg><use href="#i-pin"/></svg>Saksegade 7, 2500 Valby</p>
+        <p class="live"><i class="status-dot" data-status-dot></i><span data-status-text>Åben i dag</span></p>
+        <dl id="hours-list"></dl>
+        <button class="btn light" type="button" data-book>Online booking</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    Klip &amp; Co. | <span style="white-space:nowrap">Saksegade 7, 2500 Valby</span> | Tlf.: <a href="#" data-fake>+45 12 34 56 78</a> | <a href="#" data-fake>hej@klipogco.dk</a>
+    <span class="made">Opdigtet salon · Eksempel lavet af <a href="/">Makkerne</a></span>
+  </div>
+</footer>
+
+<div class="sticky-book" id="sticky-book">
+  <a class="ring" href="#" data-fake><svg><use href="#i-phone"/></svg>Ring</a>
+  <button class="go" type="button" data-book>Book tid online <svg><use href="#i-arrow"/></svg></button>
+</div>
+
+<dialog class="booking" id="booking" aria-labelledby="bk-title">
+  <div class="bk-head">
+    <div>
+      <h2 id="bk-title">Book tid</h2>
+      <div class="bk-steps" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    </div>
+    <button class="x" type="button" aria-label="Luk booking" data-close-booking><svg><use href="#i-close"/></svg></button>
+  </div>
+  <div class="bk-body" id="bk-body" aria-live="polite"></div>
+  <div class="bk-foot">
+    <button class="back" type="button" id="bk-back">← Tilbage</button>
+    <span class="sel" id="bk-sel"></span>
+    <button class="btn" type="button" id="bk-next">Videre</button>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  /* ---------- Data ---------- */
+  var SERVICES = {
+    dame: { label: "Dame", items: [
+      ["d1", "Dameklip, kort hår", "Inkl. vask og let styling", 545, 45],
+      ["d2", "Dameklip, langt hår", "Inkl. vask og føn", 645, 60],
+      ["d3", "Pandehår", "Mellem to klipninger", 150, 15],
+      ["d4", "Vask, føn & styling", "Til fest eller fotografering", 395, 45],
+      ["d5", "Opsætning", "Bryllup, gallafest, konfirmation", 650, 60]
+    ]},
+    herre: { label: "Herre", items: [
+      ["h1", "Herreklip", "Saks og/eller maskine", 425, 30],
+      ["h2", "Herreklip med vask", "Inkl. hovedbundsmassage", 475, 40],
+      ["h3", "Skin fade", "Med skarp kontur", 465, 45],
+      ["h4", "Børneklip", "Under 12 år", 295, 30]
+    ]},
+    farve: { label: "Farve", items: [
+      ["f1", "Gloss / toning", "Glans og nuance, holder 6–8 uger", 495, 45],
+      ["f2", "Bundfarve", "Dækker gråt, inkl. klip", 695, 75],
+      ["f3", "Striber, halvt hoved", "Folie, inkl. toning", 1195, 120],
+      ["f4", "Balayage", "Fri hånd, inkl. toning og klip", 1695, 180]
+    ]},
+    barber: { label: "Barber", items: [
+      ["b1", "Skægtrim", "Form, kontur og olie", 225, 20],
+      ["b2", "Klip + skæg", "Vores mest bookede", 595, 60],
+      ["b3", "Barbering med varmt håndklæde", "Klassisk knivbarbering", 345, 30]
+    ]}
+  };
+  var STYLISTS = [
+    { id: "any", name: "Første ledige", note: "Flest ledige tider" },
+    { id: "sofie", name: "Sofie", note: "Dameklip & styling", img: "/examples/frisor/img/team-sofie.webp" },
+    { id: "jonas", name: "Jonas", note: "Herreklip, fade & barber", img: "/examples/frisor/img/team-jonas.webp" },
+    { id: "amira", name: "Amira", note: "Farve & krøllet hår", img: "/examples/frisor/img/team-amira.webp" }
+  ];
+  // Opening hours, index = getDay() (0 = søndag)
+  var HOURS = [null, ["10.00", "18.00"], ["09.30", "17.30"], ["09.30", "17.30"], ["09.30", "19.00"], ["09.30", "17.30"], ["09.00", "14.00"]];
+  var DAY_NAMES = ["Søndag", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag"];
+  var DAY_SHORT = ["Søn", "Man", "Tir", "Ons", "Tor", "Fre", "Lør"];
+  var MONTHS = ["januar", "februar", "marts", "april", "maj", "juni", "juli", "august", "september", "oktober", "november", "december"];
+
+  function kr(n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " kr."; }
+  function toMin(t) { var p = t.split("."); return +p[0] * 60 + +p[1]; }
+  function fromMin(m) { return String(Math.floor(m / 60)).padStart(2, "0") + "." + String(m % 60).padStart(2, "0"); }
+  function findService(id) {
+    for (var k in SERVICES) for (var i = 0; i < SERVICES[k].items.length; i++) if (SERVICES[k].items[i][0] === id) return SERVICES[k].items[i];
+  }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  /* ---------- Header shadow ---------- */
+  var header = document.getElementById("header");
+  addEventListener("scroll", function () { header.classList.toggle("scrolled", scrollY > 40); }, { passive: true });
+
+  /* ---------- Drawer ---------- */
+  var drawer = document.getElementById("drawer");
+  var burger = document.querySelector("[data-open-drawer]");
+  function setDrawer(open) {
+    drawer.classList.toggle("open", open);
+    drawer.setAttribute("aria-hidden", String(!open));
+    burger.setAttribute("aria-expanded", String(open));
+    if (open) drawer.querySelector(".x").focus();
+  }
+  burger.addEventListener("click", function () { setDrawer(true); });
+  drawer.querySelectorAll("[data-close-drawer], nav a, [data-book]").forEach(function (el) { el.addEventListener("click", function () { setDrawer(false); }); });
+  addEventListener("keydown", function (e) { if (e.key === "Escape" && drawer.classList.contains("open")) { setDrawer(false); burger.focus(); } });
+
+  /* ---------- Fake contact links ---------- */
+  document.querySelectorAll("[data-fake]").forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); }); });
+
+  /* ---------- Price list with tabs ---------- */
+  var tabsEl = document.getElementById("price-tabs"), panelsEl = document.getElementById("price-panels");
+  Object.keys(SERVICES).forEach(function (key, i) {
+    var cat = SERVICES[key];
+    var tab = document.createElement("button");
+    tab.className = "tab"; tab.type = "button"; tab.id = "tab-" + key; tab.textContent = cat.label;
+    tab.setAttribute("role", "tab"); tab.setAttribute("aria-controls", "panel-" + key); tab.setAttribute("aria-selected", String(i === 0));
+    tab.dataset.key = key;
+    tabsEl.appendChild(tab);
+    var panel = document.createElement("div");
+    panel.className = "price-panel"; panel.id = "panel-" + key; panel.setAttribute("role", "tabpanel"); panel.setAttribute("aria-labelledby", tab.id);
+    if (i) panel.hidden = true;
+    panel.innerHTML = cat.items.map(function (s) {
+      return '<div class="price-row"><span class="name">' + esc(s[1]) + '</span><span class="amt">' + (s[0] === "f4" ? "fra " : "") + kr(s[3]) + '</span><button class="book" type="button" data-book data-service="' + s[0] + '">Book</button><span class="desc">' + esc(s[2]) + ' · ' + s[4] + ' min.</span></div>';
+    }).join("");
+    panelsEl.appendChild(panel);
+  });
+  function showTab(key) {
+    tabsEl.querySelectorAll(".tab").forEach(function (t) { t.setAttribute("aria-selected", String(t.dataset.key === key)); });
+    panelsEl.querySelectorAll(".price-panel").forEach(function (p) { p.hidden = p.id !== "panel-" + key; });
+  }
+  tabsEl.addEventListener("click", function (e) { var t = e.target.closest(".tab"); if (t) showTab(t.dataset.key); });
+  tabsEl.addEventListener("keydown", function (e) {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    var tabs = [].slice.call(tabsEl.querySelectorAll(".tab")), i = tabs.indexOf(document.activeElement);
+    var n = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length]; n.focus(); showTab(n.dataset.key);
+  });
+  document.querySelectorAll("[data-show-tab], [data-tab-link]").forEach(function (b) {
+    b.addEventListener("click", function (e) {
+      e.preventDefault(); showTab(b.dataset.showTab || b.dataset.tabLink);
+      document.getElementById("priser").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    });
+  });
+
+  /* ---------- Opening hours + live status ---------- */
+  var now = new Date(), today = now.getDay();
+  var order = [1, 2, 3, 4, 5, 6, 0];
+  document.getElementById("hours-list").innerHTML = order.map(function (d) {
+    var h = HOURS[d];
+    return '<div class="day' + (d === today ? " today" : "") + '"><dt>' + DAY_NAMES[d] + (d === today ? " <small>· i dag</small>" : "") + '</dt><dd>' + (h ? h[0] + " - " + h[1] : "Lukket") + "</dd></div>";
+  }).join("");
+  (function status() {
+    var h = HOURS[today], m = now.getHours() * 60 + now.getMinutes(), text, open = false;
+    if (h && m >= toMin(h[0]) && m < toMin(h[1])) { open = true; text = "Åben nu · lukker kl. " + h[1]; }
+    else if (h && m < toMin(h[0])) text = "Lukket nu · åbner kl. " + h[0];
+    else {
+      var d = (today + 1) % 7; while (!HOURS[d]) d = (d + 1) % 7;
+      text = "Lukket nu · åbner " + (d === (today + 1) % 7 ? "i morgen" : DAY_NAMES[d].toLowerCase()) + " kl. " + HOURS[d][0];
+    }
+    document.querySelectorAll("[data-status-text]").forEach(function (el) { el.textContent = text; });
+    document.querySelectorAll("[data-status-dot]").forEach(function (el) { el.classList.toggle("closed", !open); });
+  })();
+
+  /* ---------- Carousels ---------- */
+  document.querySelectorAll("[data-carousel]").forEach(function (car) {
+    var track = car.querySelector(".track"), dots = car.querySelector("[data-dots]");
+    var prev = car.querySelector("[data-prev]"), next = car.querySelector("[data-next]");
+    function step() { var c = track.children; return c.length > 1 ? c[1].offsetLeft - c[0].offsetLeft : track.clientWidth; }
+    function pages() { return Math.max(1, Math.round((track.scrollWidth - track.clientWidth) / step()) + 1); }
+    function current() { return Math.round(track.scrollLeft / step()); }
+    function build() {
+      var n = pages();
+      dots.innerHTML = "";
+      for (var i = 0; i < n; i++) {
+        var b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", "Gå til " + (i + 1) + " af " + n);
+        (function (i) { b.addEventListener("click", function () { track.scrollTo({ left: i * step(), behavior: "smooth" }); }); })(i);
+        dots.appendChild(b);
+      }
+      car.querySelector(".car-ctrl").style.display = n > 1 ? "" : "none";
+      sync();
+    }
+    function sync() {
+      var c = current(), n = pages();
+      [].forEach.call(dots.children, function (d, i) { d.setAttribute("aria-current", String(i === c)); });
+      prev.disabled = track.scrollLeft < 4;
+      next.disabled = track.scrollLeft > track.scrollWidth - track.clientWidth - 4;
+    }
+    prev.addEventListener("click", function () { track.scrollBy({ left: -step(), behavior: "smooth" }); });
+    next.addEventListener("click", function () { track.scrollBy({ left: step(), behavior: "smooth" }); });
+    track.addEventListener("scroll", function () { requestAnimationFrame(sync); }, { passive: true });
+    addEventListener("resize", build);
+    build();
+  });
+
+  /* ---------- Journal expand ---------- */
+  document.querySelectorAll("[data-expand]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var post = b.closest(".post"), open = post.classList.toggle("open");
+      b.firstChild.textContent = open ? "Læs mindre " : "Læs mere ";
+      b.setAttribute("aria-expanded", String(open));
+    });
+  });
+
+  /* ---------- Reveal on scroll ---------- */
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }); }, { rootMargin: "0px 0px -8% 0px" });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  } else document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+
+  /* ---------- Sticky mobile bar: hide over footer ---------- */
+  var sticky = document.getElementById("sticky-book");
+  if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { sticky.classList.toggle("hide", es[0].isIntersecting); }).observe(document.querySelector(".footer"));
+
+  /* ---------- Booking flow ---------- */
+  var dlg = document.getElementById("booking"), body = document.getElementById("bk-body");
+  var backB = document.getElementById("bk-back"), nextB = document.getElementById("bk-next"), selEl = document.getElementById("bk-sel");
+  var steps = dlg.querySelectorAll(".bk-steps span");
+  var st;
+
+  function reset(opts) { st = { step: opts.service ? 1 : 0, service: opts.service || null, stylist: opts.stylist || null, date: null, time: null, done: false }; }
+  function dateKey(d) { return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
+  function hash(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return h; }
+  function nextDays() {
+    var out = [], d = new Date(); d.setHours(0, 0, 0, 0);
+    for (var i = 0; i < 14; i++) { var x = new Date(d); x.setDate(d.getDate() + i); out.push(x); }
+    return out;
+  }
+  function slotsFor(date) {
+    var h = HOURS[date.getDay()]; if (!h) return [];
+    var svc = findService(st.service), dur = svc ? svc[4] : 30;
+    var start = toMin(h[0]), end = toMin(h[1]) - dur, out = [];
+    var isToday = dateKey(date) === dateKey(new Date()), nowM = new Date().getHours() * 60 + new Date().getMinutes() + 60;
+    for (var m = start; m <= end; m += 30) {
+      var t = fromMin(m), taken = hash(dateKey(date) + t + (st.stylist || "any")) % 3 === 0 || (isToday && m < nowM);
+      out.push([t, taken]);
+    }
+    return out;
+  }
+  function stylistName(id) { for (var i = 0; i < STYLISTS.length; i++) if (STYLISTS[i].id === id) return STYLISTS[i].name; return ""; }
+  function fmtDate(d) { return DAY_NAMES[d.getDay()] + " d. " + d.getDate() + ". " + MONTHS[d.getMonth()]; }
+
+  function render() {
+    steps.forEach(function (s, i) { s.classList.toggle("on", i <= st.step); });
+    backB.hidden = st.step === 0 || st.done;
+    var svc = st.service && findService(st.service);
+    var html = "";
+    if (st.done) {
+      html = '<div class="done"><span class="tick"><svg><use href="#i-check"/></svg></span><h3>Tak, vi glæder os!</h3><p>' + esc(svc[1]) + " hos " + esc(stylistName(st.stylist)) + ", " + fmtDate(st.date).toLowerCase() + " kl. " + st.time + '.</p><p class="bk-note">Klip &amp; Co. er en eksempelside lavet af Makkerne, så der er ikke booket nogen rigtig tid.</p></div>';
+      nextB.textContent = "Luk"; nextB.disabled = false; selEl.textContent = "";
+    } else if (st.step === 0) {
+      html = '<p class="bk-label">Vælg behandling</p>' + Object.keys(SERVICES).map(function (k) {
+        return '<p class="cat-title">' + SERVICES[k].label + '</p><div class="opt-list">' + SERVICES[k].items.map(function (s) {
+          return '<button type="button" class="opt" data-pick="service" data-v="' + s[0] + '" aria-pressed="' + (st.service === s[0]) + '"><span><b>' + esc(s[1]) + '</b><small>' + s[4] + ' min.</small></span><span class="r">' + (s[0] === "f4" ? "fra " : "") + kr(s[3]) + "</span></button>";
+        }).join("") + "</div>";
+      }).join("");
+    } else if (st.step === 1) {
+      html = '<p class="bk-label">Vælg frisør</p><div class="opt-list">' + STYLISTS.map(function (p) {
+        var av = p.img ? '<img class="av" src="' + p.img + '" alt="">' : '<span class="any"><svg><use href="#i-user"/></svg></span>';
+        return '<button type="button" class="opt" data-pick="stylist" data-v="' + p.id + '" aria-pressed="' + (st.stylist === p.id) + '"><span class="l">' + av + '<span><b>' + p.name + '</b><small>' + p.note + "</small></span></span></button>";
+      }).join("") + "</div>";
+    } else if (st.step === 2) {
+      html = '<p class="bk-label">Vælg dag</p><div class="days">' + nextDays().map(function (d) {
+        var closed = !HOURS[d.getDay()], on = st.date && dateKey(st.date) === dateKey(d);
+        return '<button type="button" class="dayb" data-pick="date" data-v="' + d.getTime() + '"' + (closed ? " disabled" : "") + ' aria-pressed="' + !!on + '" aria-label="' + fmtDate(d) + (closed ? ", lukket" : "") + '"><small>' + DAY_SHORT[d.getDay()] + "</small><b>" + d.getDate() + "</b><small>" + MONTHS[d.getMonth()].slice(0, 3) + "</small></button>";
+      }).join("") + "</div>";
+      if (st.date) {
+        var sl = slotsFor(st.date), free = sl.filter(function (s) { return !s[1]; }).length;
+        html += '<p class="bk-label">Ledige tider · ' + fmtDate(st.date).toLowerCase() + "</p>" + (free ? '<div class="slots">' + sl.map(function (s) {
+          return '<button type="button" class="slot" data-pick="time" data-v="' + s[0] + '"' + (s[1] ? " disabled" : "") + ' aria-pressed="' + (st.time === s[0]) + '">' + s[0] + "</button>";
+        }).join("") + "</div>" : '<p class="empty">Ingen ledige tider denne dag. Prøv en anden dag.</p>');
+      }
+    } else if (st.step === 3) {
+      html = '<p class="bk-label">Tjek din booking</p><dl class="summary">' +
+        "<div><dt>Behandling</dt><dd>" + esc(svc[1]) + "</dd></div>" +
+        "<div><dt>Frisør</dt><dd>" + esc(stylistName(st.stylist)) + "</dd></div>" +
+        "<div><dt>Tidspunkt</dt><dd>" + fmtDate(st.date) + ", kl. " + st.time + "</dd></div>" +
+        "<div><dt>Varighed</dt><dd>" + svc[4] + " min.</dd></div>" +
+        "<div><dt>Pris</dt><dd>" + (svc[0] === "f4" ? "fra " : "") + kr(svc[3]) + "</dd></div></dl>" +
+        '<p class="bk-note">Betaling sker i salonen. Gratis afbud indtil 24 timer før.</p>';
+    }
+    if (!st.done) {
+      nextB.textContent = st.step === 3 ? "Bekræft booking" : "Videre";
+      nextB.disabled = [!st.service, !st.stylist, !(st.date && st.time), false][st.step];
+      var bits = [];
+      if (svc) bits.push(svc[1]);
+      if (st.stylist && st.step > 0) bits.push(stylistName(st.stylist));
+      if (st.time && st.step > 1) bits.push(DAY_SHORT[st.date.getDay()] + " " + st.date.getDate() + "/" + (st.date.getMonth() + 1) + " " + st.time);
+      selEl.textContent = bits.join(" · ");
+    }
+    body.innerHTML = html;
+    body.scrollTop = 0;
+  }
+  body.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-pick]"); if (!b || b.disabled) return;
+    var k = b.dataset.pick, v = b.dataset.v, keep = body.scrollTop;
+    if (k === "service") { st.service = v; st.time = null; }
+    if (k === "stylist") { st.stylist = v; st.time = null; }
+    if (k === "date") { st.date = new Date(+v); st.time = null; }
+    if (k === "time") st.time = v;
+    render();
+    if (k === "date" || k === "time") body.scrollTop = keep;
+    if (k === "date") { var s = body.querySelector(".slots, .empty"); if (s) s.scrollIntoView({ block: "nearest", behavior: "smooth" }); }
+  });
+  nextB.addEventListener("click", function () {
+    if (st.done) { dlg.close(); return; }
+    if (st.step === 3) st.done = true; else st.step++;
+    if (st.step === 2 && !st.date) { var d = nextDays().filter(function (x) { return HOURS[x.getDay()] && slotsFor(x).some(function (s) { return !s[1]; }); })[0]; if (d) st.date = d; }
+    render();
+  });
+  backB.addEventListener("click", function () { if (st.step > 0) { st.step--; render(); } });
+  dlg.querySelector("[data-close-booking]").addEventListener("click", function () { dlg.close(); });
+  dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+
+  function openBooking(opts) {
+    reset(opts || {});
+    if (st.stylist && !st.service) st.step = 0;
+    if (st.service && st.stylist) st.step = 2;
+    render();
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-book]"); if (!b || dlg.contains(b)) return;
+    e.preventDefault();
+    openBooking({ service: b.dataset.service, stylist: b.dataset.stylist });
+  });
+})();
+</script>
+</body>
+</html>
