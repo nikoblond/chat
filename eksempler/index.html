@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Makkerne</title>
-<meta name="description" content="Makkerne: en ny, moderne hjemmeside til din café, frisørsalon eller restaurant – til en fast pris på 600 kr.">
+<title>Design-eksempler · Makkerne</title>
+<meta name="description" content="Se Makkernes design-eksempler: hjemmesider til frisører, caféer og restauranter – til en fast pris på 600 kr.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@500&family=Fraunces:ital,opsz,wght@1,9..144,500&family=Oswald:wght@500;600&display=swap">
@@ -117,7 +117,6 @@ section.soft { background: var(--bg-soft); }
 .case-body p { color: var(--ink-2); }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
 .tags span { font-size: 12.5px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink-2); }
-.all-examples { margin-top: 36px; display: flex; justify-content: center; }
 .concept-note { margin-top: 28px; text-align: center; font-size: 13.5px; color: var(--ink-3); }
 @media (max-width: 860px) {
   .case, .case:nth-child(even) { grid-template-columns: 1fr; }
@@ -250,256 +249,177 @@ footer { background: var(--bg-soft); border-top: 1px solid var(--line); }
 footer .wrap { padding-block: 40px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; font-size: 13.5px; color: var(--ink-3); }
 footer .logo b { color: var(--ink); font-size: 18px; }
 footer .logo span { color: var(--ink-3); }
+
+/* Design-eksempler page */
+.ex-hero { background: var(--hero-bg); border-bottom: 1px solid var(--hero-line); }
+.ex-hero .wrap { padding-block: 72px 56px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+.ex-hero h1 { font-size: clamp(36px, 5.2vw, 60px); font-weight: 800; letter-spacing: -.045em; max-width: 18ch; }
+.ex-hero p { max-width: 58ch; color: var(--ink-2); font-size: 17px; }
+.chips { margin-top: 14px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.chips a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font-size: 14px; font-weight: 600; text-decoration: none; transition: border-color .15s, background .15s; }
+.chips a:hover { border-color: var(--accent); }
+.chips a[aria-current="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.chips small { font: 500 11px/1 var(--mono); color: var(--ink-3); }
+.cat { padding-block: 88px; scroll-margin-top: 70px; }
+.cat + .cat { border-top: 1px solid var(--line); }
+.cat.soft { background: var(--bg-soft); }
+.cat-head { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+.cat-head h2 { font-size: clamp(28px, 3.4vw, 40px); }
+.cat-head p { color: var(--ink-2); max-width: 62ch; }
+.feature { display: grid; grid-template-columns: 1.35fr 1fr; gap: 48px; align-items: center; }
+.feature .device { max-width: 720px; justify-self: center; }
+.feature-body { display: flex; flex-direction: column; gap: 16px; }
+.feature-body h3 { font-size: 30px; }
+.feature-body > p { color: var(--ink-2); }
+.feat-list { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 10px; }
+.feat-list li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+.feat-list li span { display: block; }
+.feat-list li::before { content: ""; width: 18px; height: 18px; margin-top: 3px; border-radius: 50%; background: var(--accent-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%231f6bff' stroke-width='2'/%3E%3C/svg%3E") center / 12px no-repeat; }
+.feat-list b { color: var(--ink); font-weight: 600; }
+.feature-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+.feature .case-live { border-radius: 24px; }
+.device-link { display: block; width: 100%; max-width: 720px; justify-self: center; border-radius: 12px; }
+.device-link:hover .device-shell { filter: drop-shadow(0 34px 34px rgba(15,26,43,.28)); }
+.soon { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding: 28px 32px; border: 1px dashed #c9d3e2; border-radius: 20px; background: var(--surface); }
+.soon p { color: var(--ink-2); max-width: 60ch; }
+.soon b { color: var(--ink); }
+@media (max-width: 900px) { .feature { grid-template-columns: 1fr; gap: 32px; } .cat { padding-block: 64px; } }
 </style>
 </head>
 <body>
 
 <header class="nav">
   <div class="wrap">
-    <a class="logo" href="#top" aria-label="Makkerne">
+    <a class="logo" href="/" aria-label="Makkerne – til forsiden">
       <b>Makkerne</b><span>WEBDESIGN</span>
     </a>
     <nav class="nav-links" aria-label="Hovedmenu">
-      <a href="eksempler/" data-i18n="nav.work">Design-eksempler</a>
-      <a href="#pris" data-i18n="nav.price">Pris</a>
-      <a href="#proces" data-i18n="nav.process">Sådan foregår det</a>
-      <a href="#faq" data-i18n="nav.faq">Spørgsmål</a>
+      <a href="/eksempler/" aria-current="page" style="color:var(--hero-ink)" data-i18n="nav.work">Design-eksempler</a>
+      <a href="/#pris" data-i18n="nav.price">Pris</a>
+      <a href="/#proces" data-i18n="nav.process">Sådan foregår det</a>
+      <a href="/#faq" data-i18n="nav.faq">Spørgsmål</a>
     </nav>
     <div class="nav-right">
       <div class="lang" role="group" aria-label="Sprog / Language">
         <button type="button" id="lang-da" data-lang="da" aria-pressed="true">DA</button>
         <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
       </div>
-      <a class="btn btn-primary" href="#kontakt" data-i18n="nav.cta">Få din side</a>
+      <a class="btn btn-primary" href="/#kontakt" data-i18n="nav.cta">Få din side</a>
     </div>
   </div>
 </header>
 
 <main id="top">
-  <section class="hero">
+  <section class="ex-hero">
     <div class="wrap">
-      <div class="eyebrow rise" data-i18n="hero.eyebrow">Til caféer, frisører og restauranter</div>
-      <h1 class="rise" data-i18n="hero.title">En helt ny hjemmeside til din forretning</h1>
-      <div class="price-line rise" data-i18n="hero.price">Kun 600 kr.</div>
-      <p class="lead rise" data-i18n="hero.lead">Vi er to unge iværksættere, der designer og bygger moderne, hurtige hjemmesider til små virksomheder. Én fast pris, ingen abonnement og ingen overraskelser.</p>
-      <div class="ctas rise">
-        <a class="btn btn-primary" href="#eksempler"><span data-i18n="hero.cta1">Se eksempler</span>
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-        <a class="btn btn-ghost" href="#kontakt" data-i18n="hero.cta2">Skriv til os</a>
-      </div>
-      <div class="stats rise">
-        <div><strong>600 kr.</strong><span data-i18n="stat.1">Fast pris, alt inkluderet</span></div>
-        <div><strong>0 kr.</strong><span data-i18n="stat.2">Månedligt abonnement</span></div>
-        <div><strong data-i18n="stat.3v">Mobil først</strong><span data-i18n="stat.3">Ser godt ud på alle skærme</span></div>
-      </div>
+      <div class="eyebrow" data-i18n="ex.eyebrow">Design-eksempler</div>
+      <h1 data-i18n="ex.title">Se hvad vi kan lave til din forretning</h1>
+      <p data-i18n="ex.lead">Eksempler på hjemmesider, sorteret efter branche. Alle sider er bygget fra bunden, virker på telefonen og koster 600 kr. Navnene er opdigtede.</p>
+      <nav class="chips" aria-label="Brancher">
+        <a href="#frisor"><span data-i18n="cat.hair">Frisør &amp; barber</span> <small>1</small></a>
+        <a href="#cafe"><span data-i18n="cat.cafe">Café</span> <small>1</small></a>
+        <a href="#restaurant"><span data-i18n="cat.resto">Restaurant</span> <small data-i18n="cat.soon">snart</small></a>
+      </nav>
     </div>
   </section>
 
-  <section class="block" id="eksempler">
+  <section class="cat" id="frisor" aria-labelledby="frisor-title">
     <div class="wrap">
-      <div class="head">
-        <div class="eyebrow" data-i18n="work.eyebrow">Eksempler</div>
-        <h2 data-i18n="work.title">Sådan kunne din side se ud</h2>
-        <p data-i18n="work.lead">Tre bud på hjemmesider til forskellige brancher. Hver side bliver designet fra bunden, så den passer til netop din forretning.</p>
+      <div class="cat-head">
+        <div class="eyebrow" data-i18n="hair.eyebrow">Frisør &amp; barber</div>
+        <h2 id="frisor-title" data-i18n="hair.title">Hjemmesider til frisørsaloner</h2>
+        <p data-i18n="hair.lead">Kunderne vil se priser, finde en ledig tid og vide, hvem der klipper dem. Derfor er booking og prisliste altid kun ét klik væk.</p>
       </div>
-
-      <div class="cases">
-        <!-- Café -->
-        <article class="case case-live">
-          <div class="case-visual">
-            <div class="device" aria-hidden="true">
-              <div class="device-screen">
-                <img class="device-poster" src="assets/cafe-hero.webp" alt="" width="1280" height="800" loading="lazy">
-                <iframe class="device-frame" src="examples/cafe/" title="Café Kanel, eksempel" tabindex="-1" loading="lazy" scrolling="no"></iframe>
-              </div>
-              <img class="device-shell" src="assets/macbook-pro.png" alt="" width="1208" height="700" decoding="async">
+      <div class="feature">
+        <a class="device-link" href="/examples/frisor/" aria-label="Åbn eksemplet Klip &amp; Co.">
+          <div class="device">
+            <div class="device-screen">
+              <img class="device-poster" src="/assets/frisor-hero.webp" alt="" width="1280" height="800">
+              <iframe class="device-frame" src="/examples/frisor/" title="Klip &amp; Co., eksempel" tabindex="-1" loading="lazy" scrolling="no" aria-hidden="true"></iframe>
             </div>
+            <img class="device-shell" src="/assets/macbook-pro.png" alt="" width="1208" height="700">
           </div>
-          <div class="case-body">
-            <div class="eyebrow" data-i18n="c1.eyebrow">Eksempel · Café</div>
-            <h3>Café Kanel</h3>
-            <p data-i18n="c1.text">Varm og indbydende side, hvor menu, åbningstider og adresse er det første, gæsten ser. Lavet til at blive tjekket på telefonen på vej forbi.</p>
-            <div class="tags"><span data-i18n="tag.menu">Menu</span><span data-i18n="tag.hours">Åbningstider</span><span data-i18n="tag.map">Kort &amp; adresse</span><span data-i18n="tag.mobile">Mobil først</span></div>
-            <a class="btn btn-primary case-cta" href="examples/cafe/"><span data-i18n="c1.cta">Se eksemplet</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
-          </div>
-        </article>
-
-        <!-- Barber -->
-        <article class="case case-live">
-          <div class="case-visual">
-            <div class="device" aria-hidden="true">
-              <div class="device-screen">
-                <img class="device-poster" src="assets/frisor-hero.webp" alt="" width="1280" height="800" loading="lazy">
-                <iframe class="device-frame" src="examples/frisor/" title="Klip &amp; Co., eksempel" tabindex="-1" loading="lazy" scrolling="no"></iframe>
-              </div>
-              <img class="device-shell" src="assets/macbook-pro.png" alt="" width="1208" height="700" decoding="async">
-            </div>
-          </div>
-          <div class="case-body">
-            <div class="eyebrow" data-i18n="c2.eyebrow">Eksempel · Frisør &amp; barber</div>
-            <h3>Klip &amp; Co.</h3>
-            <p data-i18n="c2.text">Rolig og eksklusiv side med en prisliste, der er nem at læse, og online booking i fire klik. Knappen til booking følger med hele vejen ned ad siden, også på telefonen.</p>
-            <div class="tags"><span data-i18n="tag.booking">Online booking</span><span data-i18n="tag.prices">Prisliste</span><span data-i18n="tag.team">Mød teamet</span><span data-i18n="tag.mobile">Mobil først</span></div>
-            <a class="btn btn-primary case-cta" href="examples/frisor/"><span data-i18n="c2.cta">Se eksemplet</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
-          </div>
-        </article>
-
-        <!-- Restaurant -->
-        <article class="case">
-          <div class="case-visual">
-            <div class="laptop" aria-hidden="true">
-              <div class="lid"><div class="screen">
-                <div class="ms ms-resto">
-                  <div class="ms-nav"><span class="brand">Lyng</span><span class="links"><span>Menu</span><span>Vin</span><span>Selskaber</span></span><span class="ms-pill">Book bord</span></div>
-                  <div class="body">
-                    <div class="copy">
-                      <div class="kicker">Nordisk køkken · Frederiksberg</div>
-                      <h4>Sæsonens råvarer, serveret enkelt</h4>
-                      <div class="book"><span>Fre 18. okt</span><span>2 pers.</span><span>Find bord</span></div>
-                    </div>
-                    <div class="plate"></div>
-                  </div>
-                </div>
-              </div></div>
-              <div class="base"></div>
-            </div>
-          </div>
-          <div class="case-body">
-            <div class="eyebrow" data-i18n="c3.eyebrow">Eksempel · Restaurant</div>
-            <h3>Restaurant Lyng</h3>
-            <p data-i18n="c3.text">Rolig og elegant side, der lader maden tale. Bordbestilling direkte fra forsiden, en menu der er nem at læse og en side til selskaber og events.</p>
-            <div class="tags"><span data-i18n="tag.table">Bordbestilling</span><span data-i18n="tag.menu">Menu</span><span data-i18n="tag.events">Selskaber</span><span data-i18n="tag.mobile">Mobil først</span></div>
-          </div>
-        </article>
-      </div>
-      <p class="all-examples"><a class="btn btn-ghost" href="eksempler/"><span data-i18n="work.all">Se alle design-eksempler</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a></p>
-      <p class="concept-note" data-i18n="work.note">Navnene ovenfor er opdigtede. Siderne er eksempler på stilen, ikke rigtige kundeprojekter.</p>
-    </div>
-  </section>
-
-  <section class="block soft" id="pris">
-    <div class="wrap">
-      <div class="head">
-        <div class="eyebrow" data-i18n="price.eyebrow">Pris</div>
-        <h2 data-i18n="price.title">Én pris. Hele hjemmesiden.</h2>
-        <p data-i18n="price.lead">Ingen pakker at vælge imellem og ingen timepris, der løber løbsk. Du ved, hvad det koster, før vi starter.</p>
-      </div>
-      <div class="price-card">
-        <div class="price-left">
-          <span class="tag" data-i18n="price.tag">Fast pris</span>
-          <div class="price-big">600<small>kr.</small></div>
-          <p data-i18n="price.sub">Betales én gang. Ingen binding og intet månedligt abonnement til os.</p>
-          <a class="btn" href="#kontakt"><span data-i18n="price.cta">Kom i gang</span>
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-        </div>
-        <div class="price-right">
-          <h3 data-i18n="price.incl">Det får du</h3>
-          <ul class="incl">
-            <li><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></i><div><b data-i18n="i1.t">Design fra bunden</b><span data-i18n="i1.d">Lavet til din forretning, ikke en skabelon.</span></div></li>
-            <li><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></i><div><b data-i18n="i2.t">Mobilvenlig</b><span data-i18n="i2.d">Ser skarp ud på telefon, tablet og computer.</span></div></li>
-            <li><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></i><div><b data-i18n="i3.t">Menu, priser og åbningstider</b><span data-i18n="i3.d">Det dine kunder leder efter, lige til at finde.</span></div></li>
-            <li><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></i><div><b data-i18n="i4.t">Booking og kontakt</b><span data-i18n="i4.d">Link til dit bookingsystem, telefon, mail og kort.</span></div></li>
-            <li><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></i><div><b data-i18n="i5.t">Hurtig at loade</b><span data-i18n="i5.d">Ingen tunge temaer, der får folk til at give op.</span></div></li>
-            <li><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></i><div><b data-i18n="i6.t">Klar til Google</b><span data-i18n="i6.d">Titler og beskrivelser sat op, så du kan blive fundet.</span></div></li>
+        </a>
+        <div class="feature-body">
+          <div class="eyebrow" data-i18n="hair.ex">Eksempel · Valby</div>
+          <h3>Klip &amp; Co.</h3>
+          <p data-i18n="hair.text">Rolig og eksklusiv frisørside med varme farver, store billeder og en booking, der virker lige så godt på telefonen som på computeren.</p>
+          <ul class="feat-list">
+            <li data-i18n-html="hair.f1"><span><b>Online booking i fire klik</b> – behandling, frisør, dag og tid</span></li>
+            <li data-i18n-html="hair.f2"><span><b>Prisliste med faner</b> for dame, herre, farve og barber</span></li>
+            <li data-i18n-html="hair.f3"><span><b>Mød teamet</b> med “Book hos …” på hver frisør</span></li>
+            <li data-i18n-html="hair.f4"><span><b>Åben/lukket lige nu</b> og åbningstider, der altid er opdaterede</span></li>
+            <li data-i18n-html="hair.f5"><span><b>Fast bookingknap på mobilen</b> og knap til at ringe op</span></li>
           </ul>
-          <p class="compare" data-i18n-html="price.compare">Til sammenligning koster en ny hjemmeside fra et bureau ofte <b>flere tusinde kroner</b>.</p>
+          <div class="feature-ctas">
+            <a class="btn btn-primary" href="/examples/frisor/"><span data-i18n="ex.see">Se eksemplet</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+            <a class="btn btn-ghost" href="/#kontakt" data-i18n="ex.want">Jeg vil have en som denne</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="block" id="proces">
+  <section class="cat soft" id="cafe" aria-labelledby="cafe-title">
     <div class="wrap">
-      <div class="head">
-        <div class="eyebrow" data-i18n="proc.eyebrow">Sådan foregår det</div>
-        <h2 data-i18n="proc.title">Fra første mail til færdig side</h2>
-        <p data-i18n="proc.lead">Ingen lange møder eller tunge briefs. Tre enkle trin.</p>
+      <div class="cat-head">
+        <div class="eyebrow" data-i18n="cafe.eyebrow">Café</div>
+        <h2 id="cafe-title" data-i18n="cafe.title">Hjemmesider til caféer</h2>
+        <p data-i18n="cafe.lead">Menu, åbningstider og adresse først. Gæsten tjekker siden på telefonen på vej forbi, så den skal være hurtig og lækker.</p>
       </div>
-      <div class="steps">
-        <div class="step"><div class="n">01</div><h3 data-i18n="s1.t">Du skriver til os</h3><p data-i18n="s1.d">Fortæl kort om din forretning, og send gerne et par billeder og dit logo, hvis du har et.</p></div>
-        <div class="step"><div class="n">02</div><h3 data-i18n="s2.t">Vi designer siden</h3><p data-i18n="s2.d">Du får et udkast at se, og vi retter til, indtil du er tilfreds.</p></div>
-        <div class="step"><div class="n">03</div><h3 data-i18n="s3.t">Siden går live</h3><p data-i18n="s3.d">Vi sætter siden online og viser dig, hvordan du opdaterer åbningstider og menu.</p></div>
+      <div class="feature">
+        <a class="device-link" href="/examples/cafe/" aria-label="Åbn eksemplet Café Kanel">
+          <div class="device">
+            <div class="device-screen">
+              <img class="device-poster" src="/assets/cafe-hero.webp" alt="" width="1280" height="800">
+              <iframe class="device-frame" src="/examples/cafe/" title="Café Kanel, eksempel" tabindex="-1" loading="lazy" scrolling="no" aria-hidden="true"></iframe>
+            </div>
+            <img class="device-shell" src="/assets/macbook-pro.png" alt="" width="1208" height="700">
+          </div>
+        </a>
+        <div class="feature-body">
+          <div class="eyebrow" data-i18n="cafe.ex">Eksempel · Nørrebro</div>
+          <h3>Café Kanel</h3>
+          <p data-i18n="cafe.text">Lys og legende café-side med en mosaik af mad og drikke, store knapper og farver, der passer til brandet.</p>
+          <ul class="feat-list">
+            <li data-i18n-html="cafe.f1"><span><b>Menukort</b> der åbner direkte på siden</span></li>
+            <li data-i18n-html="cafe.f2"><span><b>Flere adresser</b> med åbningstider og book bord</span></li>
+            <li data-i18n-html="cafe.f3"><span><b>Gavekort, takeaway og firmabestilling</b></span></li>
+            <li data-i18n-html="cafe.f4"><span><b>Ofte stillede spørgsmål</b> sorteret i emner</span></li>
+          </ul>
+          <div class="feature-ctas">
+            <a class="btn btn-primary" href="/examples/cafe/"><span data-i18n="ex.see">Se eksemplet</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+            <a class="btn btn-ghost" href="/#kontakt" data-i18n="ex.want">Jeg vil have en som denne</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="block soft" id="faq">
+  <section class="cat" id="restaurant" aria-labelledby="resto-title">
     <div class="wrap">
-      <div class="head">
-        <div class="eyebrow" data-i18n="faq.eyebrow">Spørgsmål</div>
-        <h2 data-i18n="faq.title">Det bliver vi tit spurgt om</h2>
+      <div class="cat-head">
+        <div class="eyebrow" data-i18n="resto.eyebrow">Restaurant</div>
+        <h2 id="resto-title" data-i18n="resto.title">Hjemmesider til restauranter</h2>
       </div>
-      <div class="faq">
-        <details><summary><span data-i18n="q1">Hvorfor er det så billigt?</span><span class="pm"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 1v10M1 6h10"/></svg></span></summary><p data-i18n="a1">Vi er to mand uden kontor, sælgere eller mellemled. Siderne er enkle og fokuserede, så vi kan lave dem hurtigt og holde prisen nede.</p></details>
-        <details><summary><span data-i18n="q2">Skal jeg selv levere tekst og billeder?</span><span class="pm"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 1v10M1 6h10"/></svg></span></summary><p data-i18n="a2">Det er en god hjælp, hvis du sender billeder og din menu eller prisliste. Teksterne kan vi skrive for dig ud fra det, du fortæller.</p></details>
-        <details><summary><span data-i18n="q3">Hvad med domæne og hosting?</span><span class="pm"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 1v10M1 6h10"/></svg></span></summary><p data-i18n="a3">Har du allerede et domæne, bruger vi det. Har du ikke, hjælper vi dig med at finde den billigste løsning, så du selv ejer det hele.</p></details>
-        <details><summary><span data-i18n="q4">Kan jeg ændre noget bagefter?</span><span class="pm"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 1v10M1 6h10"/></svg></span></summary><p data-i18n="a4">Ja. Vi retter til undervejs, og når siden er live, kan du altid skrive til os, hvis noget skal opdateres.</p></details>
+      <div class="soon">
+        <p data-i18n-html="resto.soon"><b>Eksemplet er på vej.</b> Bordbestilling fra forsiden, en menu der er nem at læse og en side til selskaber. Har du en restaurant, laver vi gerne et udkast til dig.</p>
+        <a class="btn btn-ghost" href="/#kontakt" data-i18n="resto.cta">Skriv til os</a>
       </div>
-    </div>
-  </section>
-
-  <section class="cta" id="kontakt">
-    <div class="wrap">
-      <div class="eyebrow" data-i18n="cta.eyebrow">Kontakt</div>
-      <h2 data-i18n="cta.title">Klar til en ny hjemmeside til 600 kr.?</h2>
-      <p data-i18n="cta.lead">Skriv en mail med navnet på din forretning og hvad du laver. Vi svarer typisk samme dag.</p>
-      <div class="mail">
-        <code id="mail-address">blond.nikolaj@gmail.com</code>
-        <button type="button" class="btn btn-primary copy" id="copy-mail" data-i18n="cta.copy">Kopiér mail</button>
-      </div>
-      <div class="copy-status" id="copy-status" aria-live="polite"></div>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <a class="logo" href="#top" aria-label="Makkerne"><b>Makkerne</b><span>WEBDESIGN</span></a>
+    <a class="logo" href="/" aria-label="Makkerne"><b>Makkerne</b><span>WEBDESIGN</span></a>
     <span>© 2026 Makkerne</span>
   </div>
 </footer>
 
 <script>
 (function () {
-  var en = {
-    "nav.work": "Design examples", "work.all": "See all design examples", "nav.price": "Price", "nav.process": "How it works", "nav.faq": "Questions", "nav.cta": "Get your site",
-    "hero.eyebrow": "For cafés, hair salons and restaurants",
-    "hero.title": "A brand-new website for your business",
-    "hero.price": "Only 600 DKK",
-    "hero.lead": "We are two young entrepreneurs who design and build modern, fast websites for small businesses. One fixed price, no subscription and no surprises.",
-    "hero.cta1": "See examples", "hero.cta2": "Email us",
-    "stat.1": "Fixed price, everything included", "stat.2": "Monthly subscription", "stat.3v": "Mobile first", "stat.3": "Looks great on every screen",
-    "work.eyebrow": "Examples", "work.title": "What your site could look like",
-    "work.lead": "Three takes on websites for different industries. Every site is designed from scratch to fit your business.",
-    "work.note": "The names above are made up. These are examples of the style, not real client projects.",
-    "c1.eyebrow": "Example · Café", "c1.cta": "See the example", "c1.text": "A warm, inviting site where the menu, opening hours and address are the first thing guests see. Built to be checked on a phone while walking by.",
-    "c2.eyebrow": "Example · Hair & barber", "c2.cta": "See the example", "c2.text": "A calm, upscale site with an easy-to-read price list and online booking in four clicks. The booking button follows you all the way down the page, on phones too.",
-    "c3.eyebrow": "Example · Restaurant", "c3.text": "A calm, elegant site that lets the food speak. Table booking from the front page, an easy-to-read menu and a page for private events.",
-    "tag.menu": "Menu", "tag.hours": "Opening hours", "tag.map": "Map & address", "tag.mobile": "Mobile first", "tag.booking": "Online booking", "tag.prices": "Price list", "tag.gallery": "Gallery", "tag.team": "Meet the team", "tag.table": "Table booking", "tag.events": "Private events",
-    "price.eyebrow": "Price", "price.title": "One price. The whole website.",
-    "price.lead": "No packages to choose between and no hourly rate that runs away. You know what it costs before we start.",
-    "price.tag": "Fixed price", "price.sub": "Paid once. No lock-in and no monthly fee to us.", "price.cta": "Get started", "price.incl": "What you get",
-    "i1.t": "Designed from scratch", "i1.d": "Made for your business, not a template.",
-    "i2.t": "Mobile friendly", "i2.d": "Looks sharp on phone, tablet and desktop.",
-    "i3.t": "Menu, prices and hours", "i3.d": "What your customers look for, easy to find.",
-    "i4.t": "Booking and contact", "i4.d": "Link to your booking system, phone, email and map.",
-    "i5.t": "Fast to load", "i5.d": "No heavy themes that make people give up.",
-    "i6.t": "Ready for Google", "i6.d": "Titles and descriptions set up so you can be found.",
-    "price.compare": "For comparison, a new website from an agency often costs <b>several thousand kroner</b>.",
-    "proc.eyebrow": "How it works", "proc.title": "From first email to finished site", "proc.lead": "No long meetings or heavy briefs. Three simple steps.",
-    "s1.t": "You email us", "s1.d": "Tell us briefly about your business, and send a few photos and your logo if you have one.",
-    "s2.t": "We design the site", "s2.d": "You get a draft to look at, and we adjust it until you're happy.",
-    "s3.t": "The site goes live", "s3.d": "We put the site online and show you how to update your opening hours and menu.",
-    "faq.eyebrow": "Questions", "faq.title": "What people often ask us",
-    "q1": "Why is it so cheap?", "a1": "We're a two-person team with no office, salespeople or middlemen. The sites are simple and focused, so we can build them quickly and keep the price low.",
-    "q2": "Do I need to provide text and photos?", "a2": "It helps if you send photos and your menu or price list. We can write the text for you based on what you tell us.",
-    "q3": "What about domain and hosting?", "a3": "If you already have a domain, we use it. If not, we'll help you find the cheapest option so you own everything yourself.",
-    "q4": "Can I change things afterwards?", "a4": "Yes. We adjust along the way, and once the site is live you can always email us if something needs updating.",
-    "cta.eyebrow": "Contact", "cta.title": "Ready for a new website for 600 DKK?",
-    "cta.lead": "Send an email with the name of your business and what you do. We usually reply the same day.",
-    "cta.copy": "Copy email", "copied": "Copied to clipboard", "copyfail": "Select the address above and copy it"
-  };
-  // Live example in the MacBook: scale the 1280px-wide iframe to the measured screen.
+  // Scale each live preview to its measured MacBook screen (1280px-wide iframe).
   document.querySelectorAll(".device-screen").forEach(function (screen) {
     var frame = screen.querySelector(".device-frame");
     function fit() { frame.style.setProperty("--s", String(screen.clientWidth / 1280)); }
@@ -508,17 +428,50 @@ footer .logo span { color: var(--ink-3); }
     frame.addEventListener("load", function () { frame.classList.add("ready"); });
   });
 
+  // Highlight the category chip for the section in view.
+  var chips = document.querySelectorAll(".chips a");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        chips.forEach(function (c) { c.setAttribute("aria-current", String(c.getAttribute("href") === "#" + e.target.id)); });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    document.querySelectorAll(".cat").forEach(function (s) { io.observe(s); });
+  }
+
+  var en = {
+    "nav.work": "Design examples", "nav.price": "Price", "nav.process": "How it works", "nav.faq": "Questions", "nav.cta": "Get your site",
+    "ex.eyebrow": "Design examples", "ex.title": "See what we can make for your business",
+    "ex.lead": "Example websites, sorted by industry. Every site is built from scratch, works on phones and costs 600 DKK. The names are made up.",
+    "cat.hair": "Hair & barber", "cat.cafe": "Café", "cat.resto": "Restaurant", "cat.soon": "soon",
+    "hair.eyebrow": "Hair & barber", "hair.title": "Websites for hair salons",
+    "hair.lead": "Customers want to see prices, find a free slot and know who will cut their hair. So booking and the price list are always one click away.",
+    "hair.ex": "Example · Valby", "hair.text": "A calm, upscale salon site with warm colours, large photos and booking that works just as well on a phone as on a computer.",
+    "hair.f1": "<span><b>Online booking in four clicks</b> – service, stylist, day and time</span>",
+    "hair.f2": "<span><b>Tabbed price list</b> for women, men, colour and barber</span>",
+    "hair.f3": "<span><b>Meet the team</b> with “Book with …” on every stylist</span>",
+    "hair.f4": "<span><b>Open/closed right now</b> and opening hours that are always up to date</span>",
+    "hair.f5": "<span><b>Sticky booking button on mobile</b> plus a call button</span>",
+    "ex.see": "See the example", "ex.want": "I want one like this",
+    "cafe.eyebrow": "Café", "cafe.title": "Websites for cafés",
+    "cafe.lead": "Menu, opening hours and address first. Guests check the site on their phone while walking by, so it has to be fast and appetising.",
+    "cafe.ex": "Example · Nørrebro", "cafe.text": "A bright, playful café site with a food-and-drink mosaic, big buttons and colours that fit the brand.",
+    "cafe.f1": "<span><b>Menu</b> that opens right on the page</span>",
+    "cafe.f2": "<span><b>Several locations</b> with opening hours and table booking</span>",
+    "cafe.f3": "<span><b>Gift cards, takeaway and corporate orders</b></span>",
+    "cafe.f4": "<span><b>FAQ</b> grouped by topic</span>",
+    "resto.eyebrow": "Restaurant", "resto.title": "Websites for restaurants",
+    "resto.soon": "<b>This example is on its way.</b> Table booking from the front page, an easy-to-read menu and a page for private events. Run a restaurant? We'd be happy to make you a draft.",
+    "resto.cta": "Email us"
+  };
   var da = {};
   var nodes = document.querySelectorAll("[data-i18n],[data-i18n-html]");
   nodes.forEach(function (el) {
     var k = el.getAttribute("data-i18n") || el.getAttribute("data-i18n-html");
     da[k] = el.hasAttribute("data-i18n-html") ? el.innerHTML : el.textContent;
   });
-  da.copied = "Kopieret"; da.copyfail = "Markér adressen ovenfor og kopiér den";
-  var current = "da";
-
   function setLang(lang) {
-    current = lang;
     var dict = lang === "en" ? en : da;
     nodes.forEach(function (el) {
       var html = el.hasAttribute("data-i18n-html");
@@ -527,30 +480,11 @@ footer .logo span { color: var(--ink-3); }
       if (html) el.innerHTML = dict[k]; else el.textContent = dict[k];
     });
     document.documentElement.lang = lang;
-    document.querySelectorAll(".lang button").forEach(function (b) {
-      b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === lang));
-    });
-    document.getElementById("copy-status").textContent = "";
+    document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === lang)); });
     try { localStorage.setItem("bw-lang", lang); } catch (e) {}
   }
-  document.querySelectorAll(".lang button").forEach(function (b) {
-    b.addEventListener("click", function () { setLang(b.getAttribute("data-lang")); });
-  });
-  try { var saved = localStorage.getItem("bw-lang"); if (saved === "en") setLang("en"); } catch (e) {}
-
-  var status = document.getElementById("copy-status");
-  document.getElementById("copy-mail").addEventListener("click", function () {
-    var addr = document.getElementById("mail-address");
-    var dict = current === "en" ? en : da;
-    function fallback() {
-      var r = document.createRange(); r.selectNodeContents(addr);
-      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      status.textContent = dict.copyfail;
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(addr.textContent.trim()).then(function () { status.textContent = dict.copied; }, fallback);
-    } else { fallback(); }
-  });
+  document.querySelectorAll(".lang button").forEach(function (b) { b.addEventListener("click", function () { setLang(b.getAttribute("data-lang")); }); });
+  try { if (localStorage.getItem("bw-lang") === "en") setLang("en"); } catch (e) {}
 })();
 </script>
 </body>
