@@ -1,0 +1,13 @@
+# Private / local only – never upload
+handoff/
+.serve.mjs
+.claude/
+.gitignore
+# Old portfolio pages, superseded by the Makkerne site
+cafe.html
+hair.html
+restaurant.html
+standalone.html
+styles.css
+.env*
+.vercel/
